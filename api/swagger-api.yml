@@ -22,6 +22,11 @@ consumes:
   - application/json
 produces:
   - application/json
+securityDefinitions:
+  apiKey:
+    type: 'apiKey'
+    name: 'X-API-KEY'
+    in: 'header'
 paths:
   /:
     get:
@@ -43,7 +48,28 @@ paths:
                     default: Hello Dash-ed REST API!
                 required:
                   - text
+  
   /users:
+    post:
+      operationId: getUser
+      summary: Login
+      tags:
+        - Users
+      parameters:
+        - name: user
+          in: body
+          schema:
+            $ref: '#/definitions/NewLoginUser'
+      responses:
+        200:
+          description: Ok
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: '#/definitions/LoginUser'
+  
+  /users/signup:
     post:
       operationId: createUser
       summary: Create a new user
@@ -62,26 +88,100 @@ paths:
             properties:
               data:
                 $ref: '#/definitions/User'
+  
+  /questions:
+    post:
+      operationId: createQuestion
+      summary: Create a new question
+      tags:
+        - Questions
+      security:
+        - apiKey: []
+      parameters:
+        - name: newQuestion
+          in: body
+          schema:
+            $ref: '#/definitions/NewQuestion'
+      responses:
+        201:
+          description: Created
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: '#/definitions/Question'
 
+  /questions/{subjectId}:
+    parameters:
+      - name: subjectId
+        in: path
+        type: integer
+        required: true
+    get:
+      operationId: getQuestionsBySubjectId
+      summary: Get questions by subject id
+      tags:
+        - Questions
+      security:
+        - apiKey: []
+      responses:
+        201:
+          description: Ok
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/NewQuestion'
+
+  /questions/{questionId}:
+    parameters:
+      - name: questionId
+        in: path
+        type: integer
+        required: true
+    put:
+      operationId: approveQuestion
+      summary: Approve a question
+      tags:
+        - Questions
+      security:
+        - apiKey: []
+      responses:
+        200:
+          description: Approved
+  
 definitions:
-  NewUser:
+  LoginUser:
     type: object
     properties:
+      jwt:
+        type: string
       firstName:
         type: string
+      lastName:
+        type: string
+      username:
+        type: string
+      currency:
+        type: integer
+        minimum: 0
+      experience:
+        type: integer
+        minimum: 0 
+
+  NewLoginUser:
+    type: object
+    properties:
       email:
         type: string
         format: email
-    required:
-      - firstName
-      - email
+      password:
+        type: string
 
   User:
     type: object
     properties:
       id:
         type: integer
-        format: int64
         minimum: 0
       email:
         type: string
@@ -89,4 +189,78 @@ definitions:
     required:
       - id
       - email
-      
+
+  NewUser:
+    type: object
+    properties:
+      firstName:
+        type: string
+      lastName:
+        type: string
+      username:
+        type: string
+      email:
+        type: string
+        format: email
+      password:
+        type: string
+      kind:
+        type: string
+        default: teacher
+        enum:
+          - admin
+          - teacher
+      gender:
+        type: string
+        default: other
+        enum:
+          - male
+          - female
+          - other
+      campusID:
+        type: integer
+        minimum: 0
+    required:
+      - firstName
+      - lastName
+      - username
+      - email
+      - password
+      - campusID
+
+  Question:
+    type: object
+    properties:
+      id:
+        type: integer
+        minimum: 0
+    required:
+      - id
+
+  NewQuestion:
+    type: object
+    properties:
+      kind:
+        type: integer
+        minimum: 1
+        maximum: 9
+      descriptionText:
+        type: string
+      descriptionImage:
+        type: string
+      answers:
+        type: array
+        items:
+          type: object
+          properties:
+            text:
+              type: string
+            index:
+              type: integer
+              minimum: 1
+              maximum: 20
+    required:
+      - kind
+      - descriptionText
+      - descriptionImage
+      - answers
