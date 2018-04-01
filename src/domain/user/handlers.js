@@ -1,9 +1,10 @@
 const { SHA256 } = require('crypto-js');
+const nodemailer = require("nodemailer");
 
 function createUser({ models, params }) {
     const { User, Hash } = models;
     const { newUser } = params;
-    console.log('newUser', newUser);
+    console.log('newUser', newUser.value);
 
     const currentDate = new Date().toString();
     const random = Math.random().toString();
@@ -14,47 +15,21 @@ function createUser({ models, params }) {
             hash,
             userId: user.id
         };
-        
-        return Hash.createOne({ attributes: newHash });
+
+        return Hash.createOne({ attributes: newHash }).then(hash => {
+            const transporter = nodemailer.createTransport('smtps://test.dashed@gmail.com:testdashed@smtp.gmail.com');
+            const link = `https://dash-ed.herokuapp.com/v1/verify?id=${hash.hash}`;
+            const mailOptions = {
+                to: user.email,
+                subject: "Please confirm your Email account",
+                html: "Hello,<br> Please Click on the link to verify your email.<br><a href=" + link + ">Click here to verify</a>"
+            };
+
+            return transporter.sendMail(mailOptions);
+        });
     });
 };
 
 module.exports = {
     createUser
 };
-
-
-// app.get('/user/:email', (req, res) => {
-//     const email = req.params.email;
-
-//     if (email == undefined) {
-//         res.send(400);
-//     } else {
-//         User.query().where('email', email).then(user => {
-//             console.log('Succes:', user);
-//             res.send({
-//                 data: user
-//             });
-//         }).catch(error => {
-//             console.log('Error:', error);
-//             res.send(404);
-//         });
-//     }
-// });
-
-// app.post('/user', (req, res) => {
-//     const first_name = req.body.firstName;
-//     const email = req.body.email;
-
-//     if (first_name == undefined || email == undefined) {
-//         res.send(400);
-//     } else {
-//         User.query().insert({ first_name, email}).then(data => {
-//             console.log('Succes:', data);
-//             res.send(201);
-//         }).catch(error => {
-//             console.log('Error:', error);
-//             res.send(400);
-//         });
-//     }
-// });
