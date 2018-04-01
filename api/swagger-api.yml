@@ -132,7 +132,7 @@ paths:
             items:
               $ref: '#/definitions/NewQuestion'
 
-  /questions/{questionId}:
+  /questionss/{questionId}:
     parameters:
       - name: questionId
         in: path

@@ -1,8 +1,9 @@
 function createUser({ models, params }) {
     const { User } = models;
     const { newUser } = params;
-
-    return User.createOne({ attributes: newUser.value});
+    console.log('newUser', newUser);
+    return 'Ok';
+    //return User.createOne({ attributes: newUser.value});
 };
 
 module.exports = {
