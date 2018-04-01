@@ -1,9 +1,39 @@
 const { Model } = require('objection');
+const boom = require('boom');
 
 class BaseModel extends Model {
-    static createOne({ attributes, trx }) {
-        return this.query(trx).insertGraphAndFetch(attributes);
-    }
+	static get defaultEager() {
+		return '';
+	}
+
+	static createNotFoundError() {
+		return boom.notFound();
+	}
+
+	static createOne({ attributes, trx }) {
+		return this.query(trx).insertGraphAndFetch(attributes);
+	}
+
+	static getOne({ attributes }) {
+		return this.query()
+			.findOne(attributes)
+			.eager(this.defaultEager)
+			.throwIfNotFound();
+	}
+
+	static getOneById({ id }) {
+		return this.query()
+			.findById(id)
+			.eager(this.defaultEager)
+			.throwIfNotFound();
+	}
+
+	static patchOne({ id, attributes }) {
+		return this.query()
+			.patchAndFetchById(id, attributes)
+			.eager(this.defaultEager)
+			.throwIfNotFound();
+	}
 }
 
 module.exports = BaseModel;

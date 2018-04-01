@@ -18,18 +18,36 @@ function createUser({ models, params }) {
 
         return Hash.createOne({ attributes: newHash }).then(hash => {
             const transporter = nodemailer.createTransport('smtps://test.dashed@gmail.com:testdashed@smtp.gmail.com');
-            const link = `https://dash-ed.herokuapp.com/v1/verify?id=${hash.hash}`;
+            const link = `https://dash-ed.herokuapp.com/v1/users/signup/verify?id=${hash.hash}`;
             const mailOptions = {
                 to: user.email,
                 subject: "Please confirm your Email account",
                 html: "Hello,<br> Please Click on the link to verify your email.<br><a href=" + link + ">Click here to verify</a>"
             };
 
-            return transporter.sendMail(mailOptions);
+            return transporter.sendMail(mailOptions).then(() => '');
         });
     });
 };
 
+function validateUser({ models, params }) {
+    const { User, Hash } = models;
+    const { id } = params;
+    const attributes = { hash: id.value };
+
+    return Hash.getOne({ attributes }).then(hash => {
+        const patchInfo = {
+            id: hash.user.id,
+            attributes: {
+                active: true
+            }
+        };
+        
+        return User.patchOne(patchInfo).then(user => '');
+    });
+}
+
 module.exports = {
-    createUser
+    createUser,
+    validateUser
 };
