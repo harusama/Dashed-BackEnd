@@ -6,6 +6,8 @@ CREATE TABLE campus (
   name VARCHAR(100)
 );
 
+INSERT INTO campus (state, region, district, name) VALUES ('Monterrey', 'Norte', 'District', 'Mty');
+
 CREATE TYPE user_kind AS ENUM('admin', 'teacher');
 CREATE TYPE user_gender AS ENUM('male', 'female', 'other');
 CREATE TABLE users (
@@ -15,9 +17,16 @@ CREATE TABLE users (
   username VARCHAR(100),
   email VARCHAR(100),
   password TEXT,
+  active BOOLEAN DEFAULT FALSE,
   gender user_gender NOT NULL DEFAULT 'other',
   kind user_kind NOT NULL DEFAULT 'teacher',
   experience INTEGER NOT NULL DEFAULT 0 CONSTRAINT valid_experience_number CHECK (experience >= 0),
   coins INTEGER NOT NULL DEFAULT 0 CONSTRAINT valid_coins_number CHECK (coins >= 0),
-  campus_id BIGINT REFERENCES campus(id) ON DELETE SET NULL
+  campus_id BIGINT DEFAULT 0 REFERENCES campus(id)
+);
+
+CREATE TABLE hashes (
+  id SERIAL PRIMARY KEY,
+  hash TEXT,
+  user_id BIGINT DEFAULT 0 REFERENCES users(id)
 );

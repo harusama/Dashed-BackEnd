@@ -1,9 +1,22 @@
+const { SHA256 } = require('crypto-js');
+
 function createUser({ models, params }) {
-    const { User } = models;
+    const { User, Hash } = models;
     const { newUser } = params;
     console.log('newUser', newUser);
-    return 'Ok';
-    //return User.createOne({ attributes: newUser.value});
+
+    const currentDate = new Date().toString();
+    const random = Math.random().toString();
+    const hash = SHA256(currentDate + random).toString();
+
+    return User.createOne({ attributes: newUser.value}).then(user => {
+        const newHash = {
+            hash,
+            userId: user.id
+        };
+        
+        return Hash.createOne({ attributes: newHash });
+    });
 };
 
 module.exports = {
