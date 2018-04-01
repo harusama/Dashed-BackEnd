@@ -6,8 +6,6 @@ CREATE TABLE campus (
   name VARCHAR(100)
 );
 
-INSERT INTO campus (state, region, district, name) VALUES ('Monterrey', 'Norte', 'District', 'Mty');
-
 CREATE TYPE user_kind AS ENUM('admin', 'teacher');
 CREATE TYPE user_gender AS ENUM('male', 'female', 'other');
 CREATE TABLE users (

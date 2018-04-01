@@ -18,9 +18,9 @@ services:
     ports:
       - 5432:5432
     environment:
+      POSTGRES_MULTIPLE_DATABASES: dasheddb, dasheddb_test
       POSTGRES_USER: dashed
       POSTGRES_PASSWORD: mypass
-      POSTGRES_DB: dasheddb
     volumes:
-    - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    - ./sql:/docker-entrypoint-initdb.d
     - ./postgres-data:/var/lib/postgresql/data
