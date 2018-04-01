@@ -83,11 +83,22 @@ paths:
       responses:
         201:
           description: Created
-          schema:
-            type: object
-            properties:
-              data:
-                $ref: '#/definitions/User'
+
+  /users/signup/verify:
+    get:
+      operationId: validateUser
+      summary: Validate email account
+      tags:
+        - Users
+      parameters:
+        - name: id
+          in: query
+          type: string
+          required: true
+          description: SHA256 email verification id
+      responses:
+        200:
+          description: Ok
   
   /questions:
     post:
