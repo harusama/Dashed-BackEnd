@@ -99,4 +99,130 @@ describe(`POST ${path}`, () => {
             }).catch(err => done(err));
          });
    }, 10000);
+
+   test('not create a user without firstName', done => {
+      const userData = {
+         ...fixtures.userWithRequiredAttributes,
+         firstName: undefined
+      };
+      request(app)
+         .post(path)
+         .send(userData)
+         .expect(400)
+         .end((err, res) => {
+            if (err) {
+               return done(err);
+            }
+
+            User.getMany().then(users => {
+               expect(users.length).toBe(0);
+               done();
+            }).catch(err => done(err));
+         });
+   });
+
+   test('not create a user without lastName', done => {
+      const userData = {
+         ...fixtures.userWithRequiredAttributes,
+         lastName: undefined
+      };
+      request(app)
+         .post(path)
+         .send(userData)
+         .expect(400)
+         .end((err, res) => {
+            if (err) {
+               return done(err);
+            }
+
+            User.getMany().then(users => {
+               expect(users.length).toBe(0);
+               done();
+            }).catch(err => done(err));
+         });
+   });
+
+   test('not create a user without username', done => {
+      const userData = {
+         ...fixtures.userWithRequiredAttributes,
+         username: undefined
+      };
+      request(app)
+         .post(path)
+         .send(userData)
+         .expect(400)
+         .end((err, res) => {
+            if (err) {
+               return done(err);
+            }
+
+            User.getMany().then(users => {
+               expect(users.length).toBe(0);
+               done();
+            }).catch(err => done(err));
+         });
+   });
+
+   test('not create a user without email', done => {
+      const userData = {
+         ...fixtures.userWithRequiredAttributes,
+         email: undefined
+      };
+      request(app)
+         .post(path)
+         .send(userData)
+         .expect(400)
+         .end((err, res) => {
+            if (err) {
+               return done(err);
+            }
+
+            User.getMany().then(users => {
+               expect(users.length).toBe(0);
+               done();
+            }).catch(err => done(err));
+         });
+   });
+
+   test('not create a user without password', done => {
+      const userData = {
+         ...fixtures.userWithRequiredAttributes,
+         password: undefined
+      };
+      request(app)
+         .post(path)
+         .send(userData)
+         .expect(400)
+         .end((err, res) => {
+            if (err) {
+               return done(err);
+            }
+
+            User.getMany().then(users => {
+               expect(users.length).toBe(0);
+               done();
+            }).catch(err => done(err));
+         });
+   });
+
+   test('not create a user without campusId', done => {
+      const userData = {
+         ...fixtures.userWithRequiredAttributes,
+         campusId: undefined
+      };
+      request(app)
+         .post(path)
+         .send(userData)
+         .expect(400)
+         .end((err, res) => {
+            if (err) {
+               return done(err);
+            }
+
+            User.getMany().then(users => {
+               expect(users.length).toBe(0);
+               done();
+            }).catch(err => done(err));
+         });
+   });
 });
