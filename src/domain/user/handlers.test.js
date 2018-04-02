@@ -37,4 +37,66 @@ describe(`POST ${path}`, () => {
             }).catch(err => done(err));
          });
    }, 10000);
+
+   test('create a user with required attributes and admin kind', done => {
+      const userData = {
+         ...fixtures.userWithRequiredAttributes,
+         kind: User.kind.admin
+      };
+      request(app)
+         .post(path)
+         .send(userData)
+         .expect(201)
+         .expect(res => {
+            expect(res.body).toBe('');
+         })
+         .end((err, res) => {
+            if (err) {
+               return done(err);
+            }
+
+            User.getMany().then(users => {
+               expect(users.length).toBe(1);
+               expect(users[0]).toMatchObject(userData);
+               expect(users[0].active).toBe(false);
+               expect(users[0].kind).toBe(User.kind.admin);
+               expect(users[0].gender).toBe(User.gender.other);
+               const attributes = { userId: users[0].id };
+               return Hash.getOne({ attributes });
+            }).then(hash => {
+               done();
+            }).catch(err => done(err));
+         });
+   }, 10000);
+
+   test('create a user with required attributes and female gender', done => {
+      const userData = {
+         ...fixtures.userWithRequiredAttributes,
+         gender: User.gender.female
+      };
+      request(app)
+         .post(path)
+         .send(userData)
+         .expect(201)
+         .expect(res => {
+            expect(res.body).toBe('');
+         })
+         .end((err, res) => {
+            if (err) {
+               return done(err);
+            }
+
+            User.getMany().then(users => {
+               expect(users.length).toBe(1);
+               expect(users[0]).toMatchObject(userData);
+               expect(users[0].active).toBe(false);
+               expect(users[0].kind).toBe(User.kind.teacher);
+               expect(users[0].gender).toBe(User.gender.female);
+               const attributes = { userId: users[0].id };
+               return Hash.getOne({ attributes });
+            }).then(hash => {
+               done();
+            }).catch(err => done(err));
+         });
+   }, 10000);
 });

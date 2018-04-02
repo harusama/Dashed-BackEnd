@@ -6,7 +6,8 @@
       "start": "node ./src/index.js",
       "dev": "nodemon --watch ./src --ignore ./src/__tests__ -x \"DEBUG=mw:* DEBUG_HIDE_DATE=true DEBUG_COLORS=true \"yarn run start\"\"",
       "tests": "export NODE_ENV=test && jest ./src/domain/**/*.test.js",
-      "tests-watch": "nodemon --exec \"yarn run tests\""
+      "tests-watch": "nodemon --exec \"yarn run tests\"",
+      "coverage": "jest --coverage"
    },
    "license": "MIT",
    "dependencies": {
@@ -28,5 +29,11 @@
       "jest": "^22.4.2",
       "nodemon": "^1.17.1",
       "supertest": "^3.0.0"
+   },
+   "jest": {
+      "verbose": true,
+      "collectCoverageFrom": [
+         "src/**.js"
+      ]
    }
 }
