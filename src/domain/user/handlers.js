@@ -13,7 +13,7 @@ function createUser({ models, params }) {
          userId: user.id
       };
 
-      return Hash.createOne({ attributes: 23 }).then(hash => {
+      return Hash.createOne({ attributes: newHash }).then(hash => {
          return sendMail(user.email, hash.hash).then(() => '');
       }).catch(() => '');
    });
