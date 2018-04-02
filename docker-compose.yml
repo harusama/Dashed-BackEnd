@@ -11,8 +11,6 @@ services:
     command: yarn run dev
     depends_on:
       - postgres
-    environment:
-      DATABASE_URL: postgres://dashed:mypass@postgres/dasheddb
   postgres:
     image: postgres:9.6.8-alpine
     ports:

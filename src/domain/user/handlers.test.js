@@ -36,5 +36,5 @@ describe(`POST ${path}`, () => {
                done();
             }).catch(err => done(err));
          });
-   });
+   }, 10000);
 });

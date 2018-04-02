@@ -18,7 +18,7 @@ function createUser({ models, params }) {
 
       return Hash.createOne({ attributes: newHash }).then(hash => {
          const transporter = nodemailer.createTransport('smtps://test.dashed@gmail.com:testdashed@smtp.gmail.com');
-         const link = `https://dash-ed.herokuapp.com/v1/users/signup/verify?id=${hash.hash}`;
+         const link = `${process.env.API_URL}/users/signup/verify?id=${hash.hash}`;
          const mailOptions = {
             to: user.email,
             subject: "Please confirm your Email account",

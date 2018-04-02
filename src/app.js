@@ -1,3 +1,4 @@
+const config = require('./config');
 const bodyParser = require('body-parser');
 const express = require('express');
 const swaggerTools = require('swagger-tools');

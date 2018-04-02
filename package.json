@@ -5,7 +5,7 @@
    "scripts": {
       "start": "node ./src/index.js",
       "dev": "nodemon --watch ./src --ignore ./src/__tests__ -x \"DEBUG=mw:* DEBUG_HIDE_DATE=true DEBUG_COLORS=true \"yarn run start\"\"",
-      "tests": "jest ./src/domain/**/*.test.js",
+      "tests": "export NODE_ENV=test && jest ./src/domain/**/*.test.js",
       "tests-watch": "nodemon --exec \"yarn run tests\""
    },
    "license": "MIT",
@@ -14,6 +14,7 @@
       "boom": "^7.2.0",
       "crypto-js": "^3.1.9-1",
       "debug": "^3.1.0",
+      "dotenv": "^5.0.1",
       "express": "4.14.0",
       "globby": "^8.0.1",
       "knex": "^0.14.4",
