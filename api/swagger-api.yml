@@ -172,12 +172,42 @@ definitions:
         type: string
       username:
         type: string
+      email:
+        type: string
+        format: email
+      kind:
+        type: string
+        default: teacher
+        enum:
+          - admin
+          - teacher
+      gender:
+        type: string
+        default: other
+        enum:
+          - male
+          - female
+          - other
+      campusId:
+        type: integer
+        minimum: 0
       currency:
         type: integer
         minimum: 0
       experience:
         type: integer
-        minimum: 0 
+        minimum: 0
+    required:
+      - jwt
+      - firstName
+      - lastName
+      - username
+      - email
+      - kind
+      - gender
+      - campusId
+      - currency
+      - experience
 
   NewLoginUser:
     type: object
@@ -187,6 +217,9 @@ definitions:
         format: email
       password:
         type: string
+    required:
+      - email
+      - password
 
   User:
     type: object

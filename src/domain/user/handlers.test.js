@@ -2,15 +2,58 @@ const request = require('supertest');
 const { app } = require('./../../app');
 const { truncateDomainTables } = require('./../../db');
 const fixtures = require('./model.fixtures.js');
-const path = '/v1/users/signup';
 
 const { User, Hash } = app.locals.models;
+const basePath = '/v1/users'
 
 afterEach(() => {
    return truncateDomainTables();
 });
 
-describe(`POST ${path}`, () => {
+describe(`POST ${basePath}`, () => {
+   const path = '/v1/users';
+
+   test('login existing user with validated email', done => {
+      User.createOne({ attributes: fixtures.userWithRequiredAttributes }).then(user => {
+         return User.getOne({ attributes: fixtures.userWithRequiredAttributes}); 
+      }).then(userCreated => {
+         return User.patchOne({ id: userCreated.id, attributes: { active: true }})
+      }).then(() => {
+         request(app)
+            .post(path)
+            .send(fixtures.userLogin)
+            .expect(201)
+            .end(done);
+      }).catch(done);
+   }, 10000)
+
+   test('not login existing user without validated email', done => {
+      User.createOne({ attributes: fixtures.userWithRequiredAttributes }).then(user => {
+         request(app)
+            .post(path)
+            .send(fixtures.userLogin)
+            .expect(400)
+            .end(done);
+      }).catch(err => done(err));
+   }, 10000);
+
+   test('not login non-existing user', done => {
+      const nonExistingUser = {
+         email: 'nonexisting@user.com',
+         password: 'mypass'
+      };
+
+      request(app)
+         .post(path)
+         .send(nonExistingUser)
+         .expect(404)
+         .end(done);
+   }, 10000);
+});
+
+describe(`POST ${basePath}/signup`, () => {
+   const path = '/v1/users/signup';
+
    test('create a user with required attributes', done => {
       request(app)
          .post(path)

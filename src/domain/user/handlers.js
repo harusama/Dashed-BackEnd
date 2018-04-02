@@ -1,10 +1,30 @@
 const { SHA256 } = require('crypto-js');
 const nodemailer = require("nodemailer");
+const boom = require('boom');
+
+function getUser({ models, params }) {
+   const { User } = models;
+   const { user } = params;
+   
+   return User.getOne({ attributes: user.value }).then(user => {
+      if (user.active) {
+         return {
+            ...user,
+            id: undefined,
+            password: undefined,
+            active: undefined
+         };
+      }
+
+      return Promise.reject(boom.badRequest('Email account not verified'));
+   });
+}
 
 function createUser({ models, params }) {
    const { User, Hash } = models;
    const { newUser } = params;
-   const hash = createHash()
+   const hash = createHash();
+   newUser.value.active = undefined;
 
    return User.createOne({ attributes: newUser.value }).then(user => {
       const newHash = {
@@ -16,7 +36,7 @@ function createUser({ models, params }) {
          return sendMail(user.email, hash.hash).then(() => '');
       }).catch(() => '');
    });
-};
+}
 
 function validateUser({ models, params }) {
    const { User, Hash } = models;
@@ -69,6 +89,7 @@ function sendMail(email, hash) {
 }
 
 module.exports = {
+   getUser,
    createUser,
    validateUser
 };
