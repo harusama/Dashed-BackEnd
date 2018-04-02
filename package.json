@@ -1,31 +1,31 @@
 {
-  "name": "node-web-server",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "start": "node ./src/index.js",
-    "dev": "nodemon --watch ./src --ignore ./src/__tests__ -x \"DEBUG=mw:* DEBUG_HIDE_DATE=true DEBUG_COLORS=true \"yarn run start\"\"",
-    "tests": "jest ./src/domain/**/*.test.js",
-    "tests-watch": "nodemon --exec \"yarn run tests\""
-  },
-  "license": "MIT",
-  "dependencies": {
-    "body-parser": "^1.18.2",
-    "boom": "^7.2.0",
-    "crypto-js": "^3.1.9-1",
-    "debug": "^3.1.0",
-    "express": "4.14.0",
-    "globby": "^8.0.1",
-    "knex": "^0.14.4",
-    "node-yaml": "^3.1.1",
-    "nodemailer": "^4.6.4",
-    "objection": "^1.0.0",
-    "pg": "^7.4.1",
-    "swagger-tools": "^0.10.3"
-  },
-  "devDependencies": {
-    "jest": "^22.4.2",
-    "nodemon": "^1.17.1",
-    "supertest": "^3.0.0"
-  }
+   "name": "node-web-server",
+   "version": "1.0.0",
+   "main": "index.js",
+   "scripts": {
+      "start": "node ./src/index.js",
+      "dev": "nodemon --watch ./src --ignore ./src/__tests__ -x \"DEBUG=mw:* DEBUG_HIDE_DATE=true DEBUG_COLORS=true \"yarn run start\"\"",
+      "tests": "jest ./src/domain/**/*.test.js",
+      "tests-watch": "nodemon --exec \"yarn run tests\""
+   },
+   "license": "MIT",
+   "dependencies": {
+      "body-parser": "^1.18.2",
+      "boom": "^7.2.0",
+      "crypto-js": "^3.1.9-1",
+      "debug": "^3.1.0",
+      "express": "4.14.0",
+      "globby": "^8.0.1",
+      "knex": "^0.14.4",
+      "node-yaml": "^3.1.1",
+      "nodemailer": "^4.6.4",
+      "objection": "^1.0.0",
+      "pg": "^7.4.1",
+      "swagger-tools": "^0.10.3"
+   },
+   "devDependencies": {
+      "jest": "^22.4.2",
+      "nodemon": "^1.17.1",
+      "supertest": "^3.0.0"
+   }
 }

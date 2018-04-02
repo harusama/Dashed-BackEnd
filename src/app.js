@@ -20,12 +20,12 @@ app.locals.db = db;
 app.locals.models = models;
 
 swaggerTools.initializeMiddleware(swaggerApi, middleware => {
-    app.use(middleware.swaggerMetadata());
-    app.use(middleware.swaggerValidator());
-    app.use(middleware.swaggerUi());
-    app.use(swaggerOperationController({ controllers }));
-    app.use(sendControllerResponse);
-    app.use(errorHandler);
+   app.use(middleware.swaggerMetadata());
+   app.use(middleware.swaggerValidator());
+   app.use(middleware.swaggerUi());
+   app.use(swaggerOperationController({ controllers }));
+   app.use(sendControllerResponse);
+   app.use(errorHandler);
 });
 
 module.exports = { app };
