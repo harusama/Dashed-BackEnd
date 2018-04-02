@@ -56,7 +56,9 @@ function validateUser({ models, params }) {
          }
       };
 
-      return User.patchOne(patchInfo).then(user => '');
+      return User.patchOne(patchInfo).then(() => {
+         return Hash.deleteOneById({ id: hash.id }).then(() => 'Verified');
+      });
    });
 }
 

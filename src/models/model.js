@@ -14,6 +14,12 @@ class BaseModel extends Model {
       return this.query(trx).insertGraphAndFetch(attributes);
    }
 
+   static deleteOneById({ id, trx }) {
+      return this.query(trx)
+         .deleteById(id)
+         .throwIfNotFound();
+   }
+
    static getMany() {
       return this.query().eager(this.defaultEager);
    }
