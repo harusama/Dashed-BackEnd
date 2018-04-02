@@ -1,9 +1,14 @@
 const request = require('supertest');
 const { app } = require('./../../app');
+const { truncateDomainTables } = require('./../../db');
 const fixtures = require('./model.fixtures.js');
 const path = '/v1/users/signup';
 
 const { User, Hash } = app.locals.models;
+
+afterEach(() => {
+   return truncateDomainTables();
+});
 
 describe(`POST ${path}`, () => {
    test('create a user with required attributes', done => {
