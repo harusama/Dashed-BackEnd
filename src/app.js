@@ -12,7 +12,6 @@ const sendControllerResponse = require('./middleware/send-controller-response');
 const errorHandler = require('./middleware/error-handler');
 
 const app = express();
-const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 app.use(createReqLocals);
@@ -27,8 +26,6 @@ swaggerTools.initializeMiddleware(swaggerApi, middleware => {
     app.use(swaggerOperationController({ controllers }));
     app.use(sendControllerResponse);
     app.use(errorHandler);
-
-    app.listen(port, () => console.log(`Server is up on port ${port}`));
 });
 
 module.exports = { app };
