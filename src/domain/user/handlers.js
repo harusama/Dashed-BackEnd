@@ -5,7 +5,6 @@ function createUser({ models, params }) {
    const { User, Hash } = models;
    const { newUser } = params;
    const hash = createHash()
-   console.log('newUser', newUser.value);
 
    return User.createOne({ attributes: newUser.value }).then(user => {
       const newHash = {
