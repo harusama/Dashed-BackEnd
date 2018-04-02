@@ -6,7 +6,7 @@ const userWithRequiredAttributes = {
    username: 'john_doe_90',
    email: 'fer_fjsb2@hotmail.com',
    password: '23',
-   campusID: 1
+   campusId: 1
 }
 
 module.exports = {

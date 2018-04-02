@@ -1,5 +1,4 @@
 TRUNCATE
   hashes,
-  users,
-  campus
+  users
 RESTART IDENTITY CASCADE;

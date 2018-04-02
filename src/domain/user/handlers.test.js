@@ -25,23 +25,16 @@ describe(`POST ${path}`, () => {
             }
 
             User.getMany().then(users => {
-               console.log('users', users);
-               //expect(users.length).toBe(1);
-               //expect(users[0]).toMatchObject(fixtures.userWithRequiredAttributes);
+               expect(users.length).toBe(1);
+               expect(users[0]).toMatchObject(fixtures.userWithRequiredAttributes);
+               expect(users[0].active).toBe(false);
+               expect(users[0].kind).toBe(User.kind.teacher);
+               expect(users[0].gender).toBe(User.gender.other);
                const attributes = { userId: users[0].id };
                return Hash.getOne({ attributes });
             }).then(hash => {
-               console.log('hash', hash);
-               done()
+               done();
             }).catch(err => done(err));
-
          });
-      // request(app)
-      //    .post(path)
-      //    .expect(201)
-      //    .expect(res => {
-      //       expect(res.body).toBe('');
-      //    })
-      //    .end(done);
    });
 });

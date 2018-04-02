@@ -1,4 +1,6 @@
 const fs = require('fs');
+var pg = require('pg')
+pg.types.setTypeParser(20, 'text', parseInt)
 const knex = require('knex');
 const { knexSnakeCaseMappers } = require('objection');
 
