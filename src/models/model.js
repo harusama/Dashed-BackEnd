@@ -14,6 +14,10 @@ class BaseModel extends Model {
       return this.query(trx).insertGraphAndFetch(attributes);
    }
 
+   static getMany() {
+      return this.query().eager(this.defaultEager);
+   }
+   
    static getOne({ attributes }) {
       return this.query()
          .findOne(attributes)
