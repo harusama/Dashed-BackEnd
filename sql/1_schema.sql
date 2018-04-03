@@ -31,8 +31,9 @@ CREATE TABLE hashes (
 
 CREATE TABLE subjects (
    id BIGSERIAL PRIMARY KEY,
-   name TEXT,
-   description TEXT,
+   name VARCHAR(100)
+   -- name TEXT,
+   -- description TEXT,
 );
 
 CREATE TABLE units (
@@ -67,7 +68,8 @@ CREATE TABLE questions (
    kind INTEGER CONSTRAINT valid_kind_number CHECK (kind >= 1 AND kind <= 9),
    approved INTEGER DEFAULT 0 CONSTRAINT valid_approved_number CHECK (approved >= 0),
    user_id BIGINT REFERENCES users(id),
-   lesson_id BIGINT REFERENCES lessons(id)
+   subject_id BIGINT REFERENCES subjects(id)
+   -- lesson_id BIGINT REFERENCES lessons(id)
 );
 
 CREATE TABLE answers (
