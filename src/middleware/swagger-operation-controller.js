@@ -15,7 +15,8 @@ function swaggerOperationController({ controllers }) {
 
       const context = {
          models: req.app.locals.models,
-         params: req.swagger.params
+         params: req.swagger.params,
+         res
       };
 
       return Promise.resolve(controllerForOperation(context))

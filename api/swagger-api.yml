@@ -23,9 +23,9 @@ consumes:
 produces:
   - application/json
 securityDefinitions:
-  apiKey:
+  authKey:
     type: 'apiKey'
-    name: 'X-API-KEY'
+    name: 'X-Auth'
     in: 'header'
 paths:
   /:
@@ -107,7 +107,7 @@ paths:
       tags:
         - Questions
       security:
-        - apiKey: []
+        - authKey: []
       parameters:
         - name: newQuestion
           in: body
@@ -134,7 +134,7 @@ paths:
       tags:
         - Questions
       security:
-        - apiKey: []
+        - authKey: []
       responses:
         201:
           description: Ok
@@ -155,7 +155,7 @@ paths:
       tags:
         - Questions
       security:
-        - apiKey: []
+        - authKey: []
       responses:
         200:
           description: Approved

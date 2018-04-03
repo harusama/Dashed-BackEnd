@@ -1,8 +1,9 @@
 const { SHA256 } = require('crypto-js');
 const nodemailer = require("nodemailer");
+const jwt = require('jsonwebtoken');
 const boom = require('boom');
 
-function getUser({ models, params }) {
+function getUser({ models, params, res }) {
    const { User } = models;
    const { user } = params;
 
@@ -10,6 +11,8 @@ function getUser({ models, params }) {
    
    return User.getOne({ attributes: user.value }).then(user => {
       if (user.active) {
+         res.header('X-Auth', user.generateAuthToken());
+
          return {
             ...user,
             id: undefined,

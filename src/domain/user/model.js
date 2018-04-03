@@ -1,3 +1,4 @@
+const jwt = require('jsonwebtoken');
 const BaseModel = require('./../../models/model');
 
 class User extends BaseModel {
@@ -18,6 +19,10 @@ class User extends BaseModel {
          female: 'female',
          other: 'other'
       };
+   }
+
+   generateAuthToken() {
+      return jwt.sign({ id: this.id }, 'secret').toString();
    }
 }
 
