@@ -13,6 +13,10 @@ function isInvalidMethodForRouteError(err) {
    return /Route defined in Swagger specification/.test(err);
 }
 
+function isDuplicatedEmail(err) {
+   return /duplicate key value violates unique constraint "users_email_key"/.test(err);
+}
+
 function boomify(err) {
    if (err.isBoom) {
       return err;
@@ -25,6 +29,8 @@ function boomify(err) {
       return boom.badRequest(err.message);
    } else if (isInvalidMethodForRouteError(err)) {
       return boom.methodNotAllowed();
+   } else if (isDuplicatedEmail(err)) {
+      return boom.badRequest('Duplicated email');
    } else {
       return boom.badImplementation();
    }

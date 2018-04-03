@@ -13,7 +13,7 @@ CREATE TABLE users (
   first_name VARCHAR(100),
   last_name VARCHAR(100),
   username VARCHAR(100),
-  email VARCHAR(100),
+  email VARCHAR(100) UNIQUE,
   password TEXT,
   active BOOLEAN DEFAULT FALSE,
   gender user_gender NOT NULL DEFAULT 'other',

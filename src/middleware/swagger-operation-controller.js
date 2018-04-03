@@ -5,7 +5,7 @@ function swaggerOperationController({ controllers }) {
    return function (req, res, next) {
       const operationId = get(req, 'swagger.operation.operationId');
       if (!operationId) {
-         return next(boom.notFound('operationId not found in Swagger definition'));
+         return next(boom.notFound('OperationId not found in Swagger definition'));
       }
 
       const controllerForOperation = controllers[operationId];
