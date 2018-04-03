@@ -30,7 +30,7 @@ function boomify(err) {
    } else if (isInvalidMethodForRouteError(err)) {
       return boom.methodNotAllowed();
    } else if (isDuplicatedEmail(err)) {
-      return boom.badRequest('Duplicated email');
+      return boom.badRequest('Account with provided email already exists');
    } else {
       return boom.badImplementation();
    }
