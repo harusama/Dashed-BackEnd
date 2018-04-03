@@ -20,27 +20,33 @@ CREATE TABLE users (
    kind user_kind NOT NULL DEFAULT 'teacher',
    experience INTEGER NOT NULL DEFAULT 0 CONSTRAINT valid_experience_number CHECK (experience >= 0),
    coins INTEGER NOT NULL DEFAULT 0 CONSTRAINT valid_coins_number CHECK (coins >= 0),
-   campus_id BIGINT DEFAULT 0 REFERENCES campus(id)
+   campus_id BIGINT REFERENCES campus(id)
 );
 
 CREATE TABLE hashes (
    id BIGSERIAL PRIMARY KEY,
    hash TEXT,
-   user_id BIGINT DEFAULT 0 REFERENCES users(id)
+   user_id BIGINT REFERENCES users(id)
+);
+
+CREATE TABLE subjects (
+   id BIGSERIAL PRIMARY KEY,
+   name VARCHAR(100)
 );
 
 CREATE TABLE questions (
    id BIGSERIAL PRIMARY KEY,
-   textDescription VARCHAR(100),
-   imageDescription VARCHAR(100),
-   kind INTEGER DEFAULT 0 CONSTRAINT valid_kind_number CHECK (kind >= 0),
-   correctSequence VARCHAR(100),
-   user_id BIGINT DEFAULT 0 REFERENCES users(id)
+   description_text VARCHAR(100),
+   description_image VARCHAR(100),
+   kind INTEGER CONSTRAINT valid_kind_number CHECK (kind >= 1 AND kind <= 9),
+   approved INTEGER DEFAULT 0 CONSTRAINT valid_approved_number CHECK (approved >= 0),
+   user_id BIGINT REFERENCES users(id),
+   subject_id BIGINT REFERENCES subjects(id)
 );
 
 CREATE TABLE answers (
    id BIGSERIAL PRIMARY KEY,
-   answerNumber INT(11),
-   textDescription VARCHAR(100),
-   question_id BIGINT DEFAULT 0 REFERENCES questions(id)
+   index INTEGER CONSTRAINT valid_index_number CHECK (index >= 1 AND index <= 20),
+   text VARCHAR(100),
+   question_id BIGINT REFERENCES questions(id)
 );
