@@ -64,7 +64,7 @@ function createHash() {
 }
 
 function sendMail(email, hash) {
-   const transporter = nodemailer.createTransport('smtps://test.dashed@gmail.com:testdashed@smtp.gmail.com');
+   const transporter = nodemailer.createTransport(`smtps://${process.env.EMAIL_ACCOUNT}:${process.env.EMAIL_PASSWORD}@smtp.gmail.com`);
    const link = `${process.env.API_URL}/users/signup/verify?id=${hash}`;
    const mailOptions = {
       to: email,
