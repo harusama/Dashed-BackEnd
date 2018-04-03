@@ -5,6 +5,8 @@ const boom = require('boom');
 function getUser({ models, params }) {
    const { User } = models;
    const { user } = params;
+
+   user.value.password = SHA256(user.value.password).toString();
    
    return User.getOne({ attributes: user.value }).then(user => {
       if (user.active) {
@@ -24,6 +26,7 @@ function createUser({ models, params }) {
    const { User, Hash } = models;
    const { newUser } = params;
    const hash = createHash();
+   newUser.value.password = SHA256(newUser.value.password).toString();
    newUser.value.active = undefined;
 
    return User.createOne({ attributes: newUser.value }).then(user => {

@@ -1,5 +1,6 @@
 const request = require('supertest');
 const { app } = require('./../../app');
+const { SHA256 } = require('crypto-js');
 const { truncateDomainTables } = require('./../../db');
 const fixtures = require('./model.fixtures.js');
 
@@ -14,11 +15,13 @@ describe(`POST ${basePath}`, () => {
    const path = '/v1/users';
 
    test('login existing user with validated email', done => {
-      User.createOne({ attributes: fixtures.userWithRequiredAttributes }).then(user => {
-         return User.getOne({ attributes: fixtures.userWithRequiredAttributes}); 
-      }).then(userCreated => {
-         return User.patchOne({ id: userCreated.id, attributes: { active: true }})
-      }).then(() => {
+      const userData = {
+         ...fixtures.userWithRequiredAttributes,
+         password: SHA256(fixtures.userWithRequiredAttributes.password).toString(),
+         active: true
+      };
+
+      User.createOne({ attributes: userData }).then(() => {
          request(app)
             .post(path)
             .send(fixtures.userLogin)
@@ -28,7 +31,12 @@ describe(`POST ${basePath}`, () => {
    })
 
    test('not login existing user without validated email', done => {
-      User.createOne({ attributes: fixtures.userWithRequiredAttributes }).then(user => {
+      const userData = {
+         ...fixtures.userWithRequiredAttributes,
+         password: SHA256(fixtures.userWithRequiredAttributes.password).toString()
+      };
+
+      User.createOne({ attributes: userData }).then(user => {
          request(app)
             .post(path)
             .send(fixtures.userLogin)
@@ -86,6 +94,7 @@ describe(`POST ${basePath}/signup`, () => {
             }
 
             User.getMany().then(users => {
+               fixtures.userWithRequiredAttributes.password = SHA256(fixtures.userWithRequiredAttributes.password).toString();
                expect(users.length).toBe(1);
                expect(users[0]).toMatchObject(fixtures.userWithRequiredAttributes);
                expect(users[0].active).toBe(false);
@@ -118,6 +127,7 @@ describe(`POST ${basePath}/signup`, () => {
             }
 
             User.getMany().then(users => {
+               fixtures.userWithRequiredAttributes.password = SHA256(fixtures.userWithRequiredAttributes.password).toString();
                expect(users.length).toBe(1);
                expect(users[0]).toMatchObject(fixtures.userWithRequiredAttributes);
                expect(users[0].active).toBe(false);
@@ -149,6 +159,7 @@ describe(`POST ${basePath}/signup`, () => {
             }
 
             User.getMany().then(users => {
+               userData.password = SHA256(userData.password).toString();
                expect(users.length).toBe(1);
                expect(users[0]).toMatchObject(userData);
                expect(users[0].active).toBe(false);
@@ -180,6 +191,7 @@ describe(`POST ${basePath}/signup`, () => {
             }
 
             User.getMany().then(users => {
+               userData.password = SHA256(userData.password).toString();
                expect(users.length).toBe(1);
                expect(users[0]).toMatchObject(userData);
                expect(users[0].active).toBe(false);
@@ -321,7 +333,7 @@ describe(`POST ${basePath}/signup`, () => {
 
    test('not create a user with empty data sent', done => {
       const userData = {};
-      
+
       request(app)
          .post(path)
          .send(userData)
