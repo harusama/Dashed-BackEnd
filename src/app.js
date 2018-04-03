@@ -1,5 +1,6 @@
 const config = require('./config');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const express = require('express');
 const swaggerTools = require('swagger-tools');
 
@@ -14,6 +15,7 @@ const errorHandler = require('./middleware/error-handler');
 
 const app = express();
 
+app.use(cors());
 app.use(bodyParser.json());
 app.use(createReqLocals);
 
