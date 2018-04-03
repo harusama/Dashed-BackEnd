@@ -49,7 +49,7 @@ function createUser({ models, params }) {
    });
 }
 
-function validateUser({ models, params }) {
+function verifyUser({ models, params }) {
    const { User, Hash } = models;
    const { id } = params;
    const attributes = { hash: id.value };
@@ -102,5 +102,5 @@ function sendMail(email, hash) {
 module.exports = {
    getUser,
    createUser,
-   validateUser
+   verifyUser
 };
