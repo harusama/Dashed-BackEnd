@@ -25,7 +25,7 @@ describe(`POST ${basePath}`, () => {
             .expect(201)
             .end(done);
       }).catch(done);
-   }, 10000)
+   })
 
    test('not login existing user without validated email', done => {
       User.createOne({ attributes: fixtures.userWithRequiredAttributes }).then(user => {
@@ -35,7 +35,7 @@ describe(`POST ${basePath}`, () => {
             .expect(400)
             .end(done);
       }).catch(err => done(err));
-   }, 10000);
+   });
 
    test('not login non-existing user', done => {
       const nonExistingUser = {
@@ -43,12 +43,30 @@ describe(`POST ${basePath}`, () => {
          password: 'mypass'
       };
 
-      request(app)
-         .post(path)
-         .send(nonExistingUser)
-         .expect(404)
-         .end(done);
-   }, 10000);
+      request(app).post(path).send(nonExistingUser).expect(404).end(done);
+   });
+
+   test('bad request login without email sent', done => {
+      const nonExistingUser = {
+         password: 'mypass'
+      };
+
+      request(app).post(path).send(nonExistingUser).expect(400).end(done);
+   });
+
+   test('bad request login without password sent', done => {
+      const nonExistingUser = {
+         email: 'nonexisting@user.com',
+      };
+
+      request(app).post(path).send(nonExistingUser).expect(400).end(done);
+   });
+
+   test('bad request login without email and password sent', done => {
+      const nonExistingUser = {};
+
+      request(app).post(path).send(nonExistingUser).expect(400).end(done);
+   });
 });
 
 describe(`POST ${basePath}/signup`, () => {
@@ -79,7 +97,39 @@ describe(`POST ${basePath}/signup`, () => {
                done();
             }).catch(err => done(err));
          });
-   }, 10000);
+   });
+
+   test('create a user with required attributes and active set to true sent', done => {
+      const userData = {
+         ...fixtures.userWithRequiredAttributes,
+         active: true
+      };
+
+      request(app)
+         .post(path)
+         .send(userData)
+         .expect(201)
+         .expect(res => {
+            expect(res.body).toBe('');
+         })
+         .end((err, res) => {
+            if (err) {
+               return done(err);
+            }
+
+            User.getMany().then(users => {
+               expect(users.length).toBe(1);
+               expect(users[0]).toMatchObject(fixtures.userWithRequiredAttributes);
+               expect(users[0].active).toBe(false);
+               expect(users[0].kind).toBe(User.kind.teacher);
+               expect(users[0].gender).toBe(User.gender.other);
+               const attributes = { userId: users[0].id };
+               return Hash.getOne({ attributes });
+            }).then(hash => {
+               done();
+            }).catch(err => done(err));
+         });
+   });
 
    test('create a user with required attributes and admin kind', done => {
       const userData = {
@@ -110,7 +160,7 @@ describe(`POST ${basePath}/signup`, () => {
                done();
             }).catch(err => done(err));
          });
-   }, 10000);
+   });
 
    test('create a user with required attributes and female gender', done => {
       const userData = {
@@ -141,7 +191,7 @@ describe(`POST ${basePath}/signup`, () => {
                done();
             }).catch(err => done(err));
          });
-   }, 10000);
+   });
 
    test('not create a user without firstName', done => {
       const userData = {
@@ -253,6 +303,25 @@ describe(`POST ${basePath}/signup`, () => {
          ...fixtures.userWithRequiredAttributes,
          campusId: undefined
       };
+      request(app)
+         .post(path)
+         .send(userData)
+         .expect(400)
+         .end((err, res) => {
+            if (err) {
+               return done(err);
+            }
+
+            User.getMany().then(users => {
+               expect(users.length).toBe(0);
+               done();
+            }).catch(err => done(err));
+         });
+   });
+
+   test('not create a user with empty data sent', done => {
+      const userData = {};
+      
       request(app)
          .post(path)
          .send(userData)

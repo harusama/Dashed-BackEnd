@@ -33,7 +33,12 @@ function createUser({ models, params }) {
       };
 
       return Hash.createOne({ attributes: newHash }).then(hash => {
-         return sendMail(user.email, hash.hash).then(() => '');
+
+         if (process.env.NODE_ENV !== 'test') {
+            return sendMail(user.email, hash.hash).then(() => '');
+         }
+
+         return '';
       }).catch(() => '');
    });
 }
