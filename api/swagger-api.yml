@@ -87,7 +87,7 @@ paths:
   /users/signup/verify:
     get:
       operationId: validateUser
-      summary: Validate email account
+      summary: Verify email account
       tags:
         - Users
       parameters:
