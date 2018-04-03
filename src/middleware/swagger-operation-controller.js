@@ -15,7 +15,7 @@ function swaggerOperationController({ controllers }) {
       }
 
       const endpointsWithoutAuth = ['getRoot', 'getUser', 'createUser', 'verifyUser']
-      const token = req.header('X-Auth');
+      const token = req.header('x-auth');
       let decoded = {};
 
       if (!endpointsWithoutAuth.includes(operationId)) {

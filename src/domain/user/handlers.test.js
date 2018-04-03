@@ -26,6 +26,9 @@ describe(`POST ${basePath}`, () => {
             .post(path)
             .send(fixtures.userLogin)
             .expect(201)
+            .expect(res => {
+               expect(res.headers['x-auth']).toBeTruthy();
+            })
             .end(done);
       }).catch(done);
    })

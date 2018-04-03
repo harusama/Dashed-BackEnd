@@ -11,7 +11,7 @@ function getUser({ models, params, res }) {
    
    return User.getOne({ attributes: user.value }).then(user => {
       if (user.active) {
-         res.header('X-Auth', user.generateAuthToken());
+         res.header('x-auth', user.generateAuthToken());
 
          return {
             ...user,

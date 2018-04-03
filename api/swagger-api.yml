@@ -25,7 +25,7 @@ produces:
 securityDefinitions:
   authKey:
     type: 'apiKey'
-    name: 'X-Auth'
+    name: 'x-auth'
     in: 'header'
 paths:
   /:
