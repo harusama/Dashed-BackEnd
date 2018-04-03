@@ -122,7 +122,7 @@ paths:
               data:
                 $ref: '#/definitions/Question'
 
-  /questions/{subjectId}:
+  /questions/subjects/{subjectId}:
     parameters:
       - name: subjectId
         in: path
@@ -141,15 +141,15 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/NewQuestion'
+              $ref: '#/definitions/NewQuestionBySubjectId'
 
-  /questionss/{questionId}:
+  /questions/approved/{questionId}:
     parameters:
       - name: questionId
         in: path
         type: integer
         required: true
-    put:
+    patch:
       operationId: approveQuestion
       summary: Approve a question
       tags:
@@ -284,14 +284,17 @@ definitions:
   NewQuestion:
     type: object
     properties:
-      kind:
-        type: integer
-        minimum: 1
-        maximum: 9
       descriptionText:
         type: string
       descriptionImage:
         type: string
+      kind:
+        type: integer
+        minimum: 1
+        maximum: 9
+      subjectId:
+        type: integer
+        minimum: 0
       answers:
         type: array
         items:
@@ -307,4 +310,48 @@ definitions:
       - kind
       - descriptionText
       - descriptionImage
+      - subjectId
+      - answers
+
+  NewQuestionBySubjectId:
+    type: object
+    properties:
+      id:
+        type: integer
+        minimum: 0
+      descriptionText:
+        type: string
+      descriptionImage:
+        type: string
+      kind:
+        type: integer
+        minimum: 1
+        maximum: 9
+      approved:
+        type: integer
+        minimum: 0
+      subjectId:
+        type: integer
+        minimum: 0
+      answers:
+        type: array
+        items:
+          type: object
+          properties:
+            index:
+              type: integer
+              minimum: 1
+              maximum: 20
+            text:
+              type: string
+          required:
+            - index
+            - text
+    required:
+      - id
+      - kind
+      - approved
+      - descriptionText
+      - descriptionImage
+      - subjectId
       - answers

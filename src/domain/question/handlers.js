@@ -13,7 +13,15 @@ function getQuestionsBySubjectId({ models, params }) {
    return Question.getManyBySubjectId(subjectId.value);;
 }
 
+function approveQuestion({ models, params }) {
+   const { Question } = models;
+   const { questionId } = params;
+
+   return Question.incrementApprovedWithId(questionId.value);
+}
+
 module.exports = {
    createQuestion,
-   getQuestionsBySubjectId
+   getQuestionsBySubjectId,
+   approveQuestion
 };

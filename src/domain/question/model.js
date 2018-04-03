@@ -26,6 +26,10 @@ class Question extends BaseModel {
       });
    }
 
+   static incrementApprovedWithId(id) {
+      return this.query().where('id', id).increment('approved', 1);
+   }
+
    static get relationMappings() {
       return {
          user: {
