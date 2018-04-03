@@ -6,7 +6,24 @@ class Question extends BaseModel {
    }
 
    static get defaultEager() {
-      return ['user', 'answers'];
+      return 'answers';
+   }
+
+   static getManyBySubjectId(subjectId) {
+      return this.query().eager(this.defaultEager).where('subjectId', subjectId).then(questions => {
+         return questions.map(question => {
+            const answers = question.answers.map(answer => ({
+               ...answer, 
+               id: undefined,
+               questionId: undefined,
+            }));
+
+            return {
+               ...question,
+               answers
+            };
+         });
+      });
    }
 
    static get relationMappings() {
