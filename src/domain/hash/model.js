@@ -1,3 +1,4 @@
+const { SHA256 } = require('crypto-js');
 const BaseModel = require('./../../models/model');
 
 class Hash extends BaseModel {
@@ -20,6 +21,12 @@ class Hash extends BaseModel {
             }
          }
       };
+   }
+
+   static createHash() {
+      const currentDate = new Date().toString();
+      const random = Math.random().toString();
+      return SHA256(currentDate + random).toString();
    }
 }
 

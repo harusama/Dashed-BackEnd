@@ -1,77 +1,69 @@
 const { SHA256 } = require('crypto-js');
 const nodemailer = require("nodemailer");
-const jwt = require('jsonwebtoken');
 const boom = require('boom');
 
-function getUser({ models, params, res }) {
+async function getUser({ models, params, res }) {
    const { User } = models;
    const { user } = params;
-
    user.value.password = SHA256(user.value.password).toString();
    
-   return User.getOne({ attributes: user.value }).then(user => {
-      if (user.active) {
-         res.header('x-auth', user.generateAuthToken());
+   const userFound = await User.getOne({ attributes: user.value });
+   
+   if (userFound.active) {
+      res.header('x-auth', userFound.generateAuthToken());
 
-         return {
-            ...user,
-            id: undefined,
-            password: undefined,
-            active: undefined
-         };
-      }
+      return {
+         ...userFound,
+         id: undefined,
+         password: undefined,
+         active: undefined
+      };
+   }
 
-      return Promise.reject(boom.badRequest('Email account not verified'));
-   });
+   return Promise.reject(boom.badRequest('Email account not verified'));
 }
 
-function createUser({ models, params }) {
+async function createUser({ models, params }) {
    const { User, Hash } = models;
    const { newUser } = params;
-   const hash = createHash();
    newUser.value.password = SHA256(newUser.value.password).toString();
    newUser.value.active = undefined;
+   
+   const user = await User.createOne({ attributes: newUser.value });
 
-   return User.createOne({ attributes: newUser.value }).then(user => {
-      const newHash = {
-         hash,
-         userId: user.id
-      };
+   const newHash = {
+      hash: Hash.createHash(),
+      userId: user.id
+   };
 
-      return Hash.createOne({ attributes: newHash }).then(hash => {
-
-         if (process.env.NODE_ENV !== 'test') {
-            return sendMail(user.email, hash.hash).then(() => '');
-         }
-
-         return '';
-      }).catch(() => '');
-   });
+   try {
+      const hash = await Hash.createOne({ attributes: newHash });
+   
+      if (process.env.NODE_ENV !== 'test') {
+         await sendMail(user.email, hash.hash);
+      }
+   
+      return '';
+   } catch (e) {
+      return '';
+   }
 }
 
-function verifyUser({ models, params }) {
+async function verifyUser({ models, params }) {
    const { User, Hash } = models;
    const { id } = params;
    const attributes = { hash: id.value };
 
-   return Hash.getOne({ attributes }).then(hash => {
-      const patchInfo = {
-         id: hash.user.id,
-         attributes: {
-            active: true
-         }
-      };
+   const hash = await Hash.getOne({ attributes });
 
-      return User.patchOne(patchInfo).then(() => {
-         return Hash.deleteOneById({ id: hash.id }).then(() => 'Verified');
-      });
-   });
-}
+   const patchInfo = {
+      id: hash.user.id,
+      attributes: { active: true }
+   };
 
-function createHash() {
-   const currentDate = new Date().toString();
-   const random = Math.random().toString();
-   return SHA256(currentDate + random).toString();
+   await User.patchOne(patchInfo);
+   await Hash.deleteOneById({ id: hash.id });
+   return 'Verified';
 }
 
 function sendMail(email, hash) {

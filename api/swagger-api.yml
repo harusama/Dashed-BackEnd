@@ -52,7 +52,7 @@ paths:
   /users/login:
     post:
       operationId: getUser
-      summary: Login
+      summary: Login user
       tags:
         - Users
       parameters:

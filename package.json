@@ -5,8 +5,8 @@
    "scripts": {
       "start": "node ./src/index.js",
       "dev": "nodemon --watch ./src --ignore ./src/__tests__ -x \"DEBUG=mw:* DEBUG_HIDE_DATE=true DEBUG_COLORS=true \"yarn run start\"\"",
-      "tests": "export NODE_ENV=test && jest ./src/domain/**/*.test.js",
-      "tests-watch": "nodemon --exec \"yarn run tests\"",
+      "test": "export NODE_ENV=test && jest ./src/domain/**/*.test.js",
+      "test-watch": "nodemon --exec \"yarn run test\"",
       "coverage": "jest --coverage"
    },
    "license": "MIT",

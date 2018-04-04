@@ -64,17 +64,13 @@ describe(`POST ${basePath}/login`, () => {
    });
 
    test('bad request login without email sent', done => {
-      const nonExistingUser = {
-         password: 'mypass'
-      };
+      const nonExistingUser = { password: 'mypass' };
 
       request(app).post(path).send(nonExistingUser).expect(400).end(done);
    });
 
    test('bad request login without password sent', done => {
-      const nonExistingUser = {
-         email: 'nonexisting@user.com',
-      };
+      const nonExistingUser = { email: 'nonexisting@user.com' };
 
       request(app).post(path).send(nonExistingUser).expect(400).end(done);
    });
