@@ -388,3 +388,52 @@ describe(`POST ${basePath}/signup`, () => {
          });
    });
 });
+
+describe(`GET ${basePath}/signup/verify?id`, () => {
+   const path = `${basePath}/signup/verify`;
+
+   test('verify a user already signup', async done => {
+      const userData = {
+         ...fixtures.userWithRequiredAttributes,
+         password: SHA256(fixtures.userWithRequiredAttributes.password).toString()
+      };
+
+      try {
+         const user = await User.createOne({ attributes: userData });
+         expect(user.active).toBe(false);
+
+         const hashData = {
+            hash: Hash.createHash(),
+            userId: user.id
+         }
+         const hash = await Hash.createOne({ attributes: hashData });
+
+         request(app)
+            .get(`${path}?id=${hash.hash}`)
+            .expect(200)
+            .end(async (err, res) => {
+               if (err) {
+                  return done(err);
+               }
+
+               try {
+                  const users = await User.getMany();
+                  expect(users.length).toBe(1);
+                  expect(users[0].active).toBe(true);
+
+                  const hash = await Hash.getMany();
+                  expect(hash.length).toBe(0);
+                  done();
+               } catch (e) {
+                  done(e);
+               }
+            });
+      } catch (e) {
+         done(err);
+      }
+   });
+
+   test('verify with a non-existing hash', done => {
+      request(app).get(`${path}?id=123`).expect(404).end(done);
+   });
+});

@@ -37,7 +37,6 @@ function swaggerOperationController({ controllers }) {
          .then((result) => {
             req.locals.result = result;
             next();
-            //return res.send(201);
          })
          .catch(next);
    }

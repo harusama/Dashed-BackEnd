@@ -53,7 +53,6 @@ async function verifyUser({ models, params }) {
    const { User, Hash } = models;
    const { id } = params;
    const attributes = { hash: id.value };
-
    const hash = await Hash.getOne({ attributes });
 
    const patchInfo = {
