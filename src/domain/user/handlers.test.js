@@ -11,10 +11,10 @@ afterEach(() => {
    return truncateDomainTables();
 });
 
-describe(`POST ${basePath}`, () => {
-   const path = '/v1/users';
+describe(`POST ${basePath}/login`, () => {
+   const path = `${basePath}/login`;
 
-   test('login existing user with validated email', async done => {
+   test('login existing user with validated email and return auth header', async done => {
       const userData = {
          ...fixtures.userWithRequiredAttributes,
          password: SHA256(fixtures.userWithRequiredAttributes.password).toString(),
@@ -87,7 +87,7 @@ describe(`POST ${basePath}`, () => {
 });
 
 describe(`POST ${basePath}/signup`, () => {
-   const path = '/v1/users/signup';
+   const path = `${basePath}/signup`;
 
    test('create a user with required attributes', done => {
       request(app)

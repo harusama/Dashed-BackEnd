@@ -49,7 +49,7 @@ paths:
                 required:
                   - text
   
-  /users:
+  /users/login:
     post:
       operationId: getUser
       summary: Login
