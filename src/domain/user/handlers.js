@@ -67,7 +67,7 @@ async function verifyUser({ models, params }) {
 
 function sendMail(email, hash) {
    const transporter = nodemailer.createTransport(`smtps://${process.env.EMAIL_ACCOUNT}:${process.env.EMAIL_PASSWORD}@smtp.gmail.com`);
-   const link = `${process.env.API_URL}/users/signup/verify?id=${hash}`;
+   const link = `${process.env.EMAIL_VERIFY_URL}?id=${hash}`;
    const mailOptions = {
       to: email,
       subject: "Please confirm your email account",
