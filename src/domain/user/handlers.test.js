@@ -392,7 +392,7 @@ describe(`POST ${basePath}/signup`, () => {
 describe(`GET ${basePath}/signup/verify?id`, () => {
    const path = `${basePath}/signup/verify`;
 
-   test('verify a user already signup', async done => {
+   test('verify a user already signed up', async done => {
       const userData = {
          ...fixtures.userWithRequiredAttributes,
          password: SHA256(fixtures.userWithRequiredAttributes.password).toString()
