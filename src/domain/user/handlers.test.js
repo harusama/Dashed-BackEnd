@@ -14,14 +14,15 @@ afterEach(() => {
 describe(`POST ${basePath}`, () => {
    const path = '/v1/users';
 
-   test('login existing user with validated email', done => {
+   test('login existing user with validated email', async done => {
       const userData = {
          ...fixtures.userWithRequiredAttributes,
          password: SHA256(fixtures.userWithRequiredAttributes.password).toString(),
          active: true
       };
 
-      User.createOne({ attributes: userData }).then(() => {
+      try {
+         await User.createOne({ attributes: userData });
          request(app)
             .post(path)
             .send(fixtures.userLogin)
@@ -30,22 +31,27 @@ describe(`POST ${basePath}`, () => {
                expect(res.headers['x-auth']).toBeTruthy();
             })
             .end(done);
-      }).catch(done);
+      } catch (e) {
+         done(err);
+      }
    })
 
-   test('not login existing user without validated email', done => {
+   test('not login existing user without validated email', async done => {
       const userData = {
          ...fixtures.userWithRequiredAttributes,
          password: SHA256(fixtures.userWithRequiredAttributes.password).toString()
       };
 
-      User.createOne({ attributes: userData }).then(user => {
+      try {
+         await User.createOne({ attributes: userData });
          request(app)
             .post(path)
             .send(fixtures.userLogin)
             .expect(400)
             .end(done);
-      }).catch(err => done(err));
+      } catch (e) {
+         done(err);
+      }
    });
 
    test('not login non-existing user', done => {
@@ -91,23 +97,26 @@ describe(`POST ${basePath}/signup`, () => {
          .expect(res => {
             expect(res.body).toBe('');
          })
-         .end((err, res) => {
+         .end(async (err, res) => {
             if (err) {
                return done(err);
             }
 
-            User.getMany().then(users => {
+            try {
+               const users = await User.getMany();
                fixtures.userWithRequiredAttributes.password = SHA256(fixtures.userWithRequiredAttributes.password).toString();
                expect(users.length).toBe(1);
                expect(users[0]).toMatchObject(fixtures.userWithRequiredAttributes);
                expect(users[0].active).toBe(false);
                expect(users[0].kind).toBe(User.kind.teacher);
                expect(users[0].gender).toBe(User.gender.other);
+
                const attributes = { userId: users[0].id };
-               return Hash.getOne({ attributes });
-            }).then(hash => {
+               await Hash.getOne({ attributes });
                done();
-            }).catch(err => done(err));
+            } catch (e) {
+               done(e);
+            }
          });
    });
 
@@ -124,23 +133,26 @@ describe(`POST ${basePath}/signup`, () => {
          .expect(res => {
             expect(res.body).toBe('');
          })
-         .end((err, res) => {
+         .end(async (err, res) => {
             if (err) {
                return done(err);
             }
 
-            User.getMany().then(users => {
+            try {
+               const users = await User.getMany();
                fixtures.userWithRequiredAttributes.password = SHA256(fixtures.userWithRequiredAttributes.password).toString();
                expect(users.length).toBe(1);
                expect(users[0]).toMatchObject(fixtures.userWithRequiredAttributes);
                expect(users[0].active).toBe(false);
                expect(users[0].kind).toBe(User.kind.teacher);
                expect(users[0].gender).toBe(User.gender.other);
+
                const attributes = { userId: users[0].id };
-               return Hash.getOne({ attributes });
-            }).then(hash => {
+               await Hash.getOne({ attributes });
                done();
-            }).catch(err => done(err));
+            } catch (e) {
+               done(e);
+            }
          });
    });
 
@@ -156,23 +168,26 @@ describe(`POST ${basePath}/signup`, () => {
          .expect(res => {
             expect(res.body).toBe('');
          })
-         .end((err, res) => {
+         .end(async (err, res) => {
             if (err) {
                return done(err);
             }
 
-            User.getMany().then(users => {
+            try {
+               const users = await User.getMany();
                userData.password = SHA256(userData.password).toString();
                expect(users.length).toBe(1);
                expect(users[0]).toMatchObject(userData);
                expect(users[0].active).toBe(false);
                expect(users[0].kind).toBe(User.kind.admin);
                expect(users[0].gender).toBe(User.gender.other);
+
                const attributes = { userId: users[0].id };
-               return Hash.getOne({ attributes });
-            }).then(hash => {
+               await Hash.getOne({ attributes });
                done();
-            }).catch(err => done(err));
+            } catch (e) {
+               done(e);
+            }
          });
    });
 
@@ -188,23 +203,26 @@ describe(`POST ${basePath}/signup`, () => {
          .expect(res => {
             expect(res.body).toBe('');
          })
-         .end((err, res) => {
+         .end(async (err, res) => {
             if (err) {
                return done(err);
             }
 
-            User.getMany().then(users => {
+            try {
+               const users = await User.getMany();
                userData.password = SHA256(userData.password).toString();
                expect(users.length).toBe(1);
                expect(users[0]).toMatchObject(userData);
                expect(users[0].active).toBe(false);
                expect(users[0].kind).toBe(User.kind.teacher);
                expect(users[0].gender).toBe(User.gender.female);
+               
                const attributes = { userId: users[0].id };
-               return Hash.getOne({ attributes });
-            }).then(hash => {
+               await Hash.getOne({ attributes });
                done();
-            }).catch(err => done(err));
+            } catch (e) {
+               done(e);
+            }
          });
    });
 
@@ -217,15 +235,18 @@ describe(`POST ${basePath}/signup`, () => {
          .post(path)
          .send(userData)
          .expect(400)
-         .end((err, res) => {
+         .end(async (err, res) => {
             if (err) {
                return done(err);
             }
 
-            User.getMany().then(users => {
+            try {
+               const users = await User.getMany();
                expect(users.length).toBe(0);
                done();
-            }).catch(err => done(err));
+            } catch (e) {
+               done(e);
+            }
          });
    });
 
@@ -238,15 +259,18 @@ describe(`POST ${basePath}/signup`, () => {
          .post(path)
          .send(userData)
          .expect(400)
-         .end((err, res) => {
+         .end(async (err, res) => {
             if (err) {
                return done(err);
             }
 
-            User.getMany().then(users => {
+            try {
+               const users = await User.getMany();
                expect(users.length).toBe(0);
                done();
-            }).catch(err => done(err));
+            } catch (e) {
+               done(e);
+            }
          });
    });
 
@@ -259,15 +283,18 @@ describe(`POST ${basePath}/signup`, () => {
          .post(path)
          .send(userData)
          .expect(400)
-         .end((err, res) => {
+         .end(async (err, res) => {
             if (err) {
                return done(err);
             }
 
-            User.getMany().then(users => {
+            try {
+               const users = await User.getMany();
                expect(users.length).toBe(0);
                done();
-            }).catch(err => done(err));
+            } catch (e) {
+               done(e);
+            }
          });
    });
 
@@ -280,15 +307,18 @@ describe(`POST ${basePath}/signup`, () => {
          .post(path)
          .send(userData)
          .expect(400)
-         .end((err, res) => {
+         .end(async (err, res) => {
             if (err) {
                return done(err);
             }
 
-            User.getMany().then(users => {
+            try {
+               const users = await User.getMany();
                expect(users.length).toBe(0);
                done();
-            }).catch(err => done(err));
+            } catch (e) {
+               done(e);
+            }
          });
    });
 
@@ -301,15 +331,18 @@ describe(`POST ${basePath}/signup`, () => {
          .post(path)
          .send(userData)
          .expect(400)
-         .end((err, res) => {
+         .end(async (err, res) => {
             if (err) {
                return done(err);
             }
 
-            User.getMany().then(users => {
+            try {
+               const users = await User.getMany();
                expect(users.length).toBe(0);
                done();
-            }).catch(err => done(err));
+            } catch (e) {
+               done(e);
+            }
          });
    });
 
@@ -322,15 +355,18 @@ describe(`POST ${basePath}/signup`, () => {
          .post(path)
          .send(userData)
          .expect(400)
-         .end((err, res) => {
+         .end(async (err, res) => {
             if (err) {
                return done(err);
             }
 
-            User.getMany().then(users => {
+            try {
+               const users = await User.getMany();
                expect(users.length).toBe(0);
                done();
-            }).catch(err => done(err));
+            } catch (e) {
+               done(e);
+            }
          });
    });
 
@@ -341,15 +377,18 @@ describe(`POST ${basePath}/signup`, () => {
          .post(path)
          .send(userData)
          .expect(400)
-         .end((err, res) => {
+         .end(async (err, res) => {
             if (err) {
                return done(err);
             }
 
-            User.getMany().then(users => {
+            try {
+               const users = await User.getMany();
                expect(users.length).toBe(0);
                done();
-            }).catch(err => done(err));
+            } catch (e) {
+               done(e);
+            }
          });
    });
 });
