@@ -2,6 +2,9 @@
    "name": "node-web-server",
    "version": "1.0.0",
    "main": "index.js",
+   "engines": {
+      "node": "8.9.4"
+   },
    "scripts": {
       "start": "node ./src/index.js",
       "dev": "nodemon --watch ./src --ignore ./src/__tests__ -x \"DEBUG=mw:* DEBUG_HIDE_DATE=true DEBUG_COLORS=true \"yarn run start\"\"",
