@@ -1,9 +1,51 @@
+CREATE TABLE states (
+   id BIGSERIAL PRIMARY KEY,
+   key VARCHAR(10) UNIQUE NOT NULL,
+   name TEXT
+);
+
+CREATE TABLE regions (
+   id BIGSERIAL PRIMARY KEY,
+   key VARCHAR(10) UNIQUE NOT NULL,
+   name TEXT,
+   state_id BIGINT REFERENCES states(id)
+);
+
+CREATE TABLE districts (
+   id BIGSERIAL PRIMARY KEY,
+   number VARCHAR(10) UNIQUE NOT NULL,
+   name TEXT,
+   kind TEXT,
+   street TEXT,
+   city TEXT,
+   state TEXT,
+   zip TEXT,
+   phone TEXT,
+   fax TEXT,
+   email TEXT,
+   webpage TEXT,
+   superintendent TEXT,
+   region_id BIGINT REFERENCES regions(id)
+);
+
 CREATE TABLE campus (
    id BIGSERIAL PRIMARY KEY,
-   state VARCHAR(100),
-   region VARCHAR(100),
-   district VARCHAR(100),
-   name VARCHAR(100)
+   number VARCHAR(10) UNIQUE NOT NULL,
+   name TEXT,
+   kind TEXT,
+   charter_type TEXT,
+   street TEXT,
+   city TEXT,
+   state TEXT,
+   zip TEXT,
+   phone TEXT,
+   fax TEXT,
+   email TEXT,
+   webpage TEXT,
+   principal TEXT,
+   grade_range TEXT,
+   enrollment TEXT,
+   district_id BIGINT REFERENCES districts(id)
 );
 
 CREATE TYPE user_kind AS ENUM('admin', 'teacher');
