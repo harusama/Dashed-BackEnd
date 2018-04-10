@@ -25,7 +25,6 @@ app.use('/v1/docs/db/:password', (req, res, next) => {
       return res.status(200).send({ error: 'Not authorized' });
    }
 }, express.static('docs/db'));
-app.use(express.static('docs'));
 app.use(bodyParser.json());
 app.use(createReqLocals);
 
