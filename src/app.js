@@ -16,6 +16,7 @@ const errorHandler = require('./middleware/error-handler');
 const app = express();
 
 app.use(cors());
+app.use(express.static('docs'));
 app.use(bodyParser.json());
 app.use(createReqLocals);
 
