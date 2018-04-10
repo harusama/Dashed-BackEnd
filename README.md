@@ -135,3 +135,16 @@ The logic for implementing the handlers (controllers) of the validated requests 
 - `swaggerOperationController`: Route validated requests to an appropriate controller and extract all of the important data for the controllers.
 - `sendControllerResponse`: Verify the results of the controllers, this way the controllers doesn't have to worry about the response, keeping clean the code and omitiing the validation boilerplate code.
 - `errorHandler`: Manage the errors encountered in some middleware or controller logic up the middleware chain.
+
+### Documentation
+#### Database
+We use [Schemaspy](http://schemaspy.org) to generate a website representating the database schema in an interactive way.
+
+In order to generate the site just run
+
+```
+make docs
+```
+The result will be the creation of the `db` folder inside the `docs` folder, containing all of the necesary resources that allows the creation of the website.
+
+Next, visit `/v1/docs/db/1029` to view the database schema in your browser.
