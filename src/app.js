@@ -16,6 +16,15 @@ const errorHandler = require('./middleware/error-handler');
 const app = express();
 
 app.use(cors());
+app.use('/v1/docs/db/:password', (req, res, next) => {
+   const { password } = req.params;
+   console.log(password );
+   if (password == '1029') {
+      next();
+   } else {
+      return res.status(200).send({ error: 'Not authorized' });
+   }
+}, express.static('docs/db'));
 app.use(express.static('docs'));
 app.use(bodyParser.json());
 app.use(createReqLocals);
