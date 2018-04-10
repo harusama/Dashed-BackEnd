@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<database name="dasheddb" schema="public" type="PostgreSQL - 9.6.8">
+   <tables>
+      <table name="answers" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('answers_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial"/>
+         <column autoUpdated="false" digits="0" id="1" name="index" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="2" name="text" nullable="true" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="3" name="question_id" nullable="true" remarks="" size="19" type="int8">
+            <parent column="id" foreignKey="answers_question_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="questions"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="answers_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="campus" numRows="4" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('campus_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial">
+            <child column="campus_id" foreignKey="users_campus_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="users"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="number" nullable="false" remarks="" size="10" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="name" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="3" name="kind" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="4" name="charter_type" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="5" name="street" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="6" name="city" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="7" name="state" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="8" name="zip" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="9" name="phone" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="10" name="fax" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="11" name="email" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="12" name="webpage" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="13" name="principal" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="14" name="grade_range" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="15" name="enrollment" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="16" name="district_id" nullable="true" remarks="" size="19" type="int8">
+            <parent column="id" foreignKey="campus_district_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="districts"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="campus_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="campus_number_key" unique="true">
+            <column ascending="true" name="number"/>
+         </index>
+      </table>
+      <table name="chapters" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('chapters_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial">
+            <child column="chapter_id" foreignKey="lessons_chapter_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="lessons"/>
+         </column>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="1" name="number" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="2" name="name" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="3" name="description" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="4" name="unit_id" nullable="true" remarks="" size="19" type="int8">
+            <parent column="id" foreignKey="chapters_unit_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="units"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="chapters_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="districts" numRows="5" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('districts_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial">
+            <child column="district_id" foreignKey="campus_district_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="campus"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="number" nullable="false" remarks="" size="10" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="name" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="3" name="kind" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="4" name="street" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="5" name="city" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="6" name="state" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="7" name="zip" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="8" name="phone" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="9" name="fax" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="10" name="email" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="11" name="webpage" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="12" name="superintendent" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="13" name="region_id" nullable="true" remarks="" size="19" type="int8">
+            <parent column="id" foreignKey="districts_region_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="regions"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="districts_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="districts_number_key" unique="true">
+            <column ascending="true" name="number"/>
+         </index>
+      </table>
+      <table name="hashes" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('hashes_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial"/>
+         <column autoUpdated="false" digits="0" id="1" name="hash" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="2" name="user_id" nullable="true" remarks="" size="19" type="int8">
+            <parent column="id" foreignKey="hashes_user_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="users"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="hashes_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="lessons" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('lessons_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="1" name="number" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="2" name="name" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="3" name="description" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="4" name="chapter_id" nullable="true" remarks="" size="19" type="int8">
+            <parent column="id" foreignKey="lessons_chapter_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="chapters"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="lessons_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="questions" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('questions_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial">
+            <child column="question_id" foreignKey="answers_question_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="answers"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="description_text" nullable="true" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="description_image" nullable="true" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="3" name="kind" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="4" name="approved" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="5" name="user_id" nullable="true" remarks="" size="19" type="int8">
+            <parent column="id" foreignKey="questions_user_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="users"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="6" name="subject_id" nullable="true" remarks="" size="19" type="int8">
+            <parent column="id" foreignKey="questions_subject_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="subjects"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="questions_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="regions" numRows="4" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('regions_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial">
+            <child column="region_id" foreignKey="districts_region_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="districts"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="key" nullable="false" remarks="" size="10" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="name" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="3" name="state_id" nullable="true" remarks="" size="19" type="int8">
+            <parent column="id" foreignKey="regions_state_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="states"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="regions_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="regions_key_key" unique="true">
+            <column ascending="true" name="key"/>
+         </index>
+      </table>
+      <table name="states" numRows="3" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('states_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial">
+            <child column="state_id" foreignKey="regions_state_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="regions"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="key" nullable="false" remarks="" size="10" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="name" nullable="true" remarks="" size="2147483647" type="text"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="states_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="states_key_key" unique="true">
+            <column ascending="true" name="key"/>
+         </index>
+      </table>
+      <table name="subjects" numRows="2" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('subjects_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial">
+            <child column="subject_id" foreignKey="questions_subject_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="questions"/>
+            <child column="subject_id" foreignKey="units_subject_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="units"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="name" nullable="true" remarks="" size="100" type="varchar"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="subjects_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="units" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('units_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial">
+            <child column="unit_id" foreignKey="chapters_unit_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="chapters"/>
+         </column>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="1" name="number" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="2" name="name" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="3" name="description" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="4" name="subject_id" nullable="true" remarks="" size="19" type="int8">
+            <parent column="id" foreignKey="units_subject_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="subjects"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="units_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="users" numRows="1" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('users_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial">
+            <child column="user_id" foreignKey="hashes_user_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="hashes"/>
+            <child column="user_id" foreignKey="questions_user_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="questions"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="first_name" nullable="true" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="last_name" nullable="true" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="3" name="username" nullable="true" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="4" name="email" nullable="true" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="5" name="password" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" defaultValue="false" digits="0" id="6" name="active" nullable="true" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" defaultValue="'other'::user_gender" digits="0" id="7" name="gender" nullable="false" remarks="" size="2147483647" type="user_gender"/>
+         <column autoUpdated="false" defaultValue="'teacher'::user_kind" digits="0" id="8" name="kind" nullable="false" remarks="" size="2147483647" type="user_kind"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="9" name="experience" nullable="false" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="10" name="coins" nullable="false" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="11" name="campus_id" nullable="true" remarks="" size="19" type="int8">
+            <parent column="id" foreignKey="users_campus_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="campus"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="users_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="users_email_key" unique="true">
+            <column ascending="true" name="email"/>
+         </index>
+      </table>
+   </tables>
+</database>

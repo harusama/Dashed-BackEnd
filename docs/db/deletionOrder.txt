@@ -1,0 +1,12 @@
+lessons
+hashes
+answers
+questions
+chapters
+users
+campus
+districts
+units
+regions
+states
+subjects
