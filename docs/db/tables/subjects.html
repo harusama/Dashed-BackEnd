@@ -145,7 +145,7 @@
 				 <td></td>
 				</tr>
 				<tr>
-				 <td><span id="name">name</span></td>
+				 <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i><span id="name">name</span></td>
 				 <td>varchar</td>
 				 <td>100</td>
 				 <td title='nullable'>√</td>
@@ -161,9 +161,77 @@
 				 </td>
 				 <td></td>
 				</tr>
+				<tr>
+				 <td><span id="campus_type">campus_type</span></td>
+				 <td>varchar</td>
+				 <td>100</td>
+				 <td title='nullable'>√</td>
+				 <td title=''></td>
+				 <td>null</td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>				 
+				 </td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>					 
+				 </td>
+				 <td></td>
+				</tr>
+				<tr>
+				 <td><span id="general_topic">general_topic</span></td>
+				 <td>varchar</td>
+				 <td>100</td>
+				 <td title='nullable'>√</td>
+				 <td title=''></td>
+				 <td>null</td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>				 
+				 </td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>					 
+				 </td>
+				 <td></td>
+				</tr>
+				<tr>
+				 <td><span id="content_name">content_name</span></td>
+				 <td>varchar</td>
+				 <td>100</td>
+				 <td title='nullable'>√</td>
+				 <td title=''></td>
+				 <td>null</td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>				 
+				 </td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>					 
+				 </td>
+				 <td></td>
+				</tr>
+				<tr>
+				 <td><span id="content_description">content_description</span></td>
+				 <td>text</td>
+				 <td>2147483647</td>
+				 <td title='nullable'>√</td>
+				 <td title=''></td>
+				 <td>null</td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>				 
+				 </td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>					 
+				 </td>
+				 <td></td>
+				</tr>
 								</tbody>
 				</table>
-				<p title='2 columns'>Table contained <span id="recordNumber">2</span> rows<p/>
+				<p title='6 columns'>Table contained <span id="recordNumber">5</span> rows<p/>
 			</div>
 		</div>
 		<div class="box box-primary">		
@@ -195,6 +263,12 @@
 				  <td><span title='Ascending'>Asc</span></td>
 				  <td>id</td>
 				 </tr>				 
+				 <tr>
+				  <td class='uniqueKey' title='Unique Key'><i class='icon ion-key iconkey'></i> subjects_name_key</td>
+				  <td>Must be unique</td>
+				  <td><span title='Ascending'>Asc</span></td>
+				  <td>name</td>
+				 </tr>				 
 				</tbody>
 				</table>   			  
 			</div><!-- /.box-body -->
@@ -222,21 +296,21 @@
             <div class="tab-content no-padding">            
 				<div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">					
 					<map id="oneDegreeRelationshipsDiagram" name="oneDegreeRelationshipsDiagram">
-<area shape="rect" id="node1" href="questions.html" title="questions" alt="" coords="267,5,461,181">
-<area shape="rect" id="node2" href="subjects.html" title="subjects" alt="" coords="5,144,223,272">
-<area shape="rect" id="node3" href="units.html" title="units" alt="" coords="295,199,433,345">
+<area shape="rect" id="node1" href="questions.html" title="questions" alt="" coords="397,5,592,181">
+<area shape="rect" id="node2" href="subjects.html" title="subjects" alt="" coords="5,144,353,389">
+<area shape="rect" id="node3" href="units.html" title="units" alt="" coords="425,199,564,345">
 </map>
 
 					<a name='diagram'><img id='oneDegreeImg' src='../diagrams/subjects.1degree.png' usemap='#oneDegreeRelationshipsDiagram' class='diagram' border='0' alt='' align='left'></a>							
 				</div>
 				<div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">					
 					<map id="twoDegreesRelationshipsDiagram" name="twoDegreesRelationshipsDiagram">
-<area shape="rect" id="node1" href="answers.html" title="answers" alt="" coords="508,8,656,96">
-<area shape="rect" id="node2" href="questions.html" title="questions" alt="" coords="267,5,461,181">
-<area shape="rect" id="node5" href="subjects.html" title="subjects" alt="" coords="5,184,223,312">
-<area shape="rect" id="node6" href="users.html" title="users" alt="" coords="48,37,180,125">
-<area shape="rect" id="node3" href="chapters.html" title="chapters" alt="" coords="505,201,659,289">
-<area shape="rect" id="node4" href="units.html" title="units" alt="" coords="295,199,433,345">
+<area shape="rect" id="node1" href="answers.html" title="answers" alt="" coords="639,8,787,96">
+<area shape="rect" id="node2" href="questions.html" title="questions" alt="" coords="397,5,592,181">
+<area shape="rect" id="node5" href="subjects.html" title="subjects" alt="" coords="5,184,353,429">
+<area shape="rect" id="node6" href="users.html" title="users" alt="" coords="113,37,245,125">
+<area shape="rect" id="node3" href="chapters.html" title="chapters" alt="" coords="636,201,789,289">
+<area shape="rect" id="node4" href="units.html" title="units" alt="" coords="425,199,564,345">
 </map>
 
 					<a name='diagram'><img id='twodegreesDegreeImg' src='../diagrams/subjects.2degrees.png' usemap='#twoDegreesRelationshipsDiagram' class='diagram' border='0' alt='' align='left'></a>							

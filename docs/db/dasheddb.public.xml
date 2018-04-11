@@ -43,7 +43,7 @@
             <column ascending="true" name="number"/>
          </index>
       </table>
-      <table name="chapters" numRows="0" remarks="" schema="public" type="TABLE">
+      <table name="chapters" numRows="18" remarks="" schema="public" type="TABLE">
          <column autoUpdated="true" defaultValue="nextval('chapters_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial">
             <child column="chapter_id" foreignKey="lessons_chapter_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="lessons"/>
          </column>
@@ -96,7 +96,7 @@
             <column ascending="true" name="id"/>
          </index>
       </table>
-      <table name="lessons" numRows="0" remarks="" schema="public" type="TABLE">
+      <table name="lessons" numRows="36" remarks="" schema="public" type="TABLE">
          <column autoUpdated="true" defaultValue="nextval('lessons_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial"/>
          <column autoUpdated="false" defaultValue="0" digits="0" id="1" name="number" nullable="true" remarks="" size="10" type="int4"/>
          <column autoUpdated="false" digits="0" id="2" name="name" nullable="true" remarks="" size="2147483647" type="text"/>
@@ -159,18 +159,25 @@
             <column ascending="true" name="key"/>
          </index>
       </table>
-      <table name="subjects" numRows="2" remarks="" schema="public" type="TABLE">
+      <table name="subjects" numRows="5" remarks="" schema="public" type="TABLE">
          <column autoUpdated="true" defaultValue="nextval('subjects_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial">
             <child column="subject_id" foreignKey="questions_subject_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="questions"/>
             <child column="subject_id" foreignKey="units_subject_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="units"/>
          </column>
          <column autoUpdated="false" digits="0" id="1" name="name" nullable="true" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="campus_type" nullable="true" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="3" name="general_topic" nullable="true" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="4" name="content_name" nullable="true" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="5" name="content_description" nullable="true" remarks="" size="2147483647" type="text"/>
          <primaryKey column="id" sequenceNumberInPK="1"/>
          <index name="subjects_pkey" unique="true">
             <column ascending="true" name="id"/>
          </index>
+         <index name="subjects_name_key" unique="true">
+            <column ascending="true" name="name"/>
+         </index>
       </table>
-      <table name="units" numRows="0" remarks="" schema="public" type="TABLE">
+      <table name="units" numRows="9" remarks="" schema="public" type="TABLE">
          <column autoUpdated="true" defaultValue="nextval('units_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial">
             <child column="unit_id" foreignKey="chapters_unit_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="chapters"/>
          </column>

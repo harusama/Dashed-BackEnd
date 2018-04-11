@@ -73,9 +73,11 @@ CREATE TABLE hashes (
 
 CREATE TABLE subjects (
    id BIGSERIAL PRIMARY KEY,
-   name VARCHAR(100)
-   -- name TEXT,
-   -- description TEXT,
+   name VARCHAR(100) UNIQUE,
+   campus_type VARCHAR(100),
+   general_topic VARCHAR(100),
+   content_name VARCHAR(100),
+   content_description TEXT
 );
 
 CREATE TABLE units (
@@ -101,7 +103,6 @@ CREATE TABLE lessons (
    description TEXT,
    chapter_id BIGINT REFERENCES chapters(id)
 );
-
 
 CREATE TABLE questions (
    id BIGSERIAL PRIMARY KEY,

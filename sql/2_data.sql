@@ -39,8 +39,90 @@ INSERT INTO campus (number, name, kind, charter_type, street, city, state, zip, 
 VALUES ('001905004', 'Campus 4', 'REGULAR INSTRUCTIONAL', '', 'P O BOX 427', 'City 4', 'CA', '75832-0427', '(903) 928-2294 ext:012', '(903) 928-2239', 'admin4@cayugaisd.com', 'www.cayugaisd.com', 'MR RUSSELL HOLDEN', '09-12', '174', 4);
 
 -- Subjects inserts
-INSERT INTO subjects (name) VALUES ('Introduction to physics');
-INSERT INTO subjects (name) VALUES ('Physics II');
+INSERT INTO subjects (name, campus_type, general_topic, content_name, content_description)
+VALUES ('Subject 1', 'Campus type 01', 'Math', 'Math 1', 'Math 1 Description');
+
+INSERT INTO subjects (name, campus_type, general_topic, content_name, content_description)
+VALUES ('Subject 2', 'Campus type 04', 'Science', 'Science 1', 'Science 1 Description');
+
+INSERT INTO subjects (name, campus_type, general_topic, content_name, content_description)
+VALUES ('Subject 3', 'Campus type 01', 'Science', 'Science 2', 'Science 2 Description');
+
+INSERT INTO subjects (name, campus_type, general_topic, content_name, content_description)
+VALUES ('Subject 4', 'Campus type 04', 'Social Studies', 'Social Studies 1', 'Social Studies 1 Description');
+
+INSERT INTO subjects (name, campus_type, general_topic, content_name, content_description)
+VALUES ('Subject 5', 'Campus type 05', 'Social Studies', 'Social Studies 2', 'Social Studies 2 Description');
+
+-- Units inserts
+INSERT INTO units (number, name, description, subject_id) VALUES (1, 'S1 Unit 1', 'S1 Unit 1 D', 1);
+INSERT INTO units (number, name, description, subject_id) VALUES (2, 'S1 Unit 2', 'S1 Unit 2 D', 1);
+INSERT INTO units (number, name, description, subject_id) VALUES (1, 'S2 Unit 1', 'S2 Unit 1 D', 2);
+INSERT INTO units (number, name, description, subject_id) VALUES (2, 'S2 Unit 2', 'S2 Unit 2 D', 2);
+INSERT INTO units (number, name, description, subject_id) VALUES (1, 'S2 Unit 1', 'S2 Unit 1 D', 3);
+INSERT INTO units (number, name, description, subject_id) VALUES (2, 'S2 Unit 2', 'S2 Unit 2 D', 3);
+INSERT INTO units (number, name, description, subject_id) VALUES (1, 'S2 Unit 1', 'S2 Unit 1 D', 4);
+INSERT INTO units (number, name, description, subject_id) VALUES (2, 'S2 Unit 2', 'S2 Unit 2 D', 4);
+INSERT INTO units (number, name, description, subject_id) VALUES (1, 'S2 Unit 1', 'S2 Unit 1 D', 5);
+
+-- Chapters inserts
+INSERT INTO chapters (number, name, description, unit_id) VALUES (1, 'Chapter Name 1', 'Chapter Description 1', 1);
+INSERT INTO chapters (number, name, description, unit_id) VALUES (1, 'Chapter Name 2', 'Chapter Description 2', 2);
+INSERT INTO chapters (number, name, description, unit_id) VALUES (1, 'Chapter Name 3', 'Chapter Description 3', 3);
+INSERT INTO chapters (number, name, description, unit_id) VALUES (1, 'Chapter Name 4', 'Chapter Description 4', 4);
+INSERT INTO chapters (number, name, description, unit_id) VALUES (1, 'Chapter Name 5', 'Chapter Description 5', 5);
+INSERT INTO chapters (number, name, description, unit_id) VALUES (1, 'Chapter Name 6', 'Chapter Description 6', 6);
+INSERT INTO chapters (number, name, description, unit_id) VALUES (1, 'Chapter Name 7', 'Chapter Description 7', 7);
+INSERT INTO chapters (number, name, description, unit_id) VALUES (1, 'Chapter Name 8', 'Chapter Description 8', 8);
+INSERT INTO chapters (number, name, description, unit_id) VALUES (1, 'Chapter Name 9', 'Chapter Description 9', 9);
+INSERT INTO chapters (number, name, description, unit_id) VALUES (2, 'Chapter Name 10', 'Chapter Description 10', 1);
+INSERT INTO chapters (number, name, description, unit_id) VALUES (2, 'Chapter Name 11', 'Chapter Description 11', 2);
+INSERT INTO chapters (number, name, description, unit_id) VALUES (2, 'Chapter Name 12', 'Chapter Description 12', 3);
+INSERT INTO chapters (number, name, description, unit_id) VALUES (2, 'Chapter Name 13', 'Chapter Description 13', 4);
+INSERT INTO chapters (number, name, description, unit_id) VALUES (2, 'Chapter Name 14', 'Chapter Description 14', 5);
+INSERT INTO chapters (number, name, description, unit_id) VALUES (2, 'Chapter Name 15', 'Chapter Description 15', 6);
+INSERT INTO chapters (number, name, description, unit_id) VALUES (2, 'Chapter Name 16', 'Chapter Description 16', 7);
+INSERT INTO chapters (number, name, description, unit_id) VALUES (2, 'Chapter Name 17', 'Chapter Description 17', 8);
+INSERT INTO chapters (number, name, description, unit_id) VALUES (2, 'Chapter Name 18', 'Chapter Description 18', 9);
+
+-- Lessons inserts
+INSERT INTO lessons (number, name, description, chapter_id) VALUES (1, 'Lesson Name 1', 'Lesson Description 1', 1);
+INSERT INTO lessons (number, name, description, chapter_id) VALUES (1, 'Lesson Name 2', 'Lesson Description 2', 2);
+INSERT INTO lessons (number, name, description, chapter_id) VALUES (1, 'Lesson Name 3', 'Lesson Description 3', 3);
+INSERT INTO lessons (number, name, description, chapter_id) VALUES (1, 'Lesson Name 4', 'Lesson Description 4', 4);
+INSERT INTO lessons (number, name, description, chapter_id) VALUES (1, 'Lesson Name 5', 'Lesson Description 5', 5);
+INSERT INTO lessons (number, name, description, chapter_id) VALUES (1, 'Lesson Name 6', 'Lesson Description 6', 6);
+INSERT INTO lessons (number, name, description, chapter_id) VALUES (1, 'Lesson Name 7', 'Lesson Description 7', 7);
+INSERT INTO lessons (number, name, description, chapter_id) VALUES (1, 'Lesson Name 8', 'Lesson Description 8', 8);
+INSERT INTO lessons (number, name, description, chapter_id) VALUES (1, 'Lesson Name 9', 'Lesson Description 9', 9);
+INSERT INTO lessons (number, name, description, chapter_id) VALUES (1, 'Lesson Name 10', 'Lesson Description 10', 10);
+INSERT INTO lessons (number, name, description, chapter_id) VALUES (1, 'Lesson Name 11', 'Lesson Description 11', 11);
+INSERT INTO lessons (number, name, description, chapter_id) VALUES (1, 'Lesson Name 12', 'Lesson Description 12', 12);
+INSERT INTO lessons (number, name, description, chapter_id) VALUES (1, 'Lesson Name 13', 'Lesson Description 13', 13);
+INSERT INTO lessons (number, name, description, chapter_id) VALUES (1, 'Lesson Name 14', 'Lesson Description 14', 14);
+INSERT INTO lessons (number, name, description, chapter_id) VALUES (1, 'Lesson Name 15', 'Lesson Description 15', 15);
+INSERT INTO lessons (number, name, description, chapter_id) VALUES (1, 'Lesson Name 16', 'Lesson Description 16', 16);
+INSERT INTO lessons (number, name, description, chapter_id) VALUES (1, 'Lesson Name 17', 'Lesson Description 17', 17);
+INSERT INTO lessons (number, name, description, chapter_id) VALUES (1, 'Lesson Name 18', 'Lesson Description 18', 18);
+
+INSERT INTO lessons (number, name, description, chapter_id) VALUES (2, 'Lesson Name 19', 'Lesson Description 19', 1);
+INSERT INTO lessons (number, name, description, chapter_id) VALUES (2, 'Lesson Name 20', 'Lesson Description 20', 2);
+INSERT INTO lessons (number, name, description, chapter_id) VALUES (2, 'Lesson Name 21', 'Lesson Description 21', 3);
+INSERT INTO lessons (number, name, description, chapter_id) VALUES (2, 'Lesson Name 22', 'Lesson Description 22', 4);
+INSERT INTO lessons (number, name, description, chapter_id) VALUES (2, 'Lesson Name 23', 'Lesson Description 23', 5);
+INSERT INTO lessons (number, name, description, chapter_id) VALUES (2, 'Lesson Name 24', 'Lesson Description 24', 6);
+INSERT INTO lessons (number, name, description, chapter_id) VALUES (2, 'Lesson Name 25', 'Lesson Description 25', 7);
+INSERT INTO lessons (number, name, description, chapter_id) VALUES (2, 'Lesson Name 26', 'Lesson Description 26', 8);
+INSERT INTO lessons (number, name, description, chapter_id) VALUES (2, 'Lesson Name 27', 'Lesson Description 27', 9);
+INSERT INTO lessons (number, name, description, chapter_id) VALUES (2, 'Lesson Name 28', 'Lesson Description 28', 10);
+INSERT INTO lessons (number, name, description, chapter_id) VALUES (2, 'Lesson Name 29', 'Lesson Description 29', 11);
+INSERT INTO lessons (number, name, description, chapter_id) VALUES (2, 'Lesson Name 30', 'Lesson Description 30', 12);
+INSERT INTO lessons (number, name, description, chapter_id) VALUES (2, 'Lesson Name 31', 'Lesson Description 31', 13);
+INSERT INTO lessons (number, name, description, chapter_id) VALUES (2, 'Lesson Name 32', 'Lesson Description 32', 14);
+INSERT INTO lessons (number, name, description, chapter_id) VALUES (2, 'Lesson Name 33', 'Lesson Description 33', 15);
+INSERT INTO lessons (number, name, description, chapter_id) VALUES (2, 'Lesson Name 34', 'Lesson Description 34', 16);
+INSERT INTO lessons (number, name, description, chapter_id) VALUES (2, 'Lesson Name 35', 'Lesson Description 35', 17);
+INSERT INTO lessons (number, name, description, chapter_id) VALUES (2, 'Lesson Name 36', 'Lesson Description 36', 18);
 
 -- Users inserts
 INSERT INTO users (first_name, last_name, username, email, password, active, experience, coins, campus_id)
