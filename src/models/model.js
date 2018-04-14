@@ -6,6 +6,10 @@ class BaseModel extends Model {
       return '';
    }
 
+   static get defaultOmit() {
+      return [''];
+   }
+
    static createNotFoundError() {
       return boom.notFound();
    }
@@ -21,7 +25,7 @@ class BaseModel extends Model {
    }
 
    static getMany() {
-      return this.query().eager(this.defaultEager);
+      return this.query().eager(this.defaultEager).omit(this.defaultOmit);
    }
    
    static getOne({ attributes }) {

@@ -14,7 +14,7 @@ function swaggerOperationController({ controllers }) {
          return next(boom.notImplemented('Handler not implemented'));
       }
 
-      const endpointsWithoutAuth = ['getRoot', 'getUser', 'createUser', 'verifyUser']
+      const endpointsWithoutAuth = ['getRoot', 'getUser', 'createUser', 'verifyUser', 'getStates']
       const token = req.header('x-auth');
       let decoded = {};
 

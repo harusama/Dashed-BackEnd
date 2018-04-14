@@ -100,6 +100,23 @@ paths:
         200:
           description: Ok
   
+  /states:
+    get:
+      operationId: getStates
+      summary: Get states information
+      tags:
+        - States
+      responses:
+        200:
+          description: Ok
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/State'
+
   /questions:
     post:
       operationId: createQuestion
@@ -271,6 +288,150 @@ definitions:
       - email
       - password
       - campusId
+
+  State:
+    type: object
+    properties:
+      id:
+        type: integer
+        minimum: 0
+      key:
+        type: string
+      name:
+        type: string
+      regions:
+        type: array
+        items:
+          $ref: '#/definitions/Region'
+    required:
+      - id
+      - key
+      - name
+      - regions
+  
+  Region:
+    type: object
+    properties:
+      id:
+        type: integer
+        minimum: 0
+      key:
+        type: string
+      name:
+        type: string
+      districts:
+        type: array
+        items:
+          $ref: '#/definitions/District'
+    required:
+      - id
+      - key
+      - name
+      - districts
+
+  District:
+    type: object
+    properties:
+      id:
+        type: integer
+        minimum: 0
+      number:
+        type: integer
+        minimum: 0
+      name:
+        type: string
+      kind:
+        type: string
+      street:
+        type: string
+      city:
+        type: string
+      state:
+        type: string
+      zip:
+        type: string
+      phone:
+        type: string
+      fax:
+        type: string
+      email:
+        type: string
+      webpage:
+        type: string
+      superintendent:
+        type: string
+      campus:
+        type: array
+        items:
+          $ref: '#/definitions/Campus'
+    required:
+      - id
+      - number
+      - name
+      - kind
+      - street
+      - city
+      - state
+      - zip
+      - phone
+      - fax
+      - email
+      - webpage
+      - superintendent
+
+  Campus:
+    type: object
+    properties:
+      id:
+        type: integer
+        minimum: 0
+      number:
+        type: string
+      name:
+        type: string
+      kind:
+        type: string
+      charterType:
+        type: string
+      street:
+        type: string
+      city:
+        type: string
+      state:
+        type: string
+      zip:
+        type: string
+      phone:
+        type: string
+      fax:
+        type: string
+      email:
+        type: string
+      webpage:
+        type: string
+      principal:
+        type: string
+      gradeRange:
+        type: string
+      enrollment:
+        type: string
+    required:
+      - id
+      - number
+      - name
+      - kind
+      - charterType
+      - street
+      - city
+      - state
+      - zip
+      - phone
+      - fax
+      - email
+      - webpage
+      - principal
+      - gradeRange
+      - enrollment
 
   Question:
     type: object
