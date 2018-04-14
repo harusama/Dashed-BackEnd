@@ -319,6 +319,9 @@ definitions:
         type: string
       name:
         type: string
+      stateId:
+        type: integer
+        minimum: 0
       districts:
         type: array
         items:
@@ -327,6 +330,7 @@ definitions:
       - id
       - key
       - name
+      - stateId
       - districts
 
   District:
@@ -360,6 +364,9 @@ definitions:
         type: string
       superintendent:
         type: string
+      regionId:
+        type: integer
+        minimum: 0
       campus:
         type: array
         items:
@@ -378,6 +385,8 @@ definitions:
       - email
       - webpage
       - superintendent
+      - regionId
+      - campus
 
   Campus:
     type: object
@@ -415,6 +424,9 @@ definitions:
         type: string
       enrollment:
         type: string
+      districtId:
+        type: integer
+        minimum: 0
     required:
       - id
       - number
@@ -432,6 +444,7 @@ definitions:
       - principal
       - gradeRange
       - enrollment
+      - districtId
 
   Question:
     type: object
