@@ -3,7 +3,7 @@ const nodemailer = require("nodemailer");
 const boom = require('boom');
 
 async function getUser({ models, params, res }) {
-   const { User } = models;
+   const { User, UserSubject } = models;
    const { user } = params;
    user.value.password = SHA256(user.value.password).toString();
 
@@ -19,6 +19,16 @@ async function getUser({ models, params, res }) {
 
       await User.patchOne(patchInfo);
 
+      const attributes = { userId: userFound.id };
+      const userSubjects = await UserSubject.getManyWith({ attributes});
+      console.log('userSubjects', userSubjects);
+      const subjects = userSubjects.map(userSubject => {
+         return {
+            id: userSubject.subject.id,
+            name: userSubject.subject.name
+         };
+      });
+
       res.header('x-auth', token);
 
       return {
@@ -26,7 +36,8 @@ async function getUser({ models, params, res }) {
          id: undefined,
          password: undefined,
          active: undefined,
-         token: undefined
+         token: undefined,
+         subjects: subjects
       };
    }
 

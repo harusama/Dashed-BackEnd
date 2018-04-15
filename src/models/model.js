@@ -27,6 +27,13 @@ class BaseModel extends Model {
    static getMany() {
       return this.query().eager(this.defaultEager).omit(this.defaultOmit);
    }
+
+   static getManyWith({ attributes }) {
+      return this.query()
+         .where(attributes)
+         .eager(this.defaultEager)
+         .throwIfNotFound();
+   }
    
    static getOne({ attributes }) {
       return this.query()

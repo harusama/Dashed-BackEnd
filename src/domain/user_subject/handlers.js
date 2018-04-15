@@ -13,7 +13,9 @@ function addSubjectToUser({ models, params, user }) {
       subjectId: subjectId.value
    }
    
-   return UserSubject.createOne({ attributes });
+   return UserSubject.createOne({ attributes }).then(() => {
+      return '';
+   });
 }
 
 module.exports = {

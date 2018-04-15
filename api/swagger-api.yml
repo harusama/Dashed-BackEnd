@@ -152,6 +152,35 @@ paths:
                 type: array
                 items:
                   $ref: '#/definitions/Subject'
+  
+  /subjects/{subjectId}:
+    get:
+      operationId: getSubjectById
+      summary: Get subject information
+      tags:
+        - Subjects
+      parameters:
+        - name: subjectId
+          in: path
+          type: integer
+          required: true
+      responses:
+        200:
+          description: Ok
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  posts:
+                    type: array
+                    items:
+                      $ref: '#/definitions/Post'
+                  news:
+                    type: array
+                    items:
+                      $ref: '#/definitions/News'
 
   /questions:
     post:
@@ -250,6 +279,16 @@ definitions:
       experience:
         type: integer
         minimum: 0
+      subjects:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: integer
+              minimum: 0
+            name:
+              type: string
     required:
       - jwt
       - firstName
@@ -261,6 +300,7 @@ definitions:
       - campusId
       - currency
       - experience
+      - subjects
 
   NewLoginUser:
     type: object
@@ -586,6 +626,24 @@ definitions:
       - name
       - description
       - chapterId
+
+  Post:
+    type: object
+    properties:
+      id:
+        type: integer
+        minimum: 0
+    required:
+      - id
+
+  News:
+    type: object
+    properties:
+      id:
+        type: integer
+        minimum: 0
+    required:
+      - id
 
   Question:
     type: object
