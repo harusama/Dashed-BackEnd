@@ -30,9 +30,8 @@ class Users {
 
    getUserList(room) {
       const users = this.users.filter(user => user.room === room);
-      const names = users.map(user => user.name);
       
-      return names;
+      return users;
    }
 }
 
