@@ -17,6 +17,10 @@ function isDuplicatedEmail(err) {
    return /duplicate key value violates unique constraint "users_email_key"/.test(err);
 }
 
+function isDuplicatedKey(err) {
+   return /duplicate key value violates unique constraint/.test(err);
+}
+
 function boomify(err) {
    if (err.isBoom) {
       return err;
@@ -31,6 +35,8 @@ function boomify(err) {
       return boom.methodNotAllowed();
    } else if (isDuplicatedEmail(err)) {
       return boom.badRequest('Account with provided email already exists');
+   } else if (isDuplicatedKey(err)) {
+      return boom.badRequest(err.message.substring(err.message.indexOf("duplicate")));
    } else {
       return boom.badImplementation();
    }

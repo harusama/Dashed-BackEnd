@@ -16,13 +16,13 @@ function swaggerOperationController({ controllers }) {
 
       const endpointsWithoutAuth = ['getRoot', 'getUser', 'createUser', 'verifyUser', 'getStates']
       const token = req.header('x-auth');
-      let decoded = {};
+      let user;
       
       if (!endpointsWithoutAuth.includes(operationId)) {
          try {
-            decoded = jwt.verify(token, 'secret');
+            let decoded = jwt.verify(token, 'secret');
             const { User } = req.app.locals.models;
-            await User.getOneById({ id: decoded.id });
+            user = await User.getOneById({ id: decoded.id });
          } catch (err) {
             return next(boom.unauthorized('Invalid authentication token'));
          }
@@ -32,7 +32,7 @@ function swaggerOperationController({ controllers }) {
          models: req.app.locals.models,
          params: req.swagger.params,
          res,
-         userId: decoded.id
+         user
       };
 
       return Promise.resolve(controllerForOperation(context))
