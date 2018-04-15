@@ -128,3 +128,12 @@ INSERT INTO lessons (number, name, description, chapter_id) VALUES (2, 'Lesson N
 -- Password: MyPass123
 INSERT INTO users (first_name, last_name, username, email, password, active, experience, coins, campus_id)
 VALUES ('TestName', 'TestLastName', 'TestUsername', 'testemail@dashed.com', 'c0fa4389e77a9daac9507f5a6e2e154d91d763483aecda35ae59bee05de32ca6', TRUE, 125, 3000, 1);
+
+INSERT INTO users (first_name, last_name, username, email, password, active, experience, coins, campus_id)
+VALUES ('TestName2', 'TestLastName2', 'TestUsername2', 'testemail2@dashed.com', 'c0fa4389e77a9daac9507f5a6e2e154d91d763483aecda35ae59bee05de32ca6', TRUE, 125, 3000, 1);
+
+INSERT INTO users (first_name, last_name, username, email, password, active, experience, coins, campus_id)
+VALUES ('TestName3', 'TestLastName3', 'TestUsername3', 'testemail3@dashed.com', 'c0fa4389e77a9daac9507f5a6e2e154d91d763483aecda35ae59bee05de32ca6', TRUE, 125, 3000, 1);
+
+INSERT INTO users (first_name, last_name, username, email, password, active, experience, coins, campus_id)
+VALUES ('TestName4', 'TestLastName4', 'TestUsername4', 'testemail4@dashed.com', 'c0fa4389e77a9daac9507f5a6e2e154d91d763483aecda35ae59bee05de32ca6', TRUE, 125, 3000, 1);
