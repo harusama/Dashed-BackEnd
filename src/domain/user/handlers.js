@@ -11,7 +11,7 @@ async function getUser({ models, params, res }) {
    
    if (userFound.active) {
       const token = userFound.generateAuthToken()
-
+   
       const patchInfo = {
          id: userFound.id,
          attributes: { token }
