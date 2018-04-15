@@ -6,7 +6,7 @@ async function getUser({ models, params, res }) {
    const { User, UserSubject } = models;
    const { user } = params;
    user.value.password = SHA256(user.value.password).toString();
-
+   
    const userFound = await User.getOne({ attributes: user.value });
    
    if (userFound.active) {
