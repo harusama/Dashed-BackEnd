@@ -10,13 +10,23 @@ async function getUser({ models, params, res }) {
    const userFound = await User.getOne({ attributes: user.value });
    
    if (userFound.active) {
-      res.header('x-auth', userFound.generateAuthToken());
+      const token = userFound.generateAuthToken()
+
+      const patchInfo = {
+         id: userFound.id,
+         attributes: { token }
+      };
+
+      await User.patchOne(patchInfo);
+
+      res.header('x-auth', token);
 
       return {
          ...userFound,
          id: undefined,
          password: undefined,
-         active: undefined
+         active: undefined,
+         token: undefined
       };
    }
 

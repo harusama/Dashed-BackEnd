@@ -57,6 +57,7 @@ CREATE TABLE users (
    username VARCHAR(100),
    email VARCHAR(100) UNIQUE,
    password TEXT,
+   token TEXT DEFAULT '',
    active BOOLEAN DEFAULT FALSE,
    gender user_gender NOT NULL DEFAULT 'other',
    kind user_kind NOT NULL DEFAULT 'teacher',

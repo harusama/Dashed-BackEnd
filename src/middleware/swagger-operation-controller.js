@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const get = require('lodash/get');
 
 function swaggerOperationController({ controllers }) {
-   return function (req, res, next) {
+   return async function (req, res, next) {
       const operationId = get(req, 'swagger.operation.operationId');
       if (!operationId) {
          return next(boom.notFound('OperationId not found in Swagger definition'));
@@ -21,6 +21,8 @@ function swaggerOperationController({ controllers }) {
       if (!endpointsWithoutAuth.includes(operationId)) {
          try {
             decoded = jwt.verify(token, 'secret');
+            const { User } = req.app.locals.models;
+            await User.getOneById({ id: decoded.id });
          } catch (err) {
             return next(boom.unauthorized('Invalid authentication token'));
          }
