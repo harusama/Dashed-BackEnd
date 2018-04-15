@@ -1,26 +1,26 @@
 const BaseModel = require('./../../models/model');
 
-class Region extends BaseModel {
+class Chapter extends BaseModel {
    static get tableName() {
-      return 'regions';
+      return 'chapters';
    }
 
    static get defaultEager() {
-      return 'districts';
+      return 'lessons';
    }
 
    static get relationMappings() {
       return {
-         districts: {
+         lessons: {
             relation: BaseModel.HasManyRelation,
-            modelClass: __dirname + '/../district/model.js',
+            modelClass: __dirname + '/../lesson/model.js',
             join: {
-               from: 'regions.id',
-               to: 'districts.regionId'
+               from: 'chapters.id',
+               to: 'lessons.chapterId'
             }
          }
       };
    }
 }
 
-module.exports = Region;
+module.exports = Chapter;

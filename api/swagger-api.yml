@@ -103,7 +103,7 @@ paths:
   /states:
     get:
       operationId: getStates
-      summary: Get states information
+      summary: Get states related information
       tags:
         - States
       responses:
@@ -116,6 +116,23 @@ paths:
                 type: array
                 items:
                   $ref: '#/definitions/State'
+
+  /subjects:
+    get:
+      operationId: getSubjects
+      summary: Get subjects related information
+      tags:
+        - Subjects
+      responses:
+        200:
+          description: Ok
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/Subject'
 
   /questions:
     post:
@@ -445,6 +462,111 @@ definitions:
       - gradeRange
       - enrollment
       - districtId
+
+  Subject:
+    type: object
+    properties:
+      id:
+        type: integer
+        minimum: 0
+      name:
+        type: string
+      campusType:
+        type: string
+      generalTopic:
+        type: string
+      contentName:
+        type: string
+      contentDescription:
+        type: string
+      units:
+        type: array
+        items:
+          $ref: '#/definitions/Unit'
+    required:
+      - id
+      - name
+      - campusType
+      - generalTopic
+      - contentName
+      - contentDescription
+      - units
+
+  Unit:
+    type: object
+    properties:
+      id:
+        type: integer
+        minimum: 0
+      number:
+        type: string
+      name:
+        type: string
+      description:
+        type: string
+      subjectId:
+        type: integer
+        minimum: 0
+      chapters:
+        type: array
+        items:
+          $ref: '#/definitions/Chapter'
+    required:
+      - id
+      - number
+      - name
+      - description
+      - subjectId
+      - chapters
+
+  Chapter:
+    type: object
+    properties:
+      id:
+        type: integer
+        minimum: 0
+      number:
+        type: string
+      name:
+        type: string
+      description:
+        type: string
+      unidId:
+        type: integer
+        minimum: 0
+      lessons:
+        type: array
+        items:
+          $ref: '#/definitions/Lesson'
+    required:
+      - id
+      - number
+      - name
+      - description
+      - unidId
+      - lessons
+
+  Lesson:
+    type: object
+    properties:
+      id:
+        type: integer
+        minimum: 0
+      number:
+        type: string
+      name:
+        type: string
+      description:
+        type: string
+      chapterId:
+        type: integer
+        minimum: 0
+    required:
+      - id
+      - number
+      - name
+      - description
+      - chapterId
 
   Question:
     type: object
