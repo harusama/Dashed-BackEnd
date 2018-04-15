@@ -24,6 +24,24 @@ class User extends BaseModel {
    generateAuthToken() {
       return jwt.sign({ id: this.id }, 'secret').toString();
    }
+
+   static get relationMappings() {
+      return {
+         subjects: {
+            relation: BaseModel.ManyToManyRelation,
+            modelClass: __dirname + '/../subject/model.js',
+            join: {
+               from: 'users.id',
+               through: {
+                  modelClass: __dirname + '/../user_subject/model.js',
+                  from: 'users_subjects.userId',
+                  to: 'users_subjects.subectId'
+               },
+               to: 'subjects.id'
+            }
+         }
+      };
+   }  
 }
 
 module.exports = User;

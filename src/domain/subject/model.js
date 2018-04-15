@@ -18,6 +18,19 @@ class Subject extends BaseModel {
                from: 'subjects.id',
                to: 'units.subjectId'
             }
+         },
+         users: {
+            relation: BaseModel.ManyToManyRelation,
+            modelClass: __dirname + '/../user/model.js',
+            join: {
+               from: 'subjects.id',
+               through: {
+                  modelClass: __dirname + '/../user_subject/model.js',
+                  from: 'users_subjects.subectId',
+                  to: 'users_subjects.userId'
+               },
+               to: 'users.id'
+            }
          }
       };
    }

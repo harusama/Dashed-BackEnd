@@ -99,6 +99,25 @@ paths:
       responses:
         200:
           description: Ok
+
+  /users/{userId}/subjects/{subjectId}:
+    post:
+      operationId: addSubjectToUser
+      summary: Add subject to user
+      tags:
+        - Users
+      parameters:
+        - name: userId
+          in: path
+          type: integer
+          required: true
+        - name: subjectId
+          in: path
+          type: integer
+          required: true
+      responses:
+        201:
+          description: Created
   
   /states:
     get:

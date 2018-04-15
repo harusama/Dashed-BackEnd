@@ -122,3 +122,9 @@ CREATE TABLE answers (
    text VARCHAR(100),
    question_id BIGINT REFERENCES questions(id)
 );
+
+CREATE TABLE users_subjects (
+   user_id BIGINT REFERENCES users(id) ON UPDATE CASCADE ON DELETE SET NULL,
+   subject_id BIGINT REFERENCES subjects(id) ON UPDATE CASCADE,
+   CONSTRAINT users_subjects_pkey PRIMARY KEY (user_id, subject_id)
+);
