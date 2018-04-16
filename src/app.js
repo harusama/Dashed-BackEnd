@@ -31,6 +31,7 @@ app.use('/v1/docs/db/:password', (req, res, next) => {
 app.use(bodyParser.json());
 app.use(createReqLocals);
 
+app.locals.io = io;
 app.locals.db = db;
 app.locals.models = models;
 

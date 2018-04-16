@@ -83,7 +83,7 @@ CREATE TABLE subjects (
 
 CREATE TABLE units (
    id BIGSERIAL PRIMARY KEY,
-   number INTEGER DEFAULT 0 CONSTRAINT valid_number_number CHECK (number >= 0),
+   number INTEGER DEFAULT 0 CONSTRAINT valid_number_unit CHECK (number >= 0),
    name TEXT,
    description TEXT,
    subject_id BIGINT REFERENCES subjects(id)
@@ -91,7 +91,7 @@ CREATE TABLE units (
 
 CREATE TABLE chapters (
    id BIGSERIAL PRIMARY KEY,
-   number INTEGER DEFAULT 0 CONSTRAINT valid_number_number CHECK (number >= 0),
+   number INTEGER DEFAULT 0 CONSTRAINT valid_number_chapter CHECK (number >= 0),
    name TEXT,
    description TEXT,
    unit_id BIGINT REFERENCES units(id)
@@ -99,10 +99,32 @@ CREATE TABLE chapters (
 
 CREATE TABLE lessons (
    id BIGSERIAL PRIMARY KEY,
-   number INTEGER DEFAULT 0 CONSTRAINT valid_number_number CHECK (number >= 0),
+   number INTEGER DEFAULT 0 CONSTRAINT valid_number_lesson CHECK (number >= 0),
    name TEXT,
    description TEXT,
    chapter_id BIGINT REFERENCES chapters(id)
+);
+
+CREATE TABLE posts (
+   id BIGSERIAL PRIMARY KEY,
+   title TEXT,
+   description TEXT,
+   ranking INTEGER DEFAULT 0 CONSTRAINT valid_ranking_number CHECK (ranking >= 0),
+   resource TEXT,
+   kind VARCHAR(100),
+   upvotes INTEGER DEFAULT 0 CONSTRAINT valid_upvotes_number CHECK (upvotes >= 0),
+   downvotes INTEGER DEFAULT 0 CONSTRAINT valid_downvotes_number CHECK (downvotes >= 0),
+   user_id BIGINT REFERENCES users(id),
+   subject_id BIGINT REFERENCES subjects(id)
+);
+
+CREATE TABLE comments (
+   id BIGSERIAL PRIMARY KEY,
+   description TEXT,
+   upvotes INTEGER DEFAULT 0 CONSTRAINT valid_upvotes_number CHECK (upvotes >= 0),
+   downvotes INTEGER DEFAULT 0 CONSTRAINT valid_downvotes_number CHECK (downvotes >= 0),
+   user_id BIGINT REFERENCES users(id),
+   post_id BIGINT REFERENCES posts(id)
 );
 
 CREATE TABLE questions (

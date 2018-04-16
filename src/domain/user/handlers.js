@@ -21,7 +21,6 @@ async function getUser({ models, params, res }) {
 
       const attributes = { userId: userFound.id };
       const userSubjects = await UserSubject.getManyWith({ attributes});
-      console.log('userSubjects', userSubjects);
       const subjects = userSubjects.map(userSubject => {
          return {
             id: userSubject.subject.id,

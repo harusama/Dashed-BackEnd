@@ -137,3 +137,29 @@ VALUES ('TestName3', 'TestLastName3', 'TestUsername3', 'testemail3@dashed.com', 
 
 INSERT INTO users (first_name, last_name, username, email, password, active, experience, coins, campus_id)
 VALUES ('TestName4', 'TestLastName4', 'TestUsername4', 'testemail4@dashed.com', 'c0fa4389e77a9daac9507f5a6e2e154d91d763483aecda35ae59bee05de32ca6', TRUE, 125, 3000, 1);
+
+-- Posts
+INSERT INTO posts (title, description, ranking, resource, kind, upvotes, downvotes, user_id, subject_id)
+VALUES ('Post title 1', 'Description Post title 1', 85, 'www.resource.com', 'Type1', 23, 22, 1, 1) ;
+
+INSERT INTO posts (title, description, ranking, resource, kind, upvotes, downvotes, user_id, subject_id)
+VALUES ('Post title 2', 'Description Post title 2', 86, 'www.resource.com', 'Type2', 24, 22, 2, 2) ;
+
+INSERT INTO posts (title, description, ranking, resource, kind, upvotes, downvotes, user_id, subject_id)
+VALUES ('Post title 3', 'Description Post title 3', 87, 'www.resource.com', 'Type3', 25, 21, 3, 3) ;
+
+INSERT INTO posts (title, description, ranking, resource, kind, upvotes, downvotes, user_id, subject_id)
+VALUES ('Post title 4', 'Description Post title 4', 88, 'www.resource.com', 'Type4', 26, 20, 4, 4) ;
+
+-- Comments
+INSERT INTO comments (description, upvotes, downvotes, user_id, post_id)
+VALUES ('Comment post 1', 23, 23, 4, 1);
+
+INSERT INTO comments (description, upvotes, downvotes, user_id, post_id)
+VALUES ('Comment post 2', 24, 22, 3, 2);
+
+INSERT INTO comments (description, upvotes, downvotes, user_id, post_id)
+VALUES ('Comment post 3', 25, 21, 2, 3);
+
+INSERT INTO comments (description, upvotes, downvotes, user_id, post_id)
+VALUES ('Comment post 4', 26, 20, 1, 4);
