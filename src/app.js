@@ -18,7 +18,7 @@ const server = require('http').Server(app);
 const io = require('socket.io')(server);
 const chat = require('./chat')(io);
 
-app.use(cors());
+app.use(cors({ exposedHeaders: ['x-auth'] }));
 app.use('/v1/docs/db/:password', (req, res, next) => {
    const { password } = req.params;
    console.log(password );
