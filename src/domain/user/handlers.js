@@ -43,6 +43,16 @@ async function getUser({ models, params, res }) {
    return Promise.reject(boom.badRequest('Email account not verified'));
 }
 
+async function getCurrentUser({ models, params, user }) {
+   return {
+      ...user,
+      id: undefined,
+      password: undefined,
+      active: undefined,
+      token: undefined
+   };
+}
+
 async function createUser({ models, params }) {
    const { User, Hash } = models;
    const { newUser } = params;
@@ -113,5 +123,6 @@ function sendMail(email, hash) {
 module.exports = {
    getUser,
    createUser,
-   verifyUser
+   verifyUser,
+   getCurrentUser
 };

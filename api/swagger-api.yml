@@ -49,26 +49,6 @@ paths:
                 required:
                   - text
   
-  /users/login:
-    post:
-      operationId: getUser
-      summary: Login user
-      tags:
-        - Users
-      parameters:
-        - name: user
-          in: body
-          schema:
-            $ref: '#/definitions/NewLoginUser'
-      responses:
-        200:
-          description: Ok
-          schema:
-            type: object
-            properties:
-              data:
-                $ref: '#/definitions/LoginUser'
-  
   /users/signup:
     post:
       operationId: createUser
@@ -100,6 +80,43 @@ paths:
         200:
           description: Ok
   
+  /users/login:
+    post:
+      operationId: getUser
+      summary: Login user
+      tags:
+        - Users
+      parameters:
+        - name: user
+          in: body
+          schema:
+            $ref: '#/definitions/NewLoginUser'
+      responses:
+        200:
+          description: Ok
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: '#/definitions/LoginUser'
+
+  /users/me:
+    get:
+      operationId: getCurrentUser
+      summary: Get current user
+      tags:
+        - Users
+      security:
+        - authKey: []
+      responses:
+        200:
+          description: Ok
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: '#/definitions/LoginUser'
+
   /states:
     get:
       operationId: getStates
@@ -703,9 +720,13 @@ definitions:
       postId:
         type: integer
         minimum: 0
+      subjectId:
+        type: integer
+        minimum: 0
     required:
       - description
       - postId
+      - subjectId
 
   News:
     type: object
