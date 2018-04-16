@@ -17,7 +17,7 @@ async function createPost({ models, params, user, io }) {
    
    if (subjectFound.length === 1) {
       const createdPost = await Post.createOne({ attributes });
-      sendPostMessage(io, subjectFound[0].name, createdPost);
+      sendPostMessage(io, subjectFound[0].name, { ...createdPost, username: user.username });
       return createdPost;
    } else {
       return Promise.reject(boom.badRequest('User do not have added current post subject'));
