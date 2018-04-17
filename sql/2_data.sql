@@ -138,6 +138,10 @@ VALUES ('TestName3', 'TestLastName3', 'TestUsername3', 'testemail3@dashed.com', 
 INSERT INTO users (first_name, last_name, username, email, password, active, experience, coins, campus_id)
 VALUES ('TestName4', 'TestLastName4', 'TestUsername4', 'testemail4@dashed.com', 'c0fa4389e77a9daac9507f5a6e2e154d91d763483aecda35ae59bee05de32ca6', TRUE, 125, 3000, 1);
 
+-- UserSubjects
+INSERT INTO users_subjects VALUES (1, 1);
+INSERT INTO users_subjects VALUES (2, 1);
+
 -- Posts
 INSERT INTO posts (title, description, ranking, resource, kind, upvotes, downvotes, user_id, subject_id)
 VALUES ('Post title 1', 'Description Post title 1', 85, 'www.resource.com', 'Type1', 23, 22, 1, 1) ;
@@ -163,3 +167,13 @@ VALUES ('Comment post 3', 25, 21, 2, 3);
 
 INSERT INTO comments (description, upvotes, downvotes, user_id, post_id)
 VALUES ('Comment post 4', 26, 20, 1, 4);
+
+-- News
+INSERT INTO news (name, kind, resource, date_published, user_id, subject_id, state_id, region_id, district_id)
+VALUES ('News 1', 'GRANTS', 'www.nytimes.com', '3/10/18', 1, 1, 1, 1, 1);
+
+INSERT INTO news (name, kind, resource, date_published, user_id, subject_id, state_id, region_id, district_id)
+VALUES ('News 2', 'GRANTS', 'www.nytimes.com', '3/10/18', 2, 1, 1, 2, 1);
+
+INSERT INTO news (name, kind, resource, date_published, user_id, subject_id, state_id, region_id, district_id)
+VALUES ('News 3', 'GENERAL', 'www.nytimes.com', '3/10/18', 2, 1, 1, 1, 3);

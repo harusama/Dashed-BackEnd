@@ -5,6 +5,10 @@ class Post extends BaseModel {
       return 'posts';
    }
 
+   static get defaultEager() {
+      return '[user, comments]';
+   }
+
    static get relationMappings() {
       return {
          user: {
@@ -13,6 +17,14 @@ class Post extends BaseModel {
             join: {
                from: 'posts.userId',
                to: 'users.id'
+            }
+         },
+         comments: {
+            relation: BaseModel.HasManyRelation,
+            modelClass: __dirname + '/../comment/model.js',
+            join: {
+               from: 'posts.id',
+               to: 'comments.postId'
             }
          }
       };

@@ -11,7 +11,7 @@ module.exports = io => {
          if (!isRealString(params.name) || !isRealString(params.room)) {
             return callback('Name and room name are required.');
          }
-
+         console.log('socket.join', params.room);
          socket.join(params.room);
          users.removeUser(socket.id);
          users.addUser(socket.id, params.name, params.room);

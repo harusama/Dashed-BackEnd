@@ -127,6 +127,19 @@ CREATE TABLE comments (
    post_id BIGINT REFERENCES posts(id)
 );
 
+CREATE TABLE news (
+   id BIGSERIAL PRIMARY KEY,
+   name TEXT,
+   kind VARCHAR(100),
+   resource TEXT,
+   date_published TEXT,
+   user_id BIGINT REFERENCES users(id),
+   subject_id BIGINT REFERENCES subjects(id),
+   state_id BIGINT REFERENCES states(id),
+   region_id BIGINT REFERENCES regions(id),
+   district_id BIGINT REFERENCES districts(id)
+);
+
 CREATE TABLE questions (
    id BIGSERIAL PRIMARY KEY,
    description_text VARCHAR(100),

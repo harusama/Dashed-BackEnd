@@ -185,6 +185,10 @@ paths:
                     type: array
                     items:
                       $ref: '#/definitions/News'
+                  units:
+                    type: array
+                    items:
+                      $ref: '#/definitions/Unit'
 
   /subjects/{subjectId}/users:
     post:
@@ -688,8 +692,44 @@ definitions:
       id:
         type: integer
         minimum: 0
+      title:
+        type: string
+      description:
+        type: string
+      ranking:
+        type: integer
+        minimum: 0
+      resource:
+        type: string
+      kind:
+        type: string
+      upvotes:
+        type: integer
+        minimum: 0
+      downvotes:
+        type: integer
+        minimum: 0
+      username:
+        type: string
+      userId:
+        type: integer
+        minimum: 0
+      comments:
+        type: array
+        items:
+          $ref: '#/definitions/Comment'
     required:
       - id
+      - title
+      - description
+      - ranking
+      - resource
+      - kind
+      - upvotes
+      - downvotes
+      - username
+      - userId
+      - comments
 
   NewPost:
     type: object
@@ -711,6 +751,30 @@ definitions:
       - resource
       - kind
       - subjectId
+
+  Comment:
+    type: object
+    properties:
+      id:
+        type: integer
+        minimum: 0
+      description:
+        type: string
+      upvotes:
+        type: integer
+        minimum: 0
+      downvotes:
+        type: integer
+        minimum: 0
+      userId:
+        type: integer
+        minimum: 0
+    required:
+      - id
+      - description
+      - upvotes
+      - downvotes
+      - userId
 
   NewComment:
     type: object
@@ -734,8 +798,40 @@ definitions:
       id:
         type: integer
         minimum: 0
+      name:
+         type: string
+      kind:
+         type: string
+      resource:
+         type: string
+      date_published:
+         type: string
+      user_id:
+         type: integer
+         minimum: 0
+      subject_id:
+         type: integer
+         minimum: 0
+      state_id:
+         type: integer
+         minimum: 0
+      region_id:
+         type: integer
+         minimum: 0
+      district_id:
+         type: integer
+         minimum: 0
     required:
       - id
+      - name
+      - kind
+      - resource
+      - date_published
+      - user_id
+      - subject_id
+      - state_id
+      - region_id
+      - district_id
 
   Question:
     type: object
