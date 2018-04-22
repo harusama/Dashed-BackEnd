@@ -2,14 +2,14 @@ CREATE TABLE states (
    id BIGSERIAL PRIMARY KEY,
    created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
    key VARCHAR(10) UNIQUE NOT NULL,
-   name TEXT
+   name TEXT DEFAULT ''
 );
 
 CREATE TABLE regions (
    id BIGSERIAL PRIMARY KEY,
    created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
    key VARCHAR(10) UNIQUE NOT NULL,
-   name TEXT,
+   name TEXT DEFAULT '',
    state_id BIGINT REFERENCES states(id)
 );
 
@@ -17,17 +17,17 @@ CREATE TABLE districts (
    id BIGSERIAL PRIMARY KEY,
    created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
    number VARCHAR(10) UNIQUE NOT NULL,
-   name TEXT,
-   kind TEXT,
-   street TEXT,
-   city TEXT,
-   state TEXT,
-   zip TEXT,
-   phone TEXT,
-   fax TEXT,
-   email TEXT,
-   webpage TEXT,
-   superintendent TEXT,
+   name TEXT DEFAULT '',
+   kind TEXT DEFAULT '',
+   street TEXT DEFAULT '',
+   city TEXT DEFAULT '',
+   state TEXT DEFAULT '',
+   zip TEXT DEFAULT '',
+   phone TEXT DEFAULT '',
+   fax TEXT DEFAULT '',
+   email TEXT DEFAULT '',
+   webpage TEXT DEFAULT '',
+   superintendent TEXT DEFAULT '',
    region_id BIGINT REFERENCES regions(id)
 );
 
@@ -35,20 +35,20 @@ CREATE TABLE campus (
    id BIGSERIAL PRIMARY KEY,
    created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
    number VARCHAR(10) UNIQUE NOT NULL,
-   name TEXT,
-   kind TEXT,
-   charter_type TEXT,
-   street TEXT,
-   city TEXT,
-   state TEXT,
-   zip TEXT,
-   phone TEXT,
-   fax TEXT,
-   email TEXT,
-   webpage TEXT,
-   principal TEXT,
-   grade_range TEXT,
-   enrollment TEXT,
+   name TEXT DEFAULT '',
+   kind TEXT DEFAULT '',
+   charter_type TEXT DEFAULT '',
+   street TEXT DEFAULT '',
+   city TEXT DEFAULT '',
+   state TEXT DEFAULT '',
+   zip TEXT DEFAULT '',
+   phone TEXT DEFAULT '',
+   fax TEXT DEFAULT '',
+   email TEXT DEFAULT '',
+   webpage TEXT DEFAULT '',
+   principal TEXT DEFAULT '',
+   grade_range TEXT DEFAULT '',
+   enrollment TEXT DEFAULT '',
    district_id BIGINT REFERENCES districts(id)
 );
 
@@ -61,7 +61,7 @@ CREATE TABLE users (
    last_name VARCHAR(100),
    username VARCHAR(100),
    email VARCHAR(100) UNIQUE,
-   password TEXT,
+   password TEXT DEFAULT '',
    token TEXT DEFAULT '',
    active BOOLEAN DEFAULT FALSE,
    gender user_gender NOT NULL DEFAULT 'other',
@@ -74,7 +74,7 @@ CREATE TABLE users (
 CREATE TABLE hashes (
    id BIGSERIAL PRIMARY KEY,
    created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
-   hash TEXT,
+   hash TEXT DEFAULT '',
    user_id BIGINT REFERENCES users(id)
 );
 
@@ -85,15 +85,15 @@ CREATE TABLE subjects (
    campus_type VARCHAR(100),
    general_topic VARCHAR(100),
    content_name VARCHAR(100),
-   content_description TEXT
+   content_description TEXT DEFAULT ''
 );
 
 CREATE TABLE units (
    id BIGSERIAL PRIMARY KEY,
    created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
    number INTEGER DEFAULT 0 CONSTRAINT valid_number_unit CHECK (number >= 0),
-   name TEXT,
-   description TEXT,
+   name TEXT DEFAULT '',
+   description TEXT DEFAULT '',
    subject_id BIGINT REFERENCES subjects(id)
 );
 
@@ -101,8 +101,8 @@ CREATE TABLE chapters (
    id BIGSERIAL PRIMARY KEY,
    created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
    number INTEGER DEFAULT 0 CONSTRAINT valid_number_chapter CHECK (number >= 0),
-   name TEXT,
-   description TEXT,
+   name TEXT DEFAULT '',
+   description TEXT DEFAULT '',
    unit_id BIGINT REFERENCES units(id)
 );
 
@@ -110,19 +110,21 @@ CREATE TABLE lessons (
    id BIGSERIAL PRIMARY KEY,
    created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
    number INTEGER DEFAULT 0 CONSTRAINT valid_number_lesson CHECK (number >= 0),
-   name TEXT,
-   description TEXT,
+   name TEXT DEFAULT '',
+   description TEXT DEFAULT '',
+   resource TEXT DEFAULT '',
    chapter_id BIGINT REFERENCES chapters(id)
 );
 
+CREATE TYPE post_kind AS ENUM('question', 'resource', 'content', 'testimony');
 CREATE TABLE posts (
    id BIGSERIAL PRIMARY KEY,
    created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
-   title TEXT,
-   description TEXT,
+   title TEXT DEFAULT '',
+   description TEXT DEFAULT '',
    ranking INTEGER DEFAULT 0 CONSTRAINT valid_ranking_number CHECK (ranking >= 0),
-   resource TEXT,
-   kind VARCHAR(100),
+   resource TEXT DEFAULT '',
+   kind post_kind,
    upvotes INTEGER DEFAULT 0 CONSTRAINT valid_upvotes_number CHECK (upvotes >= 0),
    downvotes INTEGER DEFAULT 0 CONSTRAINT valid_downvotes_number CHECK (downvotes >= 0),
    user_id BIGINT REFERENCES users(id),
@@ -132,7 +134,7 @@ CREATE TABLE posts (
 CREATE TABLE comments (
    id BIGSERIAL PRIMARY KEY,
    created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
-   description TEXT,
+   description TEXT DEFAULT '',
    upvotes INTEGER DEFAULT 0 CONSTRAINT valid_upvotes_number CHECK (upvotes >= 0),
    downvotes INTEGER DEFAULT 0 CONSTRAINT valid_downvotes_number CHECK (downvotes >= 0),
    user_id BIGINT REFERENCES users(id),
@@ -142,10 +144,10 @@ CREATE TABLE comments (
 CREATE TABLE news (
    id BIGSERIAL PRIMARY KEY,
    created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
-   name TEXT,
+   name TEXT DEFAULT '',
    kind VARCHAR(100),
-   resource TEXT,
-   date_published TEXT,
+   resource TEXT DEFAULT '',
+   date_published TEXT DEFAULT '',
    user_id BIGINT REFERENCES users(id),
    subject_id BIGINT REFERENCES subjects(id),
    state_id BIGINT REFERENCES states(id),

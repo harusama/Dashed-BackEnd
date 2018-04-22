@@ -145,16 +145,16 @@ INSERT INTO users_subjects (user_id, subject_id) VALUES (2, 1);
 
 -- Posts
 INSERT INTO posts (title, description, ranking, resource, kind, upvotes, downvotes, user_id, subject_id)
-VALUES ('Post title 1', 'Description Post title 1', 85, 'www.resource.com', 'Type1', 23, 22, 1, 1) ;
+VALUES ('Post title 1', 'Description Post title 1', 85, 'www.resource.com', 'question', 23, 22, 1, 1) ;
 
 INSERT INTO posts (title, description, ranking, resource, kind, upvotes, downvotes, user_id, subject_id)
-VALUES ('Post title 2', 'Description Post title 2', 86, 'www.resource.com', 'Type2', 24, 22, 2, 2) ;
+VALUES ('Post title 2', 'Description Post title 2', 86, 'www.resource.com', 'question', 24, 22, 2, 2) ;
 
 INSERT INTO posts (title, description, ranking, resource, kind, upvotes, downvotes, user_id, subject_id)
-VALUES ('Post title 3', 'Description Post title 3', 87, 'www.resource.com', 'Type3', 25, 21, 3, 3) ;
+VALUES ('Post title 3', 'Description Post title 3', 87, 'www.resource.com', 'question', 25, 21, 3, 3) ;
 
 INSERT INTO posts (title, description, ranking, resource, kind, upvotes, downvotes, user_id, subject_id)
-VALUES ('Post title 4', 'Description Post title 4', 88, 'www.resource.com', 'Type4', 26, 20, 4, 4) ;
+VALUES ('Post title 4', 'Description Post title 4', 88, 'www.resource.com', 'question', 26, 20, 4, 4) ;
 
 -- Comments
 INSERT INTO comments (description, upvotes, downvotes, user_id, post_id)
