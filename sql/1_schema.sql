@@ -160,6 +160,7 @@ CREATE TABLE questions (
    description_image VARCHAR(100),
    kind INTEGER CONSTRAINT valid_kind_number CHECK (kind >= 1 AND kind <= 9),
    approved BOOLEAN DEFAULT FALSE,
+   approved_times INTEGER DEFAULT 0 CONSTRAINT valid_approved_times_number CHECK (approved_times >= 0),
    user_id BIGINT REFERENCES users(id),
    lesson_id BIGINT REFERENCES lessons(id)
 );

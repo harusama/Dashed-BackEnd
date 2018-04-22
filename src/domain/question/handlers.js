@@ -21,11 +21,45 @@ async function getNotApprovedQuestionsBySubjectId({ models, params }) {
    return await Question.getManyApprovedBySubjectId(subjectId.value, false);
 }
 
-function approveQuestion({ models, params }) {
-   const { Question } = models;
+async function approveQuestion({ models, params, user }) {
+   const { Question, Approval } = models;
    const { questionId } = params;
+   const attributes = {
+      questionId: questionId.value,
+      userId: user.id
+   };
+   
+   const question = await Question.getOneById({ id: questionId.value });
+   console.log('question', question);
 
-   return Question.incrementApprovedWithId(questionId.value);
+   if (question.userId === user.id) {
+      console.log('This user created this question.');
+      return '';
+   }
+
+   const approvalsForQuestion = await Approval.getManyWith({ attributes });
+
+   if (approvalsForQuestion.length !== 0) {
+      console.log('This user already approved this question.');
+      return '';
+   }
+
+   await Approval.createOne({ attributes });
+   const questionUpdated = await Question.incrementApprovedWithId(questionId.value);
+
+   if (questionUpdated[0].approvedTimes >= Question.approvedTimes) {
+      try {
+         await Question.patchOne({ 
+            id: attributes.questionId,
+            attributes: {
+               approved: true
+            }
+         });
+      } catch (e) {
+      }
+   }
+
+   return '';
 }
 
 module.exports = {

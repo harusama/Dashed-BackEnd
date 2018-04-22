@@ -5,6 +5,10 @@ class Question extends BaseModel {
       return 'questions';
    }
 
+   static get approvedTimes() {
+      return 2;
+   }
+
    static get defaultEager() {
       return '[lesson.chapter.unit, answers]';
    }
@@ -36,7 +40,7 @@ class Question extends BaseModel {
    }
 
    static incrementApprovedWithId(id) {
-      return this.query().where('id', id).increment('approved', 1);
+      return this.query().where('id', id).increment('approvedTimes', 1).returning('approvedTimes');
    }
 
    static get relationMappings() {
