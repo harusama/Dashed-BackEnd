@@ -21,9 +21,14 @@ function swaggerOperationController({ controllers }) {
       if (!endpointsWithoutAuth.includes(operationId)) {
          try {
             let decoded = jwt.verify(token, 'secret');
+            let attributes = {
+               id: decoded.id,
+               token
+            };
             const { User, UserSubject } = req.app.locals.models;
-            user = await User.getOneById({ id: decoded.id });
-            const attributes = { userId: user.id };
+            user = await User.getOne({ attributes });
+
+            attributes = { userId: user.id };
             const userSubjects = await UserSubject.getManyWith({ attributes });
             const subjects = userSubjects.map(userSubject => {
                return {
