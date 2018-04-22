@@ -7,12 +7,20 @@ class Comment extends BaseModel {
 
    static get relationMappings() {
       return {
-         user: {
+         post: {
             relation: BaseModel.BelongsToOneRelation,
             modelClass: __dirname + '/../post/model.js',
             join: {
                from: 'comments.postId',
                to: 'posts.id'
+            }
+         },
+         user: {
+            relation: BaseModel.BelongsToOneRelation,
+            modelClass: __dirname + '/../user/model.js',
+            join: {
+               from: 'comments.userId',
+               to: 'users.id'
             }
          }
       };

@@ -769,12 +769,15 @@ definitions:
       userId:
         type: integer
         minimum: 0
+      username:
+        type: string
     required:
       - id
       - description
       - upvotes
       - downvotes
       - userId
+      - username
 
   NewComment:
     type: object
@@ -853,7 +856,7 @@ definitions:
         type: integer
         minimum: 1
         maximum: 9
-      subjectId:
+      lessonId:
         type: integer
         minimum: 0
       answers:
@@ -871,7 +874,7 @@ definitions:
       - kind
       - descriptionText
       - descriptionImage
-      - subjectId
+      - lessonId
       - answers
 
   NewQuestionBySubjectId:

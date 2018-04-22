@@ -6,7 +6,7 @@ class Post extends BaseModel {
    }
 
    static get defaultEager() {
-      return '[user, comments]';
+      return '[user, comments.user]';
    }
 
    static get relationMappings() {

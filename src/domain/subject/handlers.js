@@ -4,19 +4,28 @@ function getSubjects({ models, params }) {
 }
 
 async function getSubjectById({ models, params }) {
-   const { Subject, Post, News } = models;
+   const { Subject, Post, News, Comment } = models;
    const { subjectId } = params;
    const posts = await Post.getManyWith({ attributes: { subjectId: subjectId.value } });
    const news = await News.getManyWith({ attributes: { subjectId: subjectId.value } });
    const subject = await Subject.getOneById({ id: subjectId.value });
 
-   const filteredPosts = posts.map(post => ({
-      ...post,
-      username: post.user.username,
-      user: undefined,
-      subjectId: undefined
-   }));
+   const filteredPosts = posts.map(post => {
+      const comments = post.comments.map(comment => ({
+         ...comment,
+         username: comment.user.username,
+         user: undefined
+      }));
 
+      return {
+         ...post,
+         username: post.user.username,
+         user: undefined,
+         subjectId: undefined
+      };
+   });
+   console.log('filteredPosts', filteredPosts);
+   
    return {
       posts: filteredPosts,
       news,
