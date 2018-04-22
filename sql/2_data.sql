@@ -178,3 +178,13 @@ VALUES ('News 2', 'GRANTS', 'www.nytimes.com', '3/10/18', 2, 1, 1, 2, 1);
 
 INSERT INTO news (name, kind, resource, date_published, user_id, subject_id, state_id, region_id, district_id)
 VALUES ('News 3', 'GENERAL', 'www.nytimes.com', '3/10/18', 2, 1, 1, 1, 3);
+
+-- Questions
+INSERT INTO questions (description_text, description_image, kind, user_id, lesson_id)
+VALUES ('Fill in the spaces with the words provided 0', '', 1, 1, 1);
+
+-- Answers
+INSERT INTO answers (index, text, question_id) VALUES (1, 'Answer 1', 1);
+INSERT INTO answers (index, text, question_id) VALUES (2, 'Answer 2', 1);
+INSERT INTO answers (index, text, question_id) VALUES (3, 'Answer 3', 1);
+INSERT INTO answers (index, text, question_id) VALUES (4, 'Answer 4', 1);

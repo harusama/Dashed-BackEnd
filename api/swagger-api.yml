@@ -270,8 +270,8 @@ paths:
         type: integer
         required: true
     get:
-      operationId: getQuestionsBySubjectId
-      summary: Get questions by subject id
+      operationId: getNotApprovedQuestionsBySubjectId
+      summary: Get not approved questions by subject id
       tags:
         - Questions
       security:
@@ -891,12 +891,8 @@ definitions:
         type: integer
         minimum: 1
         maximum: 9
-      approved:
-        type: integer
-        minimum: 0
-      subjectId:
-        type: integer
-        minimum: 0
+      username:
+        type: string
       answers:
         type: array
         items:
@@ -914,8 +910,7 @@ definitions:
     required:
       - id
       - kind
-      - approved
       - descriptionText
       - descriptionImage
-      - subjectId
+      - username
       - answers

@@ -18,6 +18,14 @@ class Chapter extends BaseModel {
                from: 'chapters.id',
                to: 'lessons.chapterId'
             }
+         },
+         unit: {
+            relation: BaseModel.BelongsToOneRelation,
+            modelClass: __dirname + '/../unit/model.js',
+            join: {
+               from: 'chapters.unitId',
+               to: 'units.id'
+            }
          }
       };
    }

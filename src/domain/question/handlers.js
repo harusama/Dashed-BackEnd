@@ -14,11 +14,11 @@ async function createQuestion({ models, params, user }) {
    }
 }
 
-function getQuestionsBySubjectId({ models, params }) {
+async function getNotApprovedQuestionsBySubjectId({ models, params }) {
    const { Question } = models;
    const { subjectId } = params;
 
-   return Question.getManyBySubjectId(subjectId.value);;
+   return await Question.getManyApprovedBySubjectId(subjectId.value, false);
 }
 
 function approveQuestion({ models, params }) {
@@ -30,6 +30,6 @@ function approveQuestion({ models, params }) {
 
 module.exports = {
    createQuestion,
-   getQuestionsBySubjectId,
+   getNotApprovedQuestionsBySubjectId,
    approveQuestion
 };

@@ -159,6 +159,7 @@ CREATE TABLE questions (
    description_text VARCHAR(100),
    description_image VARCHAR(100),
    kind INTEGER CONSTRAINT valid_kind_number CHECK (kind >= 1 AND kind <= 9),
+   approved BOOLEAN DEFAULT FALSE,
    user_id BIGINT REFERENCES users(id),
    lesson_id BIGINT REFERENCES lessons(id)
 );

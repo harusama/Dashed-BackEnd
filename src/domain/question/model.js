@@ -6,23 +6,32 @@ class Question extends BaseModel {
    }
 
    static get defaultEager() {
-      return 'answers';
+      return '[lesson.chapter.unit, answers]';
    }
 
-   static getManyBySubjectId(subjectId) {
-      return this.query().eager(this.defaultEager).where('subjectId', subjectId).then(questions => {
-         return questions.map(question => {
-            const answers = question.answers.map(answer => ({
-               ...answer, 
-               id: undefined,
-               questionId: undefined,
-            }));
+   static get defaultOmit() {
+      return ['createdAt'];
+   }
 
-            return {
-               ...question,
-               answers
-            };
-         });
+   static async getManyApprovedBySubjectId(subjectId, approved) {
+      let questionsNotApproved = await this.query()
+         .eager('[lesson.chapter.unit(filterBySubjectId), answers, user]', {
+            filterBySubjectId: builder => {
+               builder.where('subjectId', subjectId);
+            }
+         })
+         .where('approved', approved)
+         .omit(this.defaultOmit);
+
+      questionsNotApproved = questionsNotApproved.filter(question => question.lesson.chapter.unit ? true : false);
+      return questionsNotApproved.map(question => {
+         return {
+            ...question,
+            lessonId: undefined,
+            lesson: undefined,
+            username: question.user.username,
+            user: undefined
+         };
       });
    }
 
@@ -38,6 +47,14 @@ class Question extends BaseModel {
             join: {
                from: 'questions.userId',
                to: 'users.id'
+            }
+         },
+         lesson: {
+            relation: BaseModel.BelongsToOneRelation,
+            modelClass: __dirname + '/../lesson/model.js',
+            join: {
+               from: 'questions.lessonId',
+               to: 'lessons.id'
             }
          },
          answers: {
