@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const BaseModel = require('./../../models/model');
+const UserSubject = require('./../user_subject/model');
 
 class User extends BaseModel {
    static get tableName() {
@@ -23,6 +24,26 @@ class User extends BaseModel {
 
    generateAuthToken() {
       return jwt.sign({ id: this.id }, 'secret').toString();
+   }
+
+   static async hasSubjectWithLessonId(userId, lessonId) {
+      const attributes = { userId };
+      const userSubjects = await UserSubject.getManyWith({ attributes });
+      let hasSubject = false;
+
+      userSubjects.forEach(userSubject => {
+         userSubject.subject.units.forEach(unit => {
+            unit.chapters.forEach(chapter => {
+               chapter.lessons.forEach(lesson => {
+                  if (lessonId === lesson.id) {
+                     hasSubject = true;
+                  }
+               });
+            });
+         });
+      });
+
+      return hasSubject;
    }
 
    static get relationMappings() {

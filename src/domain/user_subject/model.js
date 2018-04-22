@@ -6,7 +6,7 @@ class UserSubject extends BaseModel {
    }
 
    static get defaultEager() {
-      return 'subject';
+      return 'subject.units.chapters.lessons';
    }
 
    static get idColumn() {

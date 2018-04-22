@@ -1,11 +1,13 @@
 CREATE TABLE states (
    id BIGSERIAL PRIMARY KEY,
+   created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
    key VARCHAR(10) UNIQUE NOT NULL,
    name TEXT
 );
 
 CREATE TABLE regions (
    id BIGSERIAL PRIMARY KEY,
+   created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
    key VARCHAR(10) UNIQUE NOT NULL,
    name TEXT,
    state_id BIGINT REFERENCES states(id)
@@ -13,6 +15,7 @@ CREATE TABLE regions (
 
 CREATE TABLE districts (
    id BIGSERIAL PRIMARY KEY,
+   created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
    number VARCHAR(10) UNIQUE NOT NULL,
    name TEXT,
    kind TEXT,
@@ -30,6 +33,7 @@ CREATE TABLE districts (
 
 CREATE TABLE campus (
    id BIGSERIAL PRIMARY KEY,
+   created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
    number VARCHAR(10) UNIQUE NOT NULL,
    name TEXT,
    kind TEXT,
@@ -52,6 +56,7 @@ CREATE TYPE user_kind AS ENUM('admin', 'teacher');
 CREATE TYPE user_gender AS ENUM('male', 'female', 'other');
 CREATE TABLE users (
    id BIGSERIAL PRIMARY KEY,
+   created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
    first_name VARCHAR(100),
    last_name VARCHAR(100),
    username VARCHAR(100),
@@ -68,12 +73,14 @@ CREATE TABLE users (
 
 CREATE TABLE hashes (
    id BIGSERIAL PRIMARY KEY,
+   created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
    hash TEXT,
    user_id BIGINT REFERENCES users(id)
 );
 
 CREATE TABLE subjects (
    id BIGSERIAL PRIMARY KEY,
+   created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
    name VARCHAR(100) UNIQUE,
    campus_type VARCHAR(100),
    general_topic VARCHAR(100),
@@ -83,6 +90,7 @@ CREATE TABLE subjects (
 
 CREATE TABLE units (
    id BIGSERIAL PRIMARY KEY,
+   created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
    number INTEGER DEFAULT 0 CONSTRAINT valid_number_unit CHECK (number >= 0),
    name TEXT,
    description TEXT,
@@ -91,6 +99,7 @@ CREATE TABLE units (
 
 CREATE TABLE chapters (
    id BIGSERIAL PRIMARY KEY,
+   created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
    number INTEGER DEFAULT 0 CONSTRAINT valid_number_chapter CHECK (number >= 0),
    name TEXT,
    description TEXT,
@@ -99,6 +108,7 @@ CREATE TABLE chapters (
 
 CREATE TABLE lessons (
    id BIGSERIAL PRIMARY KEY,
+   created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
    number INTEGER DEFAULT 0 CONSTRAINT valid_number_lesson CHECK (number >= 0),
    name TEXT,
    description TEXT,
@@ -107,6 +117,7 @@ CREATE TABLE lessons (
 
 CREATE TABLE posts (
    id BIGSERIAL PRIMARY KEY,
+   created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
    title TEXT,
    description TEXT,
    ranking INTEGER DEFAULT 0 CONSTRAINT valid_ranking_number CHECK (ranking >= 0),
@@ -120,6 +131,7 @@ CREATE TABLE posts (
 
 CREATE TABLE comments (
    id BIGSERIAL PRIMARY KEY,
+   created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
    description TEXT,
    upvotes INTEGER DEFAULT 0 CONSTRAINT valid_upvotes_number CHECK (upvotes >= 0),
    downvotes INTEGER DEFAULT 0 CONSTRAINT valid_downvotes_number CHECK (downvotes >= 0),
@@ -129,6 +141,7 @@ CREATE TABLE comments (
 
 CREATE TABLE news (
    id BIGSERIAL PRIMARY KEY,
+   created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
    name TEXT,
    kind VARCHAR(100),
    resource TEXT,
@@ -142,23 +155,31 @@ CREATE TABLE news (
 
 CREATE TABLE questions (
    id BIGSERIAL PRIMARY KEY,
+   created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
    description_text VARCHAR(100),
    description_image VARCHAR(100),
    kind INTEGER CONSTRAINT valid_kind_number CHECK (kind >= 1 AND kind <= 9),
-   approved INTEGER DEFAULT 0 CONSTRAINT valid_approved_number CHECK (approved >= 0),
    user_id BIGINT REFERENCES users(id),
-   subject_id BIGINT REFERENCES subjects(id)
-   -- lesson_id BIGINT REFERENCES lessons(id)
+   lesson_id BIGINT REFERENCES lessons(id)
+);
+
+CREATE TABLE approvals (
+   id BIGSERIAL PRIMARY KEY,
+   created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+   question_id BIGINT REFERENCES questions(id),
+   user_id BIGINT REFERENCES users(id)
 );
 
 CREATE TABLE answers (
    id BIGSERIAL PRIMARY KEY,
+   created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
    index INTEGER CONSTRAINT valid_index_number CHECK (index >= 1 AND index <= 20),
    text VARCHAR(100),
    question_id BIGINT REFERENCES questions(id)
 );
 
 CREATE TABLE users_subjects (
+   created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
    user_id BIGINT REFERENCES users(id) ON UPDATE CASCADE ON DELETE SET NULL,
    subject_id BIGINT REFERENCES subjects(id) ON UPDATE CASCADE,
    CONSTRAINT users_subjects_pkey PRIMARY KEY (user_id, subject_id)

@@ -1,9 +1,17 @@
-function createQuestion({ models, params, userId }) {
-   const { Question } = models;
+const boom = require('boom');
+
+async function createQuestion({ models, params, user }) {
+   const { User, Question, UserSubject } = models;
    const { newQuestion } = params;
-   newQuestion.value.userId = userId
+   newQuestion.value.userId = user.id
+
+   const hasSubjectWithLessonId = await User.hasSubjectWithLessonId(user.id, newQuestion.value.lessonId);
    
-   return Question.createOne({ attributes: newQuestion.value });
+   if (hasSubjectWithLessonId) {
+      return Question.createOne({ attributes: newQuestion.value });
+   } else {
+      return Promise.reject(boom.badRequest('User do not have added current post subject'));
+   }
 }
 
 function getQuestionsBySubjectId({ models, params }) {
