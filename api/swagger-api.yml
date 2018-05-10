@@ -374,7 +374,7 @@ paths:
       operationId: getGeneralNews
       summary: Get general news
       tags:
-        - Questions
+        - News
       security:
         - authKey: []
       responses:
@@ -387,6 +387,25 @@ paths:
                 type: array
                 items:
                   $ref: '#/definitions/GeneralNews'
+
+  /testimonies:
+    get:
+      operationId: getTestimonies
+      summary: Get testimonies
+      tags:
+        - Testimonies
+      security:
+        - authKey: []
+      responses:
+        200:
+          description: Ok
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/Testimony'
   
 definitions:
   LoginUser:
@@ -1026,3 +1045,43 @@ definitions:
       - descriptionImage
       - username
       - answers
+
+  Testimony:
+    type: object
+    properties:
+      id:
+        type: integer
+        minimum: 0
+      title:
+        type: string
+      description:
+        type: string
+      ranking:
+        type: integer
+        minimum: 0
+      resource:
+        type: string
+      kind:
+        type: string
+      upvotes:
+        type: integer
+        minimum: 0
+      downvotes:
+        type: integer
+        minimum: 0
+      username:
+        type: string
+      userId:
+        type: integer
+        minimum: 0
+    required:
+      - id
+      - title
+      - description
+      - ranking
+      - resource
+      - kind
+      - upvotes
+      - downvotes
+      - username
+      - userId

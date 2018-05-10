@@ -9,6 +9,15 @@ class Post extends BaseModel {
       return '[user, comments.user]';
    }
 
+   static get kind() {
+      return {
+         question: 'question',
+         resource: 'resource',
+         content: 'content',
+         testimony: 'testimony'
+      };
+   }
+
    static get relationMappings() {
       return {
          user: {

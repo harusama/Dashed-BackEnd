@@ -64,6 +64,27 @@ async function upvotePost({ models, params }) {
    return;
 }
 
+async function getTestimonies({ models, params}) {
+   const { Post } = models;
+   const attributes = {
+      kind: Post.kind.testimony
+   };
+
+   const testimonies = await Post.getManyWith({ attributes }).map(testimony => {
+      return {
+         ...testimony,
+         username: testimony.user.username,
+         user: undefined,
+         kind: undefined,
+         downvotes: undefined,
+         upvotes: undefined,
+         comments: undefined
+      }
+   });
+
+   return testimonies;
+}
+
 function sendPostMessage(io, subjectName, post) {
    io.to(subjectName).emit('newPost', post);
 }
@@ -71,5 +92,6 @@ function sendPostMessage(io, subjectName, post) {
 module.exports = {
    createPost,
    downvotePost,
-   upvotePost
+   upvotePost,
+   getTestimonies
 };

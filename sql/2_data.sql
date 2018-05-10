@@ -156,6 +156,12 @@ VALUES ('Post title 3', 'Description Post title 3', 87, 'www.resource.com', 'que
 INSERT INTO posts (title, description, ranking, resource, kind, upvotes, downvotes, user_id, subject_id)
 VALUES ('Post title 4', 'Description Post title 4', 88, 'www.resource.com', 'question', 26, 20, 4, 4) ;
 
+INSERT INTO posts (title, description, ranking, resource, kind, upvotes, downvotes, user_id, subject_id)
+VALUES ('Testimony title 5', 'Description Testimony title 5', 88, 'www.resource.com', 'testimony', 0, 0, 4, 4) ;
+
+INSERT INTO posts (title, description, ranking, resource, kind, upvotes, downvotes, user_id, subject_id)
+VALUES ('Testimony title 6', 'Description Testimony title 6', 88, 'www.resource.com', 'testimony', 0, 0, 4, 4) ;
+
 -- Comments
 INSERT INTO comments (description, upvotes, downvotes, user_id, post_id)
 VALUES ('Comment post 1', 23, 23, 4, 1);
