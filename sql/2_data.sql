@@ -177,7 +177,16 @@ INSERT INTO news (name, kind, resource, date_published, user_id, subject_id, sta
 VALUES ('News 2', 'GRANTS', 'www.nytimes.com', '3/10/18', 2, 1, 1, 2, 1);
 
 INSERT INTO news (name, kind, resource, date_published, user_id, subject_id, state_id, region_id, district_id)
-VALUES ('News 3', 'GENERAL', 'www.nytimes.com', '3/10/18', 2, 1, 1, 1, 3);
+VALUES ('News 3', 'GRANTS', 'www.nytimes.com', '3/10/18', 2, 1, 1, 1, 3);
+
+INSERT INTO news (name, kind, resource, date_published, user_id, subject_id, state_id, region_id, district_id)
+VALUES ('News 4', 'GENERAL', 'www.nytimes.com', '3/10/18', 2, null, null, null, null);
+
+INSERT INTO news (name, kind, resource, date_published, user_id, subject_id, state_id, region_id, district_id)
+VALUES ('News 5', 'GENERAL', 'www.nytimes.com', '3/10/18', 2, null, null, null, null);
+
+INSERT INTO news (name, kind, resource, date_published, user_id, subject_id, state_id, region_id, district_id)
+VALUES ('News 6', 'GRANTS', 'www.nytimes.com', '3/10/18', 2, 1, null, null, null);
 
 -- Questions
 INSERT INTO questions (description_text, description_image, kind, user_id, lesson_id)

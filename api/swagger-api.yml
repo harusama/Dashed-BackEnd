@@ -368,6 +368,25 @@ paths:
       responses:
         200:
           description: Approved
+
+  /news:
+    get:
+      operationId: getGeneralNews
+      summary: Get general news
+      tags:
+        - Questions
+      security:
+        - authKey: []
+      responses:
+        200:
+          description: Ok
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/GeneralNews'
   
 definitions:
   LoginUser:
@@ -903,6 +922,31 @@ definitions:
       - state_id
       - region_id
       - district_id
+  
+  GeneralNews:
+    type: object
+    properties:
+      id:
+        type: integer
+        minimum: 0
+      name:
+         type: string
+      kind:
+         type: string
+      resource:
+         type: string
+      date_published:
+         type: string
+      user_id:
+         type: integer
+         minimum: 0
+    required:
+      - id
+      - name
+      - kind
+      - resource
+      - date_published
+      - user_id
 
   Question:
     type: object
