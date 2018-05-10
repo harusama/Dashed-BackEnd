@@ -47,11 +47,30 @@ async function downvoteComment({ models, params }) {
    return;
 }
 
+async function upvoteComment({ models, params }) {
+   const { Comment } = models;
+   const { commentId } = params;
+
+   const commentFound = await Comment.getOneById({ id: commentId.value });
+
+   const data = {
+      id: commentId.value,
+      attributes: {
+         upvotes: commentFound.upvotes + 1
+      }
+   };
+
+   await Comment.patchOne(data);
+
+   return;
+}
+
 function sendPostMessage(io, subjectName, comment) {
    io.to(subjectName).emit('newComment', comment);
 }
 
 module.exports = {
    createComment,
-   downvoteComment
+   downvoteComment,
+   upvoteComment
 };
