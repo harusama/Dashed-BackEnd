@@ -25,10 +25,33 @@ async function createComment({ models, params, user, io }) {
    }
 }
 
+async function downvoteComment({ models, params }) {
+   const { Comment } = models;
+   const { commentId } = params;
+
+   const commentFound = await Comment.getOneById({ id: commentId.value });
+
+   if (commentFound.downvotes == 0) {
+      return;
+   }
+
+   const data = {
+      id: commentId.value,
+      attributes: {
+         downvotes: commentFound.downvotes - 1
+      }
+   };
+
+   await Comment.patchOne(data);
+
+   return;
+}
+
 function sendPostMessage(io, subjectName, comment) {
    io.to(subjectName).emit('newComment', comment);
 }
 
 module.exports = {
-   createComment
+   createComment,
+   downvoteComment
 };

@@ -275,6 +275,40 @@ paths:
         201:
           description: Created
 
+  /comments/{commentId}/downvote:
+    patch:
+      operationId: downvoteComment
+      summary: Downvote a comment
+      tags:
+        - Posts
+      security:
+        - authKey: []
+      parameters:
+        - name: commentId
+          in: path
+          type: integer
+          required: true
+      responses:
+        200:
+          description: Ok
+
+  /comments/{commentId}/upvote:
+    patch:
+      operationId: upvoteComment
+      summary: Upvote a comment
+      tags:
+        - Posts
+      security:
+        - authKey: []
+      parameters:
+        - name: commentId
+          in: path
+          type: integer
+          required: true
+      responses:
+        200:
+          description: Ok
+
   /questions:
     post:
       operationId: createQuestion
