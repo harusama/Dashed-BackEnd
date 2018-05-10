@@ -188,3 +188,13 @@ CREATE TABLE users_subjects (
    subject_id BIGINT REFERENCES subjects(id) ON UPDATE CASCADE,
    CONSTRAINT users_subjects_pkey PRIMARY KEY (user_id, subject_id)
 );
+
+CREATE TYPE error_kind AS ENUM('system', 'question');
+CREATE TABLE errors (
+   id BIGSERIAL PRIMARY KEY,
+   created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+   kind error_kind,
+   description TEXT DEFAULT '',
+   question_id BIGINT REFERENCES questions(id),
+   user_id BIGINT REFERENCES users(id)
+);

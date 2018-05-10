@@ -406,8 +406,43 @@ paths:
                 type: array
                 items:
                   $ref: '#/definitions/Testimony'
+
+  /errors:
+    post:
+      operationId: createError
+      summary: Create a new error
+      tags:
+        - Errors
+      security:
+        - authKey: []
+      parameters:
+        - name: newError
+          in: body
+          schema:
+            $ref: '#/definitions/NewError'
+      responses:
+        201:
+          description: Created
   
 definitions:
+  NewError:
+    type: object
+    properties:
+      kind:
+        type: string
+        default: question
+        enum:
+          - system
+          - question
+      description:
+        type: string
+      questionId:
+        type: integer
+        minimum: 0
+    required:
+      - kind
+      - description
+      
   LoginUser:
     type: object
     properties:
@@ -1061,14 +1096,6 @@ definitions:
         minimum: 0
       resource:
         type: string
-      kind:
-        type: string
-      upvotes:
-        type: integer
-        minimum: 0
-      downvotes:
-        type: integer
-        minimum: 0
       username:
         type: string
       userId:
@@ -1080,8 +1107,5 @@ definitions:
       - description
       - ranking
       - resource
-      - kind
-      - upvotes
-      - downvotes
       - username
       - userId
