@@ -43,7 +43,25 @@ async function downvotePost({ models, params }) {
 
    await Post.patchOne(data);
 
-   return postFound;
+   return;
+}
+
+async function upvotePost({ models, params }) {
+   const { Post } = models;
+   const { postId } = params;
+
+   const postFound = await Post.getOneById({ id: postId.value });
+
+   const data = {
+      id: postId.value,
+      attributes: {
+         upvotes: postFound.upvotes + 1
+      }
+   };
+
+   await Post.patchOne(data);
+
+   return;
 }
 
 function sendPostMessage(io, subjectName, post) {
@@ -52,5 +70,6 @@ function sendPostMessage(io, subjectName, post) {
 
 module.exports = {
    createPost,
-   downvotePost
+   downvotePost,
+   upvotePost
 };
