@@ -24,10 +24,33 @@ async function createPost({ models, params, user, io }) {
    }
 }
 
+async function downvotePost({ models, params }) {
+   const { Post } = models;
+   const { postId } = params;
+
+   const postFound = await Post.getOneById({ id: postId.value });
+   
+   if (postFound.downvotes == 0) {
+      return;
+   }
+
+   const data = {
+      id: postId.value,
+      attributes: {
+         downvotes: postFound.downvotes - 1
+      }
+   };
+
+   await Post.patchOne(data);
+
+   return postFound;
+}
+
 function sendPostMessage(io, subjectName, post) {
    io.to(subjectName).emit('newPost', post);
 }
 
 module.exports = {
-   createPost
+   createPost,
+   downvotePost
 };
