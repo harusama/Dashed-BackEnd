@@ -30,9 +30,9 @@ async function approveQuestion({ models, params, user }) {
    };
    
    const question = await Question.getOneById({ id: questionId.value });
-   console.log('question', question);
+   ({ id: questionId.value });
 
-   if (question.userId === user.id) {
+   if (question === user.id) {
       console.log('This user created this question.');
       return '';
    }
@@ -62,8 +62,30 @@ async function approveQuestion({ models, params, user }) {
    return '';
 }
 
+async function getEvaluationQuestionsForQuestionId({ models, params }) {
+   const { Question, EvaluationQuestion } = models;
+   const { questionId } = params;
+
+   const question = await Question.getOneById({ id: questionId.value });
+
+   const attributes = {
+      kind: question.kind
+   };
+
+   const evaluations = await EvaluationQuestion.query().where('kind', question.kind).orWhere('kind', null).map(evaluation => {
+      return {
+         ...evaluation,
+         createdAt: undefined,
+         kind: undefined
+      };
+   });
+
+   return evaluations;
+}
+
 module.exports = {
    createQuestion,
    getNotApprovedQuestionsBySubjectId,
-   approveQuestion
+   approveQuestion,
+   getEvaluationQuestionsForQuestionId
 };

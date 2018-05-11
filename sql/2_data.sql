@@ -196,7 +196,17 @@ VALUES ('News 6', 'GRANTS', 'www.nytimes.com', '3/10/18', 2, 1, null, null, null
 
 -- Questions
 INSERT INTO questions (description_text, description_image, kind, user_id, lesson_id)
-VALUES ('Fill in the spaces with the words provided 0', '', 1, 1, 1);
+VALUES ('Question 1', '', 1, 1, 1);
+
+INSERT INTO questions (description_text, description_image, kind, user_id, lesson_id)
+VALUES ('Question 2', '', 2, 1, 1);
+
+-- Evaluation Questions
+INSERT INTO evaluation_question (description, kind)
+VALUES ('Evaluation question for all', null);
+
+INSERT INTO evaluation_question (description, kind)
+VALUES ('Evaluation question for kind = 1', 1);
 
 -- Answers
 INSERT INTO answers (index, text, question_id) VALUES (1, 'Answer 1', 1);

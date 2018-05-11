@@ -160,11 +160,18 @@ CREATE TABLE questions (
    created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
    description_text VARCHAR(100),
    description_image VARCHAR(100),
-   kind INTEGER CONSTRAINT valid_kind_number CHECK (kind >= 1 AND kind <= 9),
+   kind INTEGER CONSTRAINT valid_kind_question CHECK (kind >= 1 AND kind <= 9),
    approved BOOLEAN DEFAULT FALSE,
    approved_times INTEGER DEFAULT 0 CONSTRAINT valid_approved_times_number CHECK (approved_times >= 0),
    user_id BIGINT REFERENCES users(id),
    lesson_id BIGINT REFERENCES lessons(id)
+);
+
+CREATE TABLE evaluation_question (
+   id BIGSERIAL PRIMARY KEY,
+   created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+   description TEXT DEFAULT '',
+   kind INTEGER CONSTRAINT valid_kind_evaluation_question CHECK (kind >= 1 AND kind <= 9)
 );
 
 CREATE TABLE approvals (

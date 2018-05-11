@@ -369,6 +369,30 @@ paths:
         200:
           description: Approved
 
+  /questions/{questionId}/evaluations:
+    parameters:
+      - name: questionId
+        in: path
+        type: integer
+        required: true
+    get:
+      operationId: getEvaluationQuestionsForQuestionId
+      summary: Get all of the evaluation questions for a given question
+      tags:
+        - Questions
+      security:
+        - authKey: []
+      responses:
+        200:
+          description: Ok
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/EvaluationQuestion'
+
   /news:
     get:
       operationId: getGeneralNews
@@ -1042,6 +1066,18 @@ definitions:
       - descriptionImage
       - lessonId
       - answers
+
+  EvaluationQuestion:
+    type: object
+    properties:
+      id:
+        type: integer
+        minimum: 0
+      description:
+        type: string
+    required:
+      - id
+      - description
 
   NewQuestionBySubjectId:
     type: object
