@@ -19,12 +19,12 @@ async function getSubjectById({ models, params }) {
 
       return {
          ...post,
+         comments,
          username: post.user.username,
          user: undefined,
          subjectId: undefined
       };
    });
-   console.log('filteredPosts', filteredPosts);
    
    return {
       posts: filteredPosts,
