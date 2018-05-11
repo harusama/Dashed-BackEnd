@@ -32,7 +32,7 @@ async function getUser({ models, params, res }) {
 
       return {
          ...userFound,
-         id: undefined,
+         createdAt: undefined,
          password: undefined,
          active: undefined,
          token: undefined,
