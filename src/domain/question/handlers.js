@@ -68,10 +68,6 @@ async function getEvaluationQuestionsForQuestionId({ models, params }) {
 
    const question = await Question.getOneById({ id: questionId.value });
 
-   const attributes = {
-      kind: question.kind
-   };
-
    const evaluations = await EvaluationQuestion.query().where('kind', question.kind).orWhere('kind', null).map(evaluation => {
       return {
          ...evaluation,
@@ -83,9 +79,29 @@ async function getEvaluationQuestionsForQuestionId({ models, params }) {
    return evaluations;
 }
 
+async function addEvaluationForQuestionId({ models, params, user }) {
+   const { Question, Evaluation } = models;
+   const { questionId, newEvaluation } = params;
+
+   const question = await Question.getOneById({ id: questionId.value });
+   const attributes = newEvaluation.value.map(evaluation => {
+      return {
+         score: evaluation.score,
+         questionId: questionId.value,
+         userId: user.id,
+         evaluationQuestionId: evaluation.evaluationQuestionId,
+      };
+   });
+   
+   await Evaluation.createOne({ attributes });
+   
+   return;
+}
+
 module.exports = {
    createQuestion,
    getNotApprovedQuestionsBySubjectId,
    approveQuestion,
-   getEvaluationQuestionsForQuestionId
+   getEvaluationQuestionsForQuestionId,
+   addEvaluationForQuestionId
 };

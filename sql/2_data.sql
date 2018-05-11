@@ -202,10 +202,10 @@ INSERT INTO questions (description_text, description_image, kind, user_id, lesso
 VALUES ('Question 2', '', 2, 1, 1);
 
 -- Evaluation Questions
-INSERT INTO evaluation_question (description, kind)
+INSERT INTO evaluation_questions (description, kind)
 VALUES ('Evaluation question for all', null);
 
-INSERT INTO evaluation_question (description, kind)
+INSERT INTO evaluation_questions (description, kind)
 VALUES ('Evaluation question for kind = 1', 1);
 
 -- Answers

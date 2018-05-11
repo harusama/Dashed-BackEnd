@@ -392,6 +392,23 @@ paths:
                 type: array
                 items:
                   $ref: '#/definitions/EvaluationQuestion'
+    post:
+      operationId: addEvaluationForQuestionId
+      summary: Add a new evaluation for a given question
+      tags:
+        - Questions
+      security:
+        - authKey: []
+      parameters:
+        - name: newEvaluation
+          in: body
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/NewEvaluation'
+      responses:
+        201:
+          description: Created
 
   /news:
     get:
@@ -1078,6 +1095,20 @@ definitions:
     required:
       - id
       - description
+
+  NewEvaluation:
+    type: object
+    properties:
+      evaluationQuestionId:
+        type: integer
+        minimum: 0
+      score:
+        type: integer
+        minimum: 1
+        maximum: 10
+    required:
+      - evaluationQuestionId
+      - score
 
   NewQuestionBySubjectId:
     type: object

@@ -167,11 +167,20 @@ CREATE TABLE questions (
    lesson_id BIGINT REFERENCES lessons(id)
 );
 
-CREATE TABLE evaluation_question (
+CREATE TABLE evaluation_questions (
    id BIGSERIAL PRIMARY KEY,
    created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
    description TEXT DEFAULT '',
    kind INTEGER CONSTRAINT valid_kind_evaluation_question CHECK (kind >= 1 AND kind <= 9)
+);
+
+CREATE TABLE evaluations (
+   id BIGSERIAL PRIMARY KEY,
+   created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+   score INTEGER DEFAULT 0 CONSTRAINT valid_evaluation_score CHECK (score >= 0),
+   question_id BIGINT REFERENCES questions(id),
+   user_id BIGINT REFERENCES users(id),
+   evaluation_question_id BIGINT REFERENCES evaluation_questions(id)
 );
 
 CREATE TABLE approvals (
