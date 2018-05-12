@@ -30,9 +30,8 @@ async function approveQuestion({ models, params, user }) {
    };
    
    const question = await Question.getOneById({ id: questionId.value });
-   ({ id: questionId.value });
 
-   if (question === user.id) {
+   if (question.id === user.id) {
       console.log('This user created this question.');
       return '';
    }
@@ -98,10 +97,40 @@ async function addEvaluationForQuestionId({ models, params, user }) {
    return;
 }
 
+async function rejectQuestion({ models, params, user }) {
+   const { Question, Approval, Rejection } = models;
+   const { questionId, newRejection } = params;
+   
+   const attributes = {
+      questionId: questionId.value,
+      userId: user.id
+   };
+
+   const question = await Question.getOneById({ id: questionId.value });
+
+   if (question.id === user.id) {
+      console.log('This user created this question.');
+      return '';
+   }
+
+   const rejectionsForQuestion = await Rejection.getManyWith({ attributes });
+
+   if (rejectionsForQuestion.length !== 0) {
+      console.log('This user already rejected this question.');
+      return '';
+   }
+
+   attributes.description = newRejection.value.description;
+   await Rejection.createOne({ attributes });
+
+   return '';
+}
+
 module.exports = {
    createQuestion,
    getNotApprovedQuestionsBySubjectId,
    approveQuestion,
    getEvaluationQuestionsForQuestionId,
-   addEvaluationForQuestionId
+   addEvaluationForQuestionId,
+   rejectQuestion
 };

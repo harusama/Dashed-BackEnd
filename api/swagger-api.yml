@@ -369,6 +369,31 @@ paths:
         200:
           description: Approved
 
+  /questions/rejected/{questionId}:
+    parameters:
+      - name: questionId
+        in: path
+        type: integer
+        required: true
+    patch:
+      operationId: rejectQuestion
+      summary: Reject a question
+      tags:
+        - Questions
+      security:
+        - authKey: []
+      parameters:
+        - name: newRejection
+          in: body
+          schema:
+            type: object
+            properties:
+              description:
+                type: string
+      responses:
+        200:
+          description: Rejected
+
   /questions/{questionId}/evaluations:
     parameters:
       - name: questionId
@@ -487,8 +512,9 @@ definitions:
   LoginUser:
     type: object
     properties:
-      jwt:
-        type: string
+      id:
+        type: integer
+        minimum: 0
       firstName:
         type: string
       lastName:
@@ -531,7 +557,6 @@ definitions:
             name:
               type: string
     required:
-      - jwt
       - firstName
       - lastName
       - username

@@ -190,6 +190,14 @@ CREATE TABLE approvals (
    user_id BIGINT REFERENCES users(id)
 );
 
+CREATE TABLE rejections (
+   id BIGSERIAL PRIMARY KEY,
+   created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+   description TEXT DEFAULT '',
+   question_id BIGINT REFERENCES questions(id),
+   user_id BIGINT REFERENCES users(id)
+);
+
 CREATE TABLE answers (
    id BIGSERIAL PRIMARY KEY,
    created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
