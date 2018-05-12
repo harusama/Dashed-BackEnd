@@ -17,11 +17,28 @@ async function createQuestion({ models, params, user }) {
    }
 }
 
-async function getNotApprovedQuestionsBySubjectId({ models, params }) {
-   const { Question } = models;
+async function getNotApprovedQuestionsBySubjectId({ models, params, user }) {
+   const { Question, Approval } = models;
    const { subjectId } = params;
 
-   return await Question.getManyApprovedBySubjectId(subjectId.value, false);
+   const questions = await Question.getManyApprovedBySubjectId(subjectId.value, false, user.id);
+   const approvedByUser = await Approval.getManyWith({
+      attributes: {
+         userId: user.id
+      }
+   });
+
+   return questions.filter(question => {
+      let filter = true;
+
+      approvedByUser.forEach(approved => {
+         if (question.id === approved.questionId) {
+            filter = false;
+         }
+      });
+
+      return filter;
+   });
 }
 
 async function approveQuestion({ models, params, user }) {
