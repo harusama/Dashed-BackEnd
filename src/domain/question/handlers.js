@@ -8,7 +8,10 @@ async function createQuestion({ models, params, user }) {
    const hasSubjectWithLessonId = await User.hasSubjectWithLessonId(user.id, newQuestion.value.lessonId);
    
    if (hasSubjectWithLessonId) {
-      return Question.createOne({ attributes: newQuestion.value });
+      const result = Question.createOne({ attributes: newQuestion.value });
+      await User.incrementExperience(user.id, 250);
+      await User.incrementCoins(user.id, 1);
+      return result;
    } else {
       return Promise.reject(boom.badRequest('User do not have added current post subject'));
    }

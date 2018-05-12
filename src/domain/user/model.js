@@ -26,6 +26,14 @@ class User extends BaseModel {
       return jwt.sign({ id: this.id }, 'secret').toString();
    }
 
+   static incrementExperience(id, amount) {
+      return this.query().where('id', id).increment('experience', amount).returning('experience');
+   }
+
+   static incrementCoins(id, amount) {
+      return this.query().where('id', id).increment('coins', amount).returning('coins');
+   }
+
    static async hasSubjectWithLessonId(userId, lessonId) {
       const attributes = { userId };
       const userSubjects = await UserSubject.getManyWith({ attributes });
