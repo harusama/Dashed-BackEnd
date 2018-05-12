@@ -121,6 +121,14 @@
 				 <td>
 				  <table border='0' cellspacing='0' cellpadding='0'>
 				   <tr>
+					<td title="news.state_id references states.id via news_state_id_fkey">
+						<a href='news.html'>news</a><span class='relatedKey'>.state_id</span>
+					</td>
+					<td class="constraint detail">
+						news_state_id_fkey <span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span>
+					</td>
+				   </tr>
+				   <tr>
 					<td title="regions.state_id references states.id via regions_state_id_fkey">
 						<a href='regions.html'>regions</a><span class='relatedKey'>.state_id</span>
 					</td>
@@ -128,6 +136,23 @@
 						regions_state_id_fkey <span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span>
 					</td>
 				   </tr>
+				  </table>				 
+				 </td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>					 
+				 </td>
+				 <td></td>
+				</tr>
+				<tr>
+				 <td><span id="created_at">created_at</span></td>
+				 <td>timestamptz</td>
+				 <td>35,6</td>
+				 <td title=''></td>
+				 <td title=''></td>
+				 <td>now()</td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
 				  </table>				 
 				 </td>
 				 <td>
@@ -159,7 +184,7 @@
 				 <td>2147483647</td>
 				 <td title='nullable'>√</td>
 				 <td title=''></td>
-				 <td>null</td>
+				 <td>&#39;&#39;::text</td>
 				 <td>
 				  <table border='0' cellspacing='0' cellpadding='0'>
 				  </table>				 
@@ -172,7 +197,7 @@
 				</tr>
 								</tbody>
 				</table>
-				<p title='3 columns'>Table contained <span id="recordNumber">3</span> rows<p/>
+				<p title='4 columns'>Table contained <span id="recordNumber">3</span> rows<p/>
 			</div>
 		</div>
 		<div class="box box-primary">		
@@ -237,17 +262,21 @@
             <div class="tab-content no-padding">            
 				<div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">					
 					<map id="oneDegreeRelationshipsDiagram" name="oneDegreeRelationshipsDiagram">
-<area shape="rect" id="node1" href="regions.html" title="regions" alt="" coords="297,5,439,181">
-<area shape="rect" id="node2" href="states.html" title="states" alt="" coords="5,61,253,219">
+<area shape="rect" id="node1" href="news.html" title="news" alt="" coords="509,5,680,269">
+<area shape="rect" id="node2" href="regions.html" title="regions" alt="" coords="324,145,465,321">
+<area shape="rect" id="node3" href="states.html" title="states" alt="" coords="5,135,280,321">
 </map>
 
 					<a name='diagram'><img id='oneDegreeImg' src='../diagrams/states.1degree.png' usemap='#oneDegreeRelationshipsDiagram' class='diagram' border='0' alt='' align='left'></a>							
 				</div>
 				<div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">					
 					<map id="twoDegreesRelationshipsDiagram" name="twoDegreesRelationshipsDiagram">
-<area shape="rect" id="node1" href="districts.html" title="districts" alt="" coords="483,8,632,96">
-<area shape="rect" id="node2" href="regions.html" title="regions" alt="" coords="297,5,439,181">
-<area shape="rect" id="node3" href="states.html" title="states" alt="" coords="5,61,253,219">
+<area shape="rect" id="node1" href="districts.html" title="districts" alt="" coords="509,288,659,376">
+<area shape="rect" id="node2" href="regions.html" title="regions" alt="" coords="324,252,465,428">
+<area shape="rect" id="node4" href="states.html" title="states" alt="" coords="5,240,280,427">
+<area shape="rect" id="node3" href="news.html" title="news" alt="" coords="703,88,873,352">
+<area shape="rect" id="node5" href="subjects.html" title="subjects" alt="" coords="509,111,659,199">
+<area shape="rect" id="node6" href="users.html" title="users" alt="" coords="510,5,658,93">
 </map>
 
 					<a name='diagram'><img id='twodegreesDegreeImg' src='../diagrams/states.2degrees.png' usemap='#twoDegreesRelationshipsDiagram' class='diagram' border='0' alt='' align='left'></a>							

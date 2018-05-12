@@ -121,11 +121,19 @@
 				 <td>
 				  <table border='0' cellspacing='0' cellpadding='0'>
 				   <tr>
-					<td title="questions.subject_id references subjects.id via questions_subject_id_fkey">
-						<a href='questions.html'>questions</a><span class='relatedKey'>.subject_id</span>
+					<td title="news.subject_id references subjects.id via news_subject_id_fkey">
+						<a href='news.html'>news</a><span class='relatedKey'>.subject_id</span>
 					</td>
 					<td class="constraint detail">
-						questions_subject_id_fkey <span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span>
+						news_subject_id_fkey <span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span>
+					</td>
+				   </tr>
+				   <tr>
+					<td title="posts.subject_id references subjects.id via posts_subject_id_fkey">
+						<a href='posts.html'>posts</a><span class='relatedKey'>.subject_id</span>
+					</td>
+					<td class="constraint detail">
+						posts_subject_id_fkey <span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span>
 					</td>
 				   </tr>
 				   <tr>
@@ -136,6 +144,31 @@
 						units_subject_id_fkey <span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span>
 					</td>
 				   </tr>
+				   <tr>
+					<td title="users_subjects.subject_id references subjects.id via users_subjects_subject_id_fkey">
+						<a href='users_subjects.html'>users_subjects</a><span class='relatedKey'>.subject_id</span>
+					</td>
+					<td class="constraint detail">
+						users_subjects_subject_id_fkey <span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span>
+					</td>
+				   </tr>
+				  </table>				 
+				 </td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>					 
+				 </td>
+				 <td></td>
+				</tr>
+				<tr>
+				 <td><span id="created_at">created_at</span></td>
+				 <td>timestamptz</td>
+				 <td>35,6</td>
+				 <td title=''></td>
+				 <td title=''></td>
+				 <td>now()</td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
 				  </table>				 
 				 </td>
 				 <td>
@@ -218,7 +251,7 @@
 				 <td>2147483647</td>
 				 <td title='nullable'>√</td>
 				 <td title=''></td>
-				 <td>null</td>
+				 <td>&#39;&#39;::text</td>
 				 <td>
 				  <table border='0' cellspacing='0' cellpadding='0'>
 				  </table>				 
@@ -231,7 +264,7 @@
 				</tr>
 								</tbody>
 				</table>
-				<p title='6 columns'>Table contained <span id="recordNumber">5</span> rows<p/>
+				<p title='7 columns'>Table contained <span id="recordNumber">5</span> rows<p/>
 			</div>
 		</div>
 		<div class="box box-primary">		
@@ -296,21 +329,28 @@
             <div class="tab-content no-padding">            
 				<div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">					
 					<map id="oneDegreeRelationshipsDiagram" name="oneDegreeRelationshipsDiagram">
-<area shape="rect" id="node1" href="questions.html" title="questions" alt="" coords="397,5,592,181">
-<area shape="rect" id="node2" href="subjects.html" title="subjects" alt="" coords="5,144,353,389">
-<area shape="rect" id="node3" href="units.html" title="units" alt="" coords="425,199,564,345">
+<area shape="rect" id="node1" href="news.html" title="news" alt="" coords="411,5,581,269">
+<area shape="rect" id="node2" href="subjects.html" title="subjects" alt="" coords="5,425,355,700">
+<area shape="rect" id="node3" href="posts.html" title="posts" alt="" coords="427,287,565,463">
+<area shape="rect" id="node4" href="units.html" title="units" alt="" coords="427,480,565,627">
+<area shape="rect" id="node5" href="users_subjects.html" title="users_subjects" alt="" coords="399,644,593,791">
 </map>
 
 					<a name='diagram'><img id='oneDegreeImg' src='../diagrams/subjects.1degree.png' usemap='#oneDegreeRelationshipsDiagram' class='diagram' border='0' alt='' align='left'></a>							
 				</div>
 				<div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">					
 					<map id="twoDegreesRelationshipsDiagram" name="twoDegreesRelationshipsDiagram">
-<area shape="rect" id="node1" href="answers.html" title="answers" alt="" coords="639,8,787,96">
-<area shape="rect" id="node2" href="questions.html" title="questions" alt="" coords="397,5,592,181">
-<area shape="rect" id="node5" href="subjects.html" title="subjects" alt="" coords="5,184,353,429">
-<area shape="rect" id="node6" href="users.html" title="users" alt="" coords="113,37,245,125">
-<area shape="rect" id="node3" href="chapters.html" title="chapters" alt="" coords="636,201,789,289">
-<area shape="rect" id="node4" href="units.html" title="units" alt="" coords="425,199,564,345">
+<area shape="rect" id="node1" href="chapters.html" title="chapters" alt="" coords="1005,405,1159,493">
+<area shape="rect" id="node2" href="units.html" title="units" alt="" coords="788,403,927,549">
+<area shape="rect" id="node10" href="subjects.html" title="subjects" alt="" coords="367,331,716,605">
+<area shape="rect" id="node3" href="comments.html" title="comments" alt="" coords="999,92,1165,180">
+<area shape="rect" id="node4" href="posts.html" title="posts" alt="" coords="788,209,927,385">
+<area shape="rect" id="node5" href="users.html" title="users" alt="" coords="467,169,615,257">
+<area shape="rect" id="node6" href="districts.html" title="districts" alt="" coords="467,760,616,848">
+<area shape="rect" id="node7" href="regions.html" title="regions" alt="" coords="181,724,323,812">
+<area shape="rect" id="node9" href="states.html" title="states" alt="" coords="5,688,137,776">
+<area shape="rect" id="node8" href="news.html" title="news" alt="" coords="772,567,943,831">
+<area shape="rect" id="node11" href="users_subjects.html" title="users_subjects" alt="" coords="760,45,955,192">
 </map>
 
 					<a name='diagram'><img id='twodegreesDegreeImg' src='../diagrams/subjects.2degrees.png' usemap='#twoDegreesRelationshipsDiagram' class='diagram' border='0' alt='' align='left'></a>							

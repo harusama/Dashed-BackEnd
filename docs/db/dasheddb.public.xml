@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <database name="dasheddb" schema="public" type="PostgreSQL - 9.6.8">
    <tables>
-      <table name="answers" numRows="0" remarks="" schema="public" type="TABLE">
+      <table name="answers" numRows="16" remarks="" schema="public" type="TABLE">
          <column autoUpdated="true" defaultValue="nextval('answers_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial"/>
-         <column autoUpdated="false" digits="0" id="1" name="index" nullable="true" remarks="" size="10" type="int4"/>
-         <column autoUpdated="false" digits="0" id="2" name="text" nullable="true" remarks="" size="100" type="varchar"/>
-         <column autoUpdated="false" digits="0" id="3" name="question_id" nullable="true" remarks="" size="19" type="int8">
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="1" name="created_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="2" name="index" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="3" name="text" nullable="true" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="4" name="question_id" nullable="true" remarks="" size="19" type="int8">
             <parent column="id" foreignKey="answers_question_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="questions"/>
          </column>
          <primaryKey column="id" sequenceNumberInPK="1"/>
@@ -13,26 +14,41 @@
             <column ascending="true" name="id"/>
          </index>
       </table>
+      <table name="approvals" numRows="1" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('approvals_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial"/>
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="1" name="created_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="2" name="question_id" nullable="true" remarks="" size="19" type="int8">
+            <parent column="id" foreignKey="approvals_question_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="questions"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="3" name="user_id" nullable="true" remarks="" size="19" type="int8">
+            <parent column="id" foreignKey="approvals_user_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="users"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="approvals_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
       <table name="campus" numRows="4" remarks="" schema="public" type="TABLE">
          <column autoUpdated="true" defaultValue="nextval('campus_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial">
             <child column="campus_id" foreignKey="users_campus_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="users"/>
          </column>
-         <column autoUpdated="false" digits="0" id="1" name="number" nullable="false" remarks="" size="10" type="varchar"/>
-         <column autoUpdated="false" digits="0" id="2" name="name" nullable="true" remarks="" size="2147483647" type="text"/>
-         <column autoUpdated="false" digits="0" id="3" name="kind" nullable="true" remarks="" size="2147483647" type="text"/>
-         <column autoUpdated="false" digits="0" id="4" name="charter_type" nullable="true" remarks="" size="2147483647" type="text"/>
-         <column autoUpdated="false" digits="0" id="5" name="street" nullable="true" remarks="" size="2147483647" type="text"/>
-         <column autoUpdated="false" digits="0" id="6" name="city" nullable="true" remarks="" size="2147483647" type="text"/>
-         <column autoUpdated="false" digits="0" id="7" name="state" nullable="true" remarks="" size="2147483647" type="text"/>
-         <column autoUpdated="false" digits="0" id="8" name="zip" nullable="true" remarks="" size="2147483647" type="text"/>
-         <column autoUpdated="false" digits="0" id="9" name="phone" nullable="true" remarks="" size="2147483647" type="text"/>
-         <column autoUpdated="false" digits="0" id="10" name="fax" nullable="true" remarks="" size="2147483647" type="text"/>
-         <column autoUpdated="false" digits="0" id="11" name="email" nullable="true" remarks="" size="2147483647" type="text"/>
-         <column autoUpdated="false" digits="0" id="12" name="webpage" nullable="true" remarks="" size="2147483647" type="text"/>
-         <column autoUpdated="false" digits="0" id="13" name="principal" nullable="true" remarks="" size="2147483647" type="text"/>
-         <column autoUpdated="false" digits="0" id="14" name="grade_range" nullable="true" remarks="" size="2147483647" type="text"/>
-         <column autoUpdated="false" digits="0" id="15" name="enrollment" nullable="true" remarks="" size="2147483647" type="text"/>
-         <column autoUpdated="false" digits="0" id="16" name="district_id" nullable="true" remarks="" size="19" type="int8">
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="1" name="created_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="2" name="number" nullable="false" remarks="" size="10" type="varchar"/>
+         <column autoUpdated="false" defaultValue="''::text" digits="0" id="3" name="name" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" defaultValue="''::text" digits="0" id="4" name="kind" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" defaultValue="''::text" digits="0" id="5" name="charter_type" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" defaultValue="''::text" digits="0" id="6" name="street" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" defaultValue="''::text" digits="0" id="7" name="city" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" defaultValue="''::text" digits="0" id="8" name="state" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" defaultValue="''::text" digits="0" id="9" name="zip" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" defaultValue="''::text" digits="0" id="10" name="phone" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" defaultValue="''::text" digits="0" id="11" name="fax" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" defaultValue="''::text" digits="0" id="12" name="email" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" defaultValue="''::text" digits="0" id="13" name="webpage" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" defaultValue="''::text" digits="0" id="14" name="principal" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" defaultValue="''::text" digits="0" id="15" name="grade_range" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" defaultValue="''::text" digits="0" id="16" name="enrollment" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="17" name="district_id" nullable="true" remarks="" size="19" type="int8">
             <parent column="id" foreignKey="campus_district_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="districts"/>
          </column>
          <primaryKey column="id" sequenceNumberInPK="1"/>
@@ -47,10 +63,11 @@
          <column autoUpdated="true" defaultValue="nextval('chapters_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial">
             <child column="chapter_id" foreignKey="lessons_chapter_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="lessons"/>
          </column>
-         <column autoUpdated="false" defaultValue="0" digits="0" id="1" name="number" nullable="true" remarks="" size="10" type="int4"/>
-         <column autoUpdated="false" digits="0" id="2" name="name" nullable="true" remarks="" size="2147483647" type="text"/>
-         <column autoUpdated="false" digits="0" id="3" name="description" nullable="true" remarks="" size="2147483647" type="text"/>
-         <column autoUpdated="false" digits="0" id="4" name="unit_id" nullable="true" remarks="" size="19" type="int8">
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="1" name="created_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="2" name="number" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" defaultValue="''::text" digits="0" id="3" name="name" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" defaultValue="''::text" digits="0" id="4" name="description" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="5" name="unit_id" nullable="true" remarks="" size="19" type="int8">
             <parent column="id" foreignKey="chapters_unit_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="units"/>
          </column>
          <primaryKey column="id" sequenceNumberInPK="1"/>
@@ -58,23 +75,42 @@
             <column ascending="true" name="id"/>
          </index>
       </table>
+      <table name="comments" numRows="4" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('comments_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial"/>
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="1" name="created_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" defaultValue="''::text" digits="0" id="2" name="description" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="3" name="upvotes" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="4" name="downvotes" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="5" name="user_id" nullable="true" remarks="" size="19" type="int8">
+            <parent column="id" foreignKey="comments_user_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="users"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="6" name="post_id" nullable="true" remarks="" size="19" type="int8">
+            <parent column="id" foreignKey="comments_post_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="posts"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="comments_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
       <table name="districts" numRows="5" remarks="" schema="public" type="TABLE">
          <column autoUpdated="true" defaultValue="nextval('districts_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial">
             <child column="district_id" foreignKey="campus_district_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="campus"/>
+            <child column="district_id" foreignKey="news_district_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="news"/>
          </column>
-         <column autoUpdated="false" digits="0" id="1" name="number" nullable="false" remarks="" size="10" type="varchar"/>
-         <column autoUpdated="false" digits="0" id="2" name="name" nullable="true" remarks="" size="2147483647" type="text"/>
-         <column autoUpdated="false" digits="0" id="3" name="kind" nullable="true" remarks="" size="2147483647" type="text"/>
-         <column autoUpdated="false" digits="0" id="4" name="street" nullable="true" remarks="" size="2147483647" type="text"/>
-         <column autoUpdated="false" digits="0" id="5" name="city" nullable="true" remarks="" size="2147483647" type="text"/>
-         <column autoUpdated="false" digits="0" id="6" name="state" nullable="true" remarks="" size="2147483647" type="text"/>
-         <column autoUpdated="false" digits="0" id="7" name="zip" nullable="true" remarks="" size="2147483647" type="text"/>
-         <column autoUpdated="false" digits="0" id="8" name="phone" nullable="true" remarks="" size="2147483647" type="text"/>
-         <column autoUpdated="false" digits="0" id="9" name="fax" nullable="true" remarks="" size="2147483647" type="text"/>
-         <column autoUpdated="false" digits="0" id="10" name="email" nullable="true" remarks="" size="2147483647" type="text"/>
-         <column autoUpdated="false" digits="0" id="11" name="webpage" nullable="true" remarks="" size="2147483647" type="text"/>
-         <column autoUpdated="false" digits="0" id="12" name="superintendent" nullable="true" remarks="" size="2147483647" type="text"/>
-         <column autoUpdated="false" digits="0" id="13" name="region_id" nullable="true" remarks="" size="19" type="int8">
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="1" name="created_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="2" name="number" nullable="false" remarks="" size="10" type="varchar"/>
+         <column autoUpdated="false" defaultValue="''::text" digits="0" id="3" name="name" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" defaultValue="''::text" digits="0" id="4" name="kind" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" defaultValue="''::text" digits="0" id="5" name="street" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" defaultValue="''::text" digits="0" id="6" name="city" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" defaultValue="''::text" digits="0" id="7" name="state" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" defaultValue="''::text" digits="0" id="8" name="zip" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" defaultValue="''::text" digits="0" id="9" name="phone" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" defaultValue="''::text" digits="0" id="10" name="fax" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" defaultValue="''::text" digits="0" id="11" name="email" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" defaultValue="''::text" digits="0" id="12" name="webpage" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" defaultValue="''::text" digits="0" id="13" name="superintendent" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="14" name="region_id" nullable="true" remarks="" size="19" type="int8">
             <parent column="id" foreignKey="districts_region_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="regions"/>
          </column>
          <primaryKey column="id" sequenceNumberInPK="1"/>
@@ -85,10 +121,57 @@
             <column ascending="true" name="number"/>
          </index>
       </table>
+      <table name="errors" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('errors_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial"/>
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="1" name="created_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="2" name="kind" nullable="true" remarks="" size="2147483647" type="error_kind"/>
+         <column autoUpdated="false" defaultValue="''::text" digits="0" id="3" name="description" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="4" name="question_id" nullable="true" remarks="" size="19" type="int8">
+            <parent column="id" foreignKey="errors_question_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="questions"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="5" name="user_id" nullable="true" remarks="" size="19" type="int8">
+            <parent column="id" foreignKey="errors_user_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="users"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="errors_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="evaluation_questions" numRows="2" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('evaluation_questions_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial">
+            <child column="evaluation_question_id" foreignKey="evaluations_evaluation_question_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="evaluations"/>
+         </column>
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="1" name="created_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" defaultValue="''::text" digits="0" id="2" name="description" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="3" name="kind" nullable="true" remarks="" size="10" type="int4"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="evaluation_questions_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="evaluations" numRows="2" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('evaluations_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial"/>
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="1" name="created_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="2" name="score" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="3" name="question_id" nullable="true" remarks="" size="19" type="int8">
+            <parent column="id" foreignKey="evaluations_question_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="questions"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="4" name="user_id" nullable="true" remarks="" size="19" type="int8">
+            <parent column="id" foreignKey="evaluations_user_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="users"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="5" name="evaluation_question_id" nullable="true" remarks="" size="19" type="int8">
+            <parent column="id" foreignKey="evaluations_evaluation_question_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="evaluation_questions"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="evaluations_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
       <table name="hashes" numRows="0" remarks="" schema="public" type="TABLE">
          <column autoUpdated="true" defaultValue="nextval('hashes_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial"/>
-         <column autoUpdated="false" digits="0" id="1" name="hash" nullable="true" remarks="" size="2147483647" type="text"/>
-         <column autoUpdated="false" digits="0" id="2" name="user_id" nullable="true" remarks="" size="19" type="int8">
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="1" name="created_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" defaultValue="''::text" digits="0" id="2" name="hash" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="3" name="user_id" nullable="true" remarks="" size="19" type="int8">
             <parent column="id" foreignKey="hashes_user_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="users"/>
          </column>
          <primaryKey column="id" sequenceNumberInPK="1"/>
@@ -97,11 +180,15 @@
          </index>
       </table>
       <table name="lessons" numRows="36" remarks="" schema="public" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('lessons_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial"/>
-         <column autoUpdated="false" defaultValue="0" digits="0" id="1" name="number" nullable="true" remarks="" size="10" type="int4"/>
-         <column autoUpdated="false" digits="0" id="2" name="name" nullable="true" remarks="" size="2147483647" type="text"/>
-         <column autoUpdated="false" digits="0" id="3" name="description" nullable="true" remarks="" size="2147483647" type="text"/>
-         <column autoUpdated="false" digits="0" id="4" name="chapter_id" nullable="true" remarks="" size="19" type="int8">
+         <column autoUpdated="true" defaultValue="nextval('lessons_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial">
+            <child column="lesson_id" foreignKey="questions_lesson_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="questions"/>
+         </column>
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="1" name="created_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="2" name="number" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" defaultValue="''::text" digits="0" id="3" name="name" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" defaultValue="''::text" digits="0" id="4" name="description" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" defaultValue="''::text" digits="0" id="5" name="resource" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="6" name="chapter_id" nullable="true" remarks="" size="19" type="int8">
             <parent column="id" foreignKey="lessons_chapter_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="chapters"/>
          </column>
          <primaryKey column="id" sequenceNumberInPK="1"/>
@@ -109,19 +196,75 @@
             <column ascending="true" name="id"/>
          </index>
       </table>
-      <table name="questions" numRows="0" remarks="" schema="public" type="TABLE">
+      <table name="news" numRows="6" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('news_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial"/>
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="1" name="created_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" defaultValue="''::text" digits="0" id="2" name="name" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="3" name="kind" nullable="true" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" defaultValue="''::text" digits="0" id="4" name="resource" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" defaultValue="''::text" digits="0" id="5" name="date_published" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="6" name="user_id" nullable="true" remarks="" size="19" type="int8">
+            <parent column="id" foreignKey="news_user_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="users"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="7" name="subject_id" nullable="true" remarks="" size="19" type="int8">
+            <parent column="id" foreignKey="news_subject_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="subjects"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="8" name="state_id" nullable="true" remarks="" size="19" type="int8">
+            <parent column="id" foreignKey="news_state_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="states"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="9" name="region_id" nullable="true" remarks="" size="19" type="int8">
+            <parent column="id" foreignKey="news_region_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="regions"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="10" name="district_id" nullable="true" remarks="" size="19" type="int8">
+            <parent column="id" foreignKey="news_district_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="districts"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="news_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="posts" numRows="6" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('posts_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial">
+            <child column="post_id" foreignKey="comments_post_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="comments"/>
+         </column>
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="1" name="created_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" defaultValue="''::text" digits="0" id="2" name="title" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" defaultValue="''::text" digits="0" id="3" name="description" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="4" name="ranking" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" defaultValue="''::text" digits="0" id="5" name="resource" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="6" name="kind" nullable="true" remarks="" size="2147483647" type="post_kind"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="7" name="upvotes" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="8" name="downvotes" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="9" name="user_id" nullable="true" remarks="" size="19" type="int8">
+            <parent column="id" foreignKey="posts_user_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="users"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="10" name="subject_id" nullable="true" remarks="" size="19" type="int8">
+            <parent column="id" foreignKey="posts_subject_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="subjects"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="posts_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="questions" numRows="5" remarks="" schema="public" type="TABLE">
          <column autoUpdated="true" defaultValue="nextval('questions_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial">
             <child column="question_id" foreignKey="answers_question_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="answers"/>
+            <child column="question_id" foreignKey="approvals_question_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="approvals"/>
+            <child column="question_id" foreignKey="errors_question_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="errors"/>
+            <child column="question_id" foreignKey="evaluations_question_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="evaluations"/>
+            <child column="question_id" foreignKey="rejections_question_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="rejections"/>
          </column>
-         <column autoUpdated="false" digits="0" id="1" name="description_text" nullable="true" remarks="" size="100" type="varchar"/>
-         <column autoUpdated="false" digits="0" id="2" name="description_image" nullable="true" remarks="" size="100" type="varchar"/>
-         <column autoUpdated="false" digits="0" id="3" name="kind" nullable="true" remarks="" size="10" type="int4"/>
-         <column autoUpdated="false" defaultValue="0" digits="0" id="4" name="approved" nullable="true" remarks="" size="10" type="int4"/>
-         <column autoUpdated="false" digits="0" id="5" name="user_id" nullable="true" remarks="" size="19" type="int8">
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="1" name="created_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="2" name="description_text" nullable="true" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="3" name="description_image" nullable="true" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="4" name="kind" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" defaultValue="false" digits="0" id="5" name="approved" nullable="true" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="6" name="approved_times" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="7" name="user_id" nullable="true" remarks="" size="19" type="int8">
             <parent column="id" foreignKey="questions_user_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="users"/>
          </column>
-         <column autoUpdated="false" digits="0" id="6" name="subject_id" nullable="true" remarks="" size="19" type="int8">
-            <parent column="id" foreignKey="questions_subject_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="subjects"/>
+         <column autoUpdated="false" digits="0" id="8" name="lesson_id" nullable="true" remarks="" size="19" type="int8">
+            <parent column="id" foreignKey="questions_lesson_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="lessons"/>
          </column>
          <primaryKey column="id" sequenceNumberInPK="1"/>
          <index name="questions_pkey" unique="true">
@@ -131,10 +274,12 @@
       <table name="regions" numRows="4" remarks="" schema="public" type="TABLE">
          <column autoUpdated="true" defaultValue="nextval('regions_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial">
             <child column="region_id" foreignKey="districts_region_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="districts"/>
+            <child column="region_id" foreignKey="news_region_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="news"/>
          </column>
-         <column autoUpdated="false" digits="0" id="1" name="key" nullable="false" remarks="" size="10" type="varchar"/>
-         <column autoUpdated="false" digits="0" id="2" name="name" nullable="true" remarks="" size="2147483647" type="text"/>
-         <column autoUpdated="false" digits="0" id="3" name="state_id" nullable="true" remarks="" size="19" type="int8">
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="1" name="created_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="2" name="key" nullable="false" remarks="" size="10" type="varchar"/>
+         <column autoUpdated="false" defaultValue="''::text" digits="0" id="3" name="name" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="4" name="state_id" nullable="true" remarks="" size="19" type="int8">
             <parent column="id" foreignKey="regions_state_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="states"/>
          </column>
          <primaryKey column="id" sequenceNumberInPK="1"/>
@@ -145,12 +290,29 @@
             <column ascending="true" name="key"/>
          </index>
       </table>
+      <table name="rejections" numRows="1" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('rejections_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial"/>
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="1" name="created_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" defaultValue="''::text" digits="0" id="2" name="description" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="3" name="question_id" nullable="true" remarks="" size="19" type="int8">
+            <parent column="id" foreignKey="rejections_question_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="questions"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="4" name="user_id" nullable="true" remarks="" size="19" type="int8">
+            <parent column="id" foreignKey="rejections_user_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="users"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="rejections_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
       <table name="states" numRows="3" remarks="" schema="public" type="TABLE">
          <column autoUpdated="true" defaultValue="nextval('states_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial">
+            <child column="state_id" foreignKey="news_state_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="news"/>
             <child column="state_id" foreignKey="regions_state_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="regions"/>
          </column>
-         <column autoUpdated="false" digits="0" id="1" name="key" nullable="false" remarks="" size="10" type="varchar"/>
-         <column autoUpdated="false" digits="0" id="2" name="name" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="1" name="created_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="2" name="key" nullable="false" remarks="" size="10" type="varchar"/>
+         <column autoUpdated="false" defaultValue="''::text" digits="0" id="3" name="name" nullable="true" remarks="" size="2147483647" type="text"/>
          <primaryKey column="id" sequenceNumberInPK="1"/>
          <index name="states_pkey" unique="true">
             <column ascending="true" name="id"/>
@@ -161,14 +323,17 @@
       </table>
       <table name="subjects" numRows="5" remarks="" schema="public" type="TABLE">
          <column autoUpdated="true" defaultValue="nextval('subjects_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial">
-            <child column="subject_id" foreignKey="questions_subject_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="questions"/>
+            <child column="subject_id" foreignKey="news_subject_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="news"/>
+            <child column="subject_id" foreignKey="posts_subject_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="posts"/>
             <child column="subject_id" foreignKey="units_subject_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="units"/>
+            <child column="subject_id" foreignKey="users_subjects_subject_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="users_subjects"/>
          </column>
-         <column autoUpdated="false" digits="0" id="1" name="name" nullable="true" remarks="" size="100" type="varchar"/>
-         <column autoUpdated="false" digits="0" id="2" name="campus_type" nullable="true" remarks="" size="100" type="varchar"/>
-         <column autoUpdated="false" digits="0" id="3" name="general_topic" nullable="true" remarks="" size="100" type="varchar"/>
-         <column autoUpdated="false" digits="0" id="4" name="content_name" nullable="true" remarks="" size="100" type="varchar"/>
-         <column autoUpdated="false" digits="0" id="5" name="content_description" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="1" name="created_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="2" name="name" nullable="true" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="3" name="campus_type" nullable="true" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="4" name="general_topic" nullable="true" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="5" name="content_name" nullable="true" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" defaultValue="''::text" digits="0" id="6" name="content_description" nullable="true" remarks="" size="2147483647" type="text"/>
          <primaryKey column="id" sequenceNumberInPK="1"/>
          <index name="subjects_pkey" unique="true">
             <column ascending="true" name="id"/>
@@ -181,10 +346,11 @@
          <column autoUpdated="true" defaultValue="nextval('units_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial">
             <child column="unit_id" foreignKey="chapters_unit_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="chapters"/>
          </column>
-         <column autoUpdated="false" defaultValue="0" digits="0" id="1" name="number" nullable="true" remarks="" size="10" type="int4"/>
-         <column autoUpdated="false" digits="0" id="2" name="name" nullable="true" remarks="" size="2147483647" type="text"/>
-         <column autoUpdated="false" digits="0" id="3" name="description" nullable="true" remarks="" size="2147483647" type="text"/>
-         <column autoUpdated="false" digits="0" id="4" name="subject_id" nullable="true" remarks="" size="19" type="int8">
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="1" name="created_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="2" name="number" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" defaultValue="''::text" digits="0" id="3" name="name" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" defaultValue="''::text" digits="0" id="4" name="description" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="5" name="subject_id" nullable="true" remarks="" size="19" type="int8">
             <parent column="id" foreignKey="units_subject_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="subjects"/>
          </column>
          <primaryKey column="id" sequenceNumberInPK="1"/>
@@ -192,22 +358,32 @@
             <column ascending="true" name="id"/>
          </index>
       </table>
-      <table name="users" numRows="1" remarks="" schema="public" type="TABLE">
+      <table name="users" numRows="4" remarks="" schema="public" type="TABLE">
          <column autoUpdated="true" defaultValue="nextval('users_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial">
+            <child column="user_id" foreignKey="approvals_user_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="approvals"/>
+            <child column="user_id" foreignKey="comments_user_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="comments"/>
+            <child column="user_id" foreignKey="errors_user_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="errors"/>
+            <child column="user_id" foreignKey="evaluations_user_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="evaluations"/>
             <child column="user_id" foreignKey="hashes_user_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="hashes"/>
+            <child column="user_id" foreignKey="news_user_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="news"/>
+            <child column="user_id" foreignKey="posts_user_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="posts"/>
             <child column="user_id" foreignKey="questions_user_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="questions"/>
+            <child column="user_id" foreignKey="rejections_user_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="rejections"/>
+            <child column="user_id" foreignKey="users_subjects_user_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="users_subjects"/>
          </column>
-         <column autoUpdated="false" digits="0" id="1" name="first_name" nullable="true" remarks="" size="100" type="varchar"/>
-         <column autoUpdated="false" digits="0" id="2" name="last_name" nullable="true" remarks="" size="100" type="varchar"/>
-         <column autoUpdated="false" digits="0" id="3" name="username" nullable="true" remarks="" size="100" type="varchar"/>
-         <column autoUpdated="false" digits="0" id="4" name="email" nullable="true" remarks="" size="100" type="varchar"/>
-         <column autoUpdated="false" digits="0" id="5" name="password" nullable="true" remarks="" size="2147483647" type="text"/>
-         <column autoUpdated="false" defaultValue="false" digits="0" id="6" name="active" nullable="true" remarks="" size="1" type="bool"/>
-         <column autoUpdated="false" defaultValue="'other'::user_gender" digits="0" id="7" name="gender" nullable="false" remarks="" size="2147483647" type="user_gender"/>
-         <column autoUpdated="false" defaultValue="'teacher'::user_kind" digits="0" id="8" name="kind" nullable="false" remarks="" size="2147483647" type="user_kind"/>
-         <column autoUpdated="false" defaultValue="0" digits="0" id="9" name="experience" nullable="false" remarks="" size="10" type="int4"/>
-         <column autoUpdated="false" defaultValue="0" digits="0" id="10" name="coins" nullable="false" remarks="" size="10" type="int4"/>
-         <column autoUpdated="false" digits="0" id="11" name="campus_id" nullable="true" remarks="" size="19" type="int8">
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="1" name="created_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="2" name="first_name" nullable="true" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="3" name="last_name" nullable="true" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="4" name="username" nullable="true" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="5" name="email" nullable="true" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" defaultValue="''::text" digits="0" id="6" name="password" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" defaultValue="''::text" digits="0" id="7" name="token" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" defaultValue="false" digits="0" id="8" name="active" nullable="true" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" defaultValue="'other'::user_gender" digits="0" id="9" name="gender" nullable="false" remarks="" size="2147483647" type="user_gender"/>
+         <column autoUpdated="false" defaultValue="'teacher'::user_kind" digits="0" id="10" name="kind" nullable="false" remarks="" size="2147483647" type="user_kind"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="11" name="experience" nullable="false" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="12" name="coins" nullable="false" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="13" name="campus_id" nullable="true" remarks="" size="19" type="int8">
             <parent column="id" foreignKey="users_campus_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="campus"/>
          </column>
          <primaryKey column="id" sequenceNumberInPK="1"/>
@@ -216,6 +392,21 @@
          </index>
          <index name="users_email_key" unique="true">
             <column ascending="true" name="email"/>
+         </index>
+      </table>
+      <table name="users_subjects" numRows="3" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="0" name="created_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="1" name="user_id" nullable="false" remarks="" size="19" type="int8">
+            <parent column="id" foreignKey="users_subjects_user_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="users"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="subject_id" nullable="false" remarks="" size="19" type="int8">
+            <parent column="id" foreignKey="users_subjects_subject_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="subjects"/>
+         </column>
+         <primaryKey column="user_id" sequenceNumberInPK="1"/>
+         <primaryKey column="subject_id" sequenceNumberInPK="2"/>
+         <index name="users_subjects_pkey" unique="true">
+            <column ascending="true" name="user_id"/>
+            <column ascending="true" name="subject_id"/>
          </index>
       </table>
    </tables>

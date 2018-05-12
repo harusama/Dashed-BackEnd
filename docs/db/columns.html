@@ -107,9 +107,9 @@
 				</thead>
 				<tbody>
 					<tr>
-					 <td>campus</td>
+					 <td>errors</td>
 					 <td>Table</td>
-					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>district_id</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>user_id</td>
 					 <td>int8</td>
 					 <td>19</td>
 					 <td title='nullable'>√</td>
@@ -118,69 +118,36 @@
 					 <td></td>
 					</tr>
 					<tr>
-					 <td>answers</td>
+					 <td>rejections</td>
 					 <td>Table</td>
-					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>question_id</td>
-					 <td>int8</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id</td>
+					 <td>bigserial</td>
 					 <td>19</td>
-					 <td title='nullable'>√</td>
 					 <td title=''></td>
-					 <td>null</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>districts</td>
-					 <td>Table</td>
-					 <td>fax</td>
-					 <td>text</td>
-					 <td>2147483647</td>
-					 <td title='nullable'>√</td>
-					 <td title=''></td>
-					 <td>null</td>
+					 <td title='Automatically updated by the database'>√</td>
+					 <td>nextval(&#39;rejections_id_seq&#39;::regclass)</td>
 					 <td></td>
 					</tr>
 					<tr>
 					 <td>campus</td>
 					 <td>Table</td>
-					 <td>principal</td>
+					 <td>zip</td>
 					 <td>text</td>
 					 <td>2147483647</td>
 					 <td title='nullable'>√</td>
 					 <td title=''></td>
-					 <td>null</td>
+					 <td>&#39;&#39;::text</td>
 					 <td></td>
 					</tr>
 					<tr>
-					 <td>districts</td>
+					 <td>posts</td>
 					 <td>Table</td>
-					 <td>name</td>
+					 <td>resource</td>
 					 <td>text</td>
 					 <td>2147483647</td>
 					 <td title='nullable'>√</td>
 					 <td title=''></td>
-					 <td>null</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>units</td>
-					 <td>Table</td>
-					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>subject_id</td>
-					 <td>int8</td>
-					 <td>19</td>
-					 <td title='nullable'>√</td>
-					 <td title=''></td>
-					 <td>null</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>districts</td>
-					 <td>Table</td>
-					 <td>webpage</td>
-					 <td>text</td>
-					 <td>2147483647</td>
-					 <td title='nullable'>√</td>
-					 <td title=''></td>
-					 <td>null</td>
+					 <td>&#39;&#39;::text</td>
 					 <td></td>
 					</tr>
 					<tr>
@@ -191,13 +158,46 @@
 					 <td>2147483647</td>
 					 <td title='nullable'>√</td>
 					 <td title=''></td>
+					 <td>&#39;&#39;::text</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>news</td>
+					 <td>Table</td>
+					 <td>kind</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
 					 <td>null</td>
 					 <td></td>
 					</tr>
 					<tr>
-					 <td>lessons</td>
+					 <td>campus</td>
 					 <td>Table</td>
-					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>chapter_id</td>
+					 <td>city</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>&#39;&#39;::text</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>posts</td>
+					 <td>Table</td>
+					 <td>description</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>&#39;&#39;::text</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>questions</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>user_id</td>
 					 <td>int8</td>
 					 <td>19</td>
 					 <td title='nullable'>√</td>
@@ -206,14 +206,25 @@
 					 <td></td>
 					</tr>
 					<tr>
-					 <td>states</td>
+					 <td>news</td>
 					 <td>Table</td>
-					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id</td>
-					 <td>bigserial</td>
-					 <td>19</td>
+					 <td>date_published</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
 					 <td title=''></td>
-					 <td title='Automatically updated by the database'>√</td>
-					 <td>nextval(&#39;states_id_seq&#39;::regclass)</td>
+					 <td>&#39;&#39;::text</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>errors</td>
+					 <td>Table</td>
+					 <td>description</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>&#39;&#39;::text</td>
 					 <td></td>
 					</tr>
 					<tr>
@@ -228,425 +239,7 @@
 					 <td></td>
 					</tr>
 					<tr>
-					 <td>subjects</td>
-					 <td>Table</td>
-					 <td>general_topic</td>
-					 <td>varchar</td>
-					 <td>100</td>
-					 <td title='nullable'>√</td>
-					 <td title=''></td>
-					 <td>null</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>campus</td>
-					 <td>Table</td>
-					 <td>fax</td>
-					 <td>text</td>
-					 <td>2147483647</td>
-					 <td title='nullable'>√</td>
-					 <td title=''></td>
-					 <td>null</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>chapters</td>
-					 <td>Table</td>
-					 <td>description</td>
-					 <td>text</td>
-					 <td>2147483647</td>
-					 <td title='nullable'>√</td>
-					 <td title=''></td>
-					 <td>null</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>campus</td>
-					 <td>Table</td>
-					 <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>number</td>
-					 <td>varchar</td>
-					 <td>10</td>
-					 <td title=''></td>
-					 <td title=''></td>
-					 <td>null</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>chapters</td>
-					 <td>Table</td>
-					 <td>name</td>
-					 <td>text</td>
-					 <td>2147483647</td>
-					 <td title='nullable'>√</td>
-					 <td title=''></td>
-					 <td>null</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>questions</td>
-					 <td>Table</td>
-					 <td>description_text</td>
-					 <td>varchar</td>
-					 <td>100</td>
-					 <td title='nullable'>√</td>
-					 <td title=''></td>
-					 <td>null</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>regions</td>
-					 <td>Table</td>
-					 <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>key</td>
-					 <td>varchar</td>
-					 <td>10</td>
-					 <td title=''></td>
-					 <td title=''></td>
-					 <td>null</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>states</td>
-					 <td>Table</td>
-					 <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>key</td>
-					 <td>varchar</td>
-					 <td>10</td>
-					 <td title=''></td>
-					 <td title=''></td>
-					 <td>null</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>campus</td>
-					 <td>Table</td>
-					 <td>city</td>
-					 <td>text</td>
-					 <td>2147483647</td>
-					 <td title='nullable'>√</td>
-					 <td title=''></td>
-					 <td>null</td>
-					 <td></td>
-					</tr>
-					<tr>
 					 <td>units</td>
-					 <td>Table</td>
-					 <td>name</td>
-					 <td>text</td>
-					 <td>2147483647</td>
-					 <td title='nullable'>√</td>
-					 <td title=''></td>
-					 <td>null</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>questions</td>
-					 <td>Table</td>
-					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>user_id</td>
-					 <td>int8</td>
-					 <td>19</td>
-					 <td title='nullable'>√</td>
-					 <td title=''></td>
-					 <td>null</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>users</td>
-					 <td>Table</td>
-					 <td>kind</td>
-					 <td>user_kind</td>
-					 <td>2147483647</td>
-					 <td title=''></td>
-					 <td title=''></td>
-					 <td>&#39;teacher&#39;::user_kind</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>districts</td>
-					 <td>Table</td>
-					 <td>city</td>
-					 <td>text</td>
-					 <td>2147483647</td>
-					 <td title='nullable'>√</td>
-					 <td title=''></td>
-					 <td>null</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>chapters</td>
-					 <td>Table</td>
-					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>unit_id</td>
-					 <td>int8</td>
-					 <td>19</td>
-					 <td title='nullable'>√</td>
-					 <td title=''></td>
-					 <td>null</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>hashes</td>
-					 <td>Table</td>
-					 <td>hash</td>
-					 <td>text</td>
-					 <td>2147483647</td>
-					 <td title='nullable'>√</td>
-					 <td title=''></td>
-					 <td>null</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>lessons</td>
-					 <td>Table</td>
-					 <td>description</td>
-					 <td>text</td>
-					 <td>2147483647</td>
-					 <td title='nullable'>√</td>
-					 <td title=''></td>
-					 <td>null</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>users</td>
-					 <td>Table</td>
-					 <td>gender</td>
-					 <td>user_gender</td>
-					 <td>2147483647</td>
-					 <td title=''></td>
-					 <td title=''></td>
-					 <td>&#39;other&#39;::user_gender</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>questions</td>
-					 <td>Table</td>
-					 <td>approved</td>
-					 <td>int4</td>
-					 <td>10</td>
-					 <td title='nullable'>√</td>
-					 <td title=''></td>
-					 <td>0</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>campus</td>
-					 <td>Table</td>
-					 <td>street</td>
-					 <td>text</td>
-					 <td>2147483647</td>
-					 <td title='nullable'>√</td>
-					 <td title=''></td>
-					 <td>null</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>hashes</td>
-					 <td>Table</td>
-					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id</td>
-					 <td>bigserial</td>
-					 <td>19</td>
-					 <td title=''></td>
-					 <td title='Automatically updated by the database'>√</td>
-					 <td>nextval(&#39;hashes_id_seq&#39;::regclass)</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>answers</td>
-					 <td>Table</td>
-					 <td>index</td>
-					 <td>int4</td>
-					 <td>10</td>
-					 <td title='nullable'>√</td>
-					 <td title=''></td>
-					 <td>null</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>subjects</td>
-					 <td>Table</td>
-					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id</td>
-					 <td>bigserial</td>
-					 <td>19</td>
-					 <td title=''></td>
-					 <td title='Automatically updated by the database'>√</td>
-					 <td>nextval(&#39;subjects_id_seq&#39;::regclass)</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>answers</td>
-					 <td>Table</td>
-					 <td>text</td>
-					 <td>varchar</td>
-					 <td>100</td>
-					 <td title='nullable'>√</td>
-					 <td title=''></td>
-					 <td>null</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>users</td>
-					 <td>Table</td>
-					 <td>username</td>
-					 <td>varchar</td>
-					 <td>100</td>
-					 <td title='nullable'>√</td>
-					 <td title=''></td>
-					 <td>null</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>questions</td>
-					 <td>Table</td>
-					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id</td>
-					 <td>bigserial</td>
-					 <td>19</td>
-					 <td title=''></td>
-					 <td title='Automatically updated by the database'>√</td>
-					 <td>nextval(&#39;questions_id_seq&#39;::regclass)</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>lessons</td>
-					 <td>Table</td>
-					 <td>number</td>
-					 <td>int4</td>
-					 <td>10</td>
-					 <td title='nullable'>√</td>
-					 <td title=''></td>
-					 <td>0</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>answers</td>
-					 <td>Table</td>
-					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id</td>
-					 <td>bigserial</td>
-					 <td>19</td>
-					 <td title=''></td>
-					 <td title='Automatically updated by the database'>√</td>
-					 <td>nextval(&#39;answers_id_seq&#39;::regclass)</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>users</td>
-					 <td>Table</td>
-					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id</td>
-					 <td>bigserial</td>
-					 <td>19</td>
-					 <td title=''></td>
-					 <td title='Automatically updated by the database'>√</td>
-					 <td>nextval(&#39;users_id_seq&#39;::regclass)</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>users</td>
-					 <td>Table</td>
-					 <td>first_name</td>
-					 <td>varchar</td>
-					 <td>100</td>
-					 <td title='nullable'>√</td>
-					 <td title=''></td>
-					 <td>null</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>districts</td>
-					 <td>Table</td>
-					 <td>kind</td>
-					 <td>text</td>
-					 <td>2147483647</td>
-					 <td title='nullable'>√</td>
-					 <td title=''></td>
-					 <td>null</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>campus</td>
-					 <td>Table</td>
-					 <td>enrollment</td>
-					 <td>text</td>
-					 <td>2147483647</td>
-					 <td title='nullable'>√</td>
-					 <td title=''></td>
-					 <td>null</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>campus</td>
-					 <td>Table</td>
-					 <td>webpage</td>
-					 <td>text</td>
-					 <td>2147483647</td>
-					 <td title='nullable'>√</td>
-					 <td title=''></td>
-					 <td>null</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>users</td>
-					 <td>Table</td>
-					 <td>last_name</td>
-					 <td>varchar</td>
-					 <td>100</td>
-					 <td title='nullable'>√</td>
-					 <td title=''></td>
-					 <td>null</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>subjects</td>
-					 <td>Table</td>
-					 <td>campus_type</td>
-					 <td>varchar</td>
-					 <td>100</td>
-					 <td title='nullable'>√</td>
-					 <td title=''></td>
-					 <td>null</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>campus</td>
-					 <td>Table</td>
-					 <td>email</td>
-					 <td>text</td>
-					 <td>2147483647</td>
-					 <td title='nullable'>√</td>
-					 <td title=''></td>
-					 <td>null</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>subjects</td>
-					 <td>Table</td>
-					 <td>content_description</td>
-					 <td>text</td>
-					 <td>2147483647</td>
-					 <td title='nullable'>√</td>
-					 <td title=''></td>
-					 <td>null</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>districts</td>
-					 <td>Table</td>
-					 <td>email</td>
-					 <td>text</td>
-					 <td>2147483647</td>
-					 <td title='nullable'>√</td>
-					 <td title=''></td>
-					 <td>null</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>users</td>
-					 <td>Table</td>
-					 <td>experience</td>
-					 <td>int4</td>
-					 <td>10</td>
-					 <td title=''></td>
-					 <td title=''></td>
-					 <td>0</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>questions</td>
 					 <td>Table</td>
 					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>subject_id</td>
 					 <td>int8</td>
@@ -657,80 +250,25 @@
 					 <td></td>
 					</tr>
 					<tr>
-					 <td>districts</td>
-					 <td>Table</td>
-					 <td>zip</td>
-					 <td>text</td>
-					 <td>2147483647</td>
-					 <td title='nullable'>√</td>
-					 <td title=''></td>
-					 <td>null</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>hashes</td>
-					 <td>Table</td>
-					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>user_id</td>
-					 <td>int8</td>
-					 <td>19</td>
-					 <td title='nullable'>√</td>
-					 <td title=''></td>
-					 <td>null</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>campus</td>
+					 <td>chapters</td>
 					 <td>Table</td>
 					 <td>name</td>
 					 <td>text</td>
 					 <td>2147483647</td>
 					 <td title='nullable'>√</td>
 					 <td title=''></td>
-					 <td>null</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>districts</td>
-					 <td>Table</td>
-					 <td>state</td>
-					 <td>text</td>
-					 <td>2147483647</td>
-					 <td title='nullable'>√</td>
-					 <td title=''></td>
-					 <td>null</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>users</td>
-					 <td>Table</td>
-					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>campus_id</td>
-					 <td>int8</td>
-					 <td>19</td>
-					 <td title='nullable'>√</td>
-					 <td title=''></td>
-					 <td>null</td>
+					 <td>&#39;&#39;::text</td>
 					 <td></td>
 					</tr>
 					<tr>
 					 <td>questions</td>
 					 <td>Table</td>
-					 <td>description_image</td>
-					 <td>varchar</td>
-					 <td>100</td>
+					 <td>approved</td>
+					 <td>bool</td>
+					 <td>1</td>
 					 <td title='nullable'>√</td>
 					 <td title=''></td>
-					 <td>null</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>states</td>
-					 <td>Table</td>
-					 <td>name</td>
-					 <td>text</td>
-					 <td>2147483647</td>
-					 <td title='nullable'>√</td>
-					 <td title=''></td>
-					 <td>null</td>
+					 <td>false</td>
 					 <td></td>
 					</tr>
 					<tr>
@@ -745,146 +283,113 @@
 					 <td></td>
 					</tr>
 					<tr>
-					 <td>users</td>
+					 <td>approvals</td>
 					 <td>Table</td>
-					 <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>email</td>
-					 <td>varchar</td>
-					 <td>100</td>
-					 <td title='nullable'>√</td>
-					 <td title=''></td>
-					 <td>null</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>users</td>
-					 <td>Table</td>
-					 <td>password</td>
-					 <td>text</td>
-					 <td>2147483647</td>
-					 <td title='nullable'>√</td>
-					 <td title=''></td>
-					 <td>null</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>districts</td>
-					 <td>Table</td>
-					 <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>number</td>
-					 <td>varchar</td>
-					 <td>10</td>
+					 <td>created_at</td>
+					 <td>timestamptz</td>
+					 <td>35</td>
 					 <td title=''></td>
 					 <td title=''></td>
-					 <td>null</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>users</td>
-					 <td>Table</td>
-					 <td>active</td>
-					 <td>bool</td>
-					 <td>1</td>
-					 <td title='nullable'>√</td>
-					 <td title=''></td>
-					 <td>false</td>
+					 <td>now()</td>
 					 <td></td>
 					</tr>
 					<tr>
 					 <td>lessons</td>
 					 <td>Table</td>
-					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id</td>
-					 <td>bigserial</td>
-					 <td>19</td>
+					 <td>resource</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
 					 <td title=''></td>
-					 <td title='Automatically updated by the database'>√</td>
-					 <td>nextval(&#39;lessons_id_seq&#39;::regclass)</td>
+					 <td>&#39;&#39;::text</td>
 					 <td></td>
 					</tr>
 					<tr>
-					 <td>units</td>
+					 <td>evaluation_questions</td>
 					 <td>Table</td>
-					 <td>number</td>
+					 <td>kind</td>
 					 <td>int4</td>
 					 <td>10</td>
 					 <td title='nullable'>√</td>
 					 <td title=''></td>
-					 <td>0</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>campus</td>
-					 <td>Table</td>
-					 <td>grade_range</td>
-					 <td>text</td>
-					 <td>2147483647</td>
-					 <td title='nullable'>√</td>
-					 <td title=''></td>
 					 <td>null</td>
 					 <td></td>
 					</tr>
 					<tr>
-					 <td>regions</td>
+					 <td>posts</td>
 					 <td>Table</td>
-					 <td>name</td>
-					 <td>text</td>
+					 <td>kind</td>
+					 <td>post_kind</td>
 					 <td>2147483647</td>
 					 <td title='nullable'>√</td>
 					 <td title=''></td>
 					 <td>null</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>districts</td>
-					 <td>Table</td>
-					 <td>phone</td>
-					 <td>text</td>
-					 <td>2147483647</td>
-					 <td title='nullable'>√</td>
-					 <td title=''></td>
-					 <td>null</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>campus</td>
-					 <td>Table</td>
-					 <td>state</td>
-					 <td>text</td>
-					 <td>2147483647</td>
-					 <td title='nullable'>√</td>
-					 <td title=''></td>
-					 <td>null</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>districts</td>
-					 <td>Table</td>
-					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id</td>
-					 <td>bigserial</td>
-					 <td>19</td>
-					 <td title=''></td>
-					 <td title='Automatically updated by the database'>√</td>
-					 <td>nextval(&#39;districts_id_seq&#39;::regclass)</td>
 					 <td></td>
 					</tr>
 					<tr>
 					 <td>subjects</td>
 					 <td>Table</td>
-					 <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>name</td>
-					 <td>varchar</td>
-					 <td>100</td>
+					 <td>created_at</td>
+					 <td>timestamptz</td>
+					 <td>35</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>now()</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>comments</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id</td>
+					 <td>bigserial</td>
+					 <td>19</td>
+					 <td title=''></td>
+					 <td title='Automatically updated by the database'>√</td>
+					 <td>nextval(&#39;comments_id_seq&#39;::regclass)</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>comments</td>
+					 <td>Table</td>
+					 <td>created_at</td>
+					 <td>timestamptz</td>
+					 <td>35</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>now()</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>evaluations</td>
+					 <td>Table</td>
+					 <td>created_at</td>
+					 <td>timestamptz</td>
+					 <td>35</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>now()</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>news</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>user_id</td>
+					 <td>int8</td>
+					 <td>19</td>
 					 <td title='nullable'>√</td>
 					 <td title=''></td>
 					 <td>null</td>
 					 <td></td>
 					</tr>
 					<tr>
-					 <td>units</td>
+					 <td>comments</td>
 					 <td>Table</td>
-					 <td>description</td>
-					 <td>text</td>
-					 <td>2147483647</td>
+					 <td>downvotes</td>
+					 <td>int4</td>
+					 <td>10</td>
 					 <td title='nullable'>√</td>
 					 <td title=''></td>
-					 <td>null</td>
+					 <td>0</td>
 					 <td></td>
 					</tr>
 					<tr>
@@ -895,26 +400,15 @@
 					 <td>2147483647</td>
 					 <td title='nullable'>√</td>
 					 <td title=''></td>
-					 <td>null</td>
+					 <td>&#39;&#39;::text</td>
 					 <td></td>
 					</tr>
 					<tr>
-					 <td>campus</td>
+					 <td>users</td>
 					 <td>Table</td>
-					 <td>zip</td>
-					 <td>text</td>
-					 <td>2147483647</td>
-					 <td title='nullable'>√</td>
-					 <td title=''></td>
-					 <td>null</td>
-					 <td></td>
-					</tr>
-					<tr>
-					 <td>campus</td>
-					 <td>Table</td>
-					 <td>charter_type</td>
-					 <td>text</td>
-					 <td>2147483647</td>
+					 <td>username</td>
+					 <td>varchar</td>
+					 <td>100</td>
 					 <td title='nullable'>√</td>
 					 <td title=''></td>
 					 <td>null</td>
@@ -928,29 +422,128 @@
 					 <td>2147483647</td>
 					 <td title='nullable'>√</td>
 					 <td title=''></td>
+					 <td>&#39;&#39;::text</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>news</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>subject_id</td>
+					 <td>int8</td>
+					 <td>19</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
 					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>users</td>
+					 <td>Table</td>
+					 <td>first_name</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>posts</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>subject_id</td>
+					 <td>int8</td>
+					 <td>19</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>regions</td>
+					 <td>Table</td>
+					 <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>key</td>
+					 <td>varchar</td>
+					 <td>10</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>news</td>
+					 <td>Table</td>
+					 <td>name</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>&#39;&#39;::text</td>
 					 <td></td>
 					</tr>
 					<tr>
 					 <td>campus</td>
 					 <td>Table</td>
-					 <td>kind</td>
-					 <td>text</td>
-					 <td>2147483647</td>
+					 <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>number</td>
+					 <td>varchar</td>
+					 <td>10</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>evaluations</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>evaluation_question_id</td>
+					 <td>int8</td>
+					 <td>19</td>
 					 <td title='nullable'>√</td>
 					 <td title=''></td>
 					 <td>null</td>
 					 <td></td>
 					</tr>
 					<tr>
+					 <td>subjects</td>
+					 <td>Table</td>
+					 <td>content_description</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>&#39;&#39;::text</td>
+					 <td></td>
+					</tr>
+					<tr>
 					 <td>questions</td>
 					 <td>Table</td>
-					 <td>kind</td>
-					 <td>int4</td>
-					 <td>10</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>lesson_id</td>
+					 <td>int8</td>
+					 <td>19</td>
 					 <td title='nullable'>√</td>
 					 <td title=''></td>
 					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>regions</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>state_id</td>
+					 <td>int8</td>
+					 <td>19</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>districts</td>
+					 <td>Table</td>
+					 <td>fax</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>&#39;&#39;::text</td>
 					 <td></td>
 					</tr>
 					<tr>
@@ -961,13 +554,35 @@
 					 <td>2147483647</td>
 					 <td title='nullable'>√</td>
 					 <td title=''></td>
+					 <td>&#39;&#39;::text</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>chapters</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>unit_id</td>
+					 <td>int8</td>
+					 <td>19</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
 					 <td>null</td>
 					 <td></td>
 					</tr>
 					<tr>
-					 <td>regions</td>
+					 <td>approvals</td>
 					 <td>Table</td>
-					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>state_id</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>user_id</td>
+					 <td>int8</td>
+					 <td>19</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>campus</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>district_id</td>
 					 <td>int8</td>
 					 <td>19</td>
 					 <td title='nullable'>√</td>
@@ -987,9 +602,449 @@
 					 <td></td>
 					</tr>
 					<tr>
-					 <td>chapters</td>
+					 <td>lessons</td>
 					 <td>Table</td>
 					 <td>number</td>
+					 <td>int4</td>
+					 <td>10</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>0</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>units</td>
+					 <td>Table</td>
+					 <td>name</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>&#39;&#39;::text</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>districts</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id</td>
+					 <td>bigserial</td>
+					 <td>19</td>
+					 <td title=''></td>
+					 <td title='Automatically updated by the database'>√</td>
+					 <td>nextval(&#39;districts_id_seq&#39;::regclass)</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>posts</td>
+					 <td>Table</td>
+					 <td>downvotes</td>
+					 <td>int4</td>
+					 <td>10</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>0</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>approvals</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>question_id</td>
+					 <td>int8</td>
+					 <td>19</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>districts</td>
+					 <td>Table</td>
+					 <td>state</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>&#39;&#39;::text</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>subjects</td>
+					 <td>Table</td>
+					 <td>content_name</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>comments</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>user_id</td>
+					 <td>int8</td>
+					 <td>19</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>questions</td>
+					 <td>Table</td>
+					 <td>kind</td>
+					 <td>int4</td>
+					 <td>10</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>answers</td>
+					 <td>Table</td>
+					 <td>text</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>campus</td>
+					 <td>Table</td>
+					 <td>created_at</td>
+					 <td>timestamptz</td>
+					 <td>35</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>now()</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>questions</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id</td>
+					 <td>bigserial</td>
+					 <td>19</td>
+					 <td title=''></td>
+					 <td title='Automatically updated by the database'>√</td>
+					 <td>nextval(&#39;questions_id_seq&#39;::regclass)</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>users</td>
+					 <td>Table</td>
+					 <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>email</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>evaluation_questions</td>
+					 <td>Table</td>
+					 <td>description</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>&#39;&#39;::text</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>approvals</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id</td>
+					 <td>bigserial</td>
+					 <td>19</td>
+					 <td title=''></td>
+					 <td title='Automatically updated by the database'>√</td>
+					 <td>nextval(&#39;approvals_id_seq&#39;::regclass)</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>answers</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id</td>
+					 <td>bigserial</td>
+					 <td>19</td>
+					 <td title=''></td>
+					 <td title='Automatically updated by the database'>√</td>
+					 <td>nextval(&#39;answers_id_seq&#39;::regclass)</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>campus</td>
+					 <td>Table</td>
+					 <td>webpage</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>&#39;&#39;::text</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>posts</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>user_id</td>
+					 <td>int8</td>
+					 <td>19</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>users_subjects</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>user_id</td>
+					 <td>int8</td>
+					 <td>19</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>campus</td>
+					 <td>Table</td>
+					 <td>charter_type</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>&#39;&#39;::text</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>districts</td>
+					 <td>Table</td>
+					 <td>email</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>&#39;&#39;::text</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>districts</td>
+					 <td>Table</td>
+					 <td>city</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>&#39;&#39;::text</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>errors</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>question_id</td>
+					 <td>int8</td>
+					 <td>19</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>comments</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>post_id</td>
+					 <td>int8</td>
+					 <td>19</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>questions</td>
+					 <td>Table</td>
+					 <td>created_at</td>
+					 <td>timestamptz</td>
+					 <td>35</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>now()</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>posts</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id</td>
+					 <td>bigserial</td>
+					 <td>19</td>
+					 <td title=''></td>
+					 <td title='Automatically updated by the database'>√</td>
+					 <td>nextval(&#39;posts_id_seq&#39;::regclass)</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>evaluation_questions</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id</td>
+					 <td>bigserial</td>
+					 <td>19</td>
+					 <td title=''></td>
+					 <td title='Automatically updated by the database'>√</td>
+					 <td>nextval(&#39;evaluation_questions_id_seq&#39;::regclass)</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>news</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>state_id</td>
+					 <td>int8</td>
+					 <td>19</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>users</td>
+					 <td>Table</td>
+					 <td>password</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>&#39;&#39;::text</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>chapters</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id</td>
+					 <td>bigserial</td>
+					 <td>19</td>
+					 <td title=''></td>
+					 <td title='Automatically updated by the database'>√</td>
+					 <td>nextval(&#39;chapters_id_seq&#39;::regclass)</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>units</td>
+					 <td>Table</td>
+					 <td>number</td>
+					 <td>int4</td>
+					 <td>10</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>0</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>regions</td>
+					 <td>Table</td>
+					 <td>created_at</td>
+					 <td>timestamptz</td>
+					 <td>35</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>now()</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>questions</td>
+					 <td>Table</td>
+					 <td>description_image</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>evaluations</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>user_id</td>
+					 <td>int8</td>
+					 <td>19</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>districts</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>region_id</td>
+					 <td>int8</td>
+					 <td>19</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>hashes</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id</td>
+					 <td>bigserial</td>
+					 <td>19</td>
+					 <td title=''></td>
+					 <td title='Automatically updated by the database'>√</td>
+					 <td>nextval(&#39;hashes_id_seq&#39;::regclass)</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>states</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id</td>
+					 <td>bigserial</td>
+					 <td>19</td>
+					 <td title=''></td>
+					 <td title='Automatically updated by the database'>√</td>
+					 <td>nextval(&#39;states_id_seq&#39;::regclass)</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>units</td>
+					 <td>Table</td>
+					 <td>created_at</td>
+					 <td>timestamptz</td>
+					 <td>35</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>now()</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>users_subjects</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>subject_id</td>
+					 <td>int8</td>
+					 <td>19</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>evaluation_questions</td>
+					 <td>Table</td>
+					 <td>created_at</td>
+					 <td>timestamptz</td>
+					 <td>35</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>now()</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>questions</td>
+					 <td>Table</td>
+					 <td>approved_times</td>
 					 <td>int4</td>
 					 <td>10</td>
 					 <td title='nullable'>√</td>
@@ -1009,9 +1064,86 @@
 					 <td></td>
 					</tr>
 					<tr>
-					 <td>subjects</td>
+					 <td>districts</td>
 					 <td>Table</td>
-					 <td>content_name</td>
+					 <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>number</td>
+					 <td>varchar</td>
+					 <td>10</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>campus</td>
+					 <td>Table</td>
+					 <td>enrollment</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>&#39;&#39;::text</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>comments</td>
+					 <td>Table</td>
+					 <td>description</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>&#39;&#39;::text</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>states</td>
+					 <td>Table</td>
+					 <td>name</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>&#39;&#39;::text</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>errors</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id</td>
+					 <td>bigserial</td>
+					 <td>19</td>
+					 <td title=''></td>
+					 <td title='Automatically updated by the database'>√</td>
+					 <td>nextval(&#39;errors_id_seq&#39;::regclass)</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>campus</td>
+					 <td>Table</td>
+					 <td>fax</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>&#39;&#39;::text</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>districts</td>
+					 <td>Table</td>
+					 <td>phone</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>&#39;&#39;::text</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>users</td>
+					 <td>Table</td>
+					 <td>last_name</td>
 					 <td>varchar</td>
 					 <td>100</td>
 					 <td title='nullable'>√</td>
@@ -1020,18 +1152,205 @@
 					 <td></td>
 					</tr>
 					<tr>
-					 <td>chapters</td>
+					 <td>users_subjects</td>
 					 <td>Table</td>
-					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id</td>
-					 <td>bigserial</td>
-					 <td>19</td>
+					 <td>created_at</td>
+					 <td>timestamptz</td>
+					 <td>35</td>
 					 <td title=''></td>
-					 <td title='Automatically updated by the database'>√</td>
-					 <td>nextval(&#39;chapters_id_seq&#39;::regclass)</td>
+					 <td title=''></td>
+					 <td>now()</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>campus</td>
+					 <td>Table</td>
+					 <td>state</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>&#39;&#39;::text</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>hashes</td>
+					 <td>Table</td>
+					 <td>hash</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>&#39;&#39;::text</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>errors</td>
+					 <td>Table</td>
+					 <td>kind</td>
+					 <td>error_kind</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
 					 <td></td>
 					</tr>
 					<tr>
 					 <td>districts</td>
+					 <td>Table</td>
+					 <td>created_at</td>
+					 <td>timestamptz</td>
+					 <td>35</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>now()</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>news</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>district_id</td>
+					 <td>int8</td>
+					 <td>19</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>rejections</td>
+					 <td>Table</td>
+					 <td>description</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>&#39;&#39;::text</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>districts</td>
+					 <td>Table</td>
+					 <td>zip</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>&#39;&#39;::text</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>users</td>
+					 <td>Table</td>
+					 <td>gender</td>
+					 <td>user_gender</td>
+					 <td>2147483647</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>&#39;other&#39;::user_gender</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>hashes</td>
+					 <td>Table</td>
+					 <td>created_at</td>
+					 <td>timestamptz</td>
+					 <td>35</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>now()</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>campus</td>
+					 <td>Table</td>
+					 <td>kind</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>&#39;&#39;::text</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>campus</td>
+					 <td>Table</td>
+					 <td>name</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>&#39;&#39;::text</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>users</td>
+					 <td>Table</td>
+					 <td>kind</td>
+					 <td>user_kind</td>
+					 <td>2147483647</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>&#39;teacher&#39;::user_kind</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>news</td>
+					 <td>Table</td>
+					 <td>created_at</td>
+					 <td>timestamptz</td>
+					 <td>35</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>now()</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>districts</td>
+					 <td>Table</td>
+					 <td>name</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>&#39;&#39;::text</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>districts</td>
+					 <td>Table</td>
+					 <td>webpage</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>&#39;&#39;::text</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>units</td>
+					 <td>Table</td>
+					 <td>description</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>&#39;&#39;::text</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>subjects</td>
+					 <td>Table</td>
+					 <td>general_topic</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>news</td>
 					 <td>Table</td>
 					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>region_id</td>
 					 <td>int8</td>
@@ -1039,6 +1358,479 @@
 					 <td title='nullable'>√</td>
 					 <td title=''></td>
 					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>users</td>
+					 <td>Table</td>
+					 <td>created_at</td>
+					 <td>timestamptz</td>
+					 <td>35</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>now()</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>lessons</td>
+					 <td>Table</td>
+					 <td>description</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>&#39;&#39;::text</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>news</td>
+					 <td>Table</td>
+					 <td>resource</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>&#39;&#39;::text</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>users</td>
+					 <td>Table</td>
+					 <td>active</td>
+					 <td>bool</td>
+					 <td>1</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>false</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>posts</td>
+					 <td>Table</td>
+					 <td>title</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>&#39;&#39;::text</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>chapters</td>
+					 <td>Table</td>
+					 <td>number</td>
+					 <td>int4</td>
+					 <td>10</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>0</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>answers</td>
+					 <td>Table</td>
+					 <td>created_at</td>
+					 <td>timestamptz</td>
+					 <td>35</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>now()</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>posts</td>
+					 <td>Table</td>
+					 <td>created_at</td>
+					 <td>timestamptz</td>
+					 <td>35</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>now()</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>comments</td>
+					 <td>Table</td>
+					 <td>upvotes</td>
+					 <td>int4</td>
+					 <td>10</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>0</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>rejections</td>
+					 <td>Table</td>
+					 <td>created_at</td>
+					 <td>timestamptz</td>
+					 <td>35</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>now()</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>users</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id</td>
+					 <td>bigserial</td>
+					 <td>19</td>
+					 <td title=''></td>
+					 <td title='Automatically updated by the database'>√</td>
+					 <td>nextval(&#39;users_id_seq&#39;::regclass)</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>campus</td>
+					 <td>Table</td>
+					 <td>grade_range</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>&#39;&#39;::text</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>users</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>campus_id</td>
+					 <td>int8</td>
+					 <td>19</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>subjects</td>
+					 <td>Table</td>
+					 <td>campus_type</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>subjects</td>
+					 <td>Table</td>
+					 <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>name</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>rejections</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>user_id</td>
+					 <td>int8</td>
+					 <td>19</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>answers</td>
+					 <td>Table</td>
+					 <td>index</td>
+					 <td>int4</td>
+					 <td>10</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>errors</td>
+					 <td>Table</td>
+					 <td>created_at</td>
+					 <td>timestamptz</td>
+					 <td>35</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>now()</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>evaluations</td>
+					 <td>Table</td>
+					 <td>score</td>
+					 <td>int4</td>
+					 <td>10</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>0</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>subjects</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id</td>
+					 <td>bigserial</td>
+					 <td>19</td>
+					 <td title=''></td>
+					 <td title='Automatically updated by the database'>√</td>
+					 <td>nextval(&#39;subjects_id_seq&#39;::regclass)</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>lessons</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>chapter_id</td>
+					 <td>int8</td>
+					 <td>19</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>users</td>
+					 <td>Table</td>
+					 <td>token</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>&#39;&#39;::text</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>states</td>
+					 <td>Table</td>
+					 <td>created_at</td>
+					 <td>timestamptz</td>
+					 <td>35</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>now()</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>districts</td>
+					 <td>Table</td>
+					 <td>kind</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>&#39;&#39;::text</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>campus</td>
+					 <td>Table</td>
+					 <td>street</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>&#39;&#39;::text</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>states</td>
+					 <td>Table</td>
+					 <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>key</td>
+					 <td>varchar</td>
+					 <td>10</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>answers</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>question_id</td>
+					 <td>int8</td>
+					 <td>19</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>chapters</td>
+					 <td>Table</td>
+					 <td>created_at</td>
+					 <td>timestamptz</td>
+					 <td>35</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>now()</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>lessons</td>
+					 <td>Table</td>
+					 <td>created_at</td>
+					 <td>timestamptz</td>
+					 <td>35</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>now()</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>users</td>
+					 <td>Table</td>
+					 <td>experience</td>
+					 <td>int4</td>
+					 <td>10</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>0</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>posts</td>
+					 <td>Table</td>
+					 <td>ranking</td>
+					 <td>int4</td>
+					 <td>10</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>0</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>chapters</td>
+					 <td>Table</td>
+					 <td>description</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>&#39;&#39;::text</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>evaluations</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>question_id</td>
+					 <td>int8</td>
+					 <td>19</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>campus</td>
+					 <td>Table</td>
+					 <td>principal</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>&#39;&#39;::text</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>lessons</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id</td>
+					 <td>bigserial</td>
+					 <td>19</td>
+					 <td title=''></td>
+					 <td title='Automatically updated by the database'>√</td>
+					 <td>nextval(&#39;lessons_id_seq&#39;::regclass)</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>campus</td>
+					 <td>Table</td>
+					 <td>email</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>&#39;&#39;::text</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>hashes</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>user_id</td>
+					 <td>int8</td>
+					 <td>19</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>news</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id</td>
+					 <td>bigserial</td>
+					 <td>19</td>
+					 <td title=''></td>
+					 <td title='Automatically updated by the database'>√</td>
+					 <td>nextval(&#39;news_id_seq&#39;::regclass)</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>regions</td>
+					 <td>Table</td>
+					 <td>name</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>&#39;&#39;::text</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>questions</td>
+					 <td>Table</td>
+					 <td>description_text</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>rejections</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>question_id</td>
+					 <td>int8</td>
+					 <td>19</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>posts</td>
+					 <td>Table</td>
+					 <td>upvotes</td>
+					 <td>int4</td>
+					 <td>10</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>0</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>evaluations</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id</td>
+					 <td>bigserial</td>
+					 <td>19</td>
+					 <td title=''></td>
+					 <td title='Automatically updated by the database'>√</td>
+					 <td>nextval(&#39;evaluations_id_seq&#39;::regclass)</td>
 					 <td></td>
 					</tr>
 								</tbody>

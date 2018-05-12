@@ -128,6 +128,55 @@
 						answers_question_id_fkey <span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span>
 					</td>
 				   </tr>
+				   <tr>
+					<td title="approvals.question_id references questions.id via approvals_question_id_fkey">
+						<a href='approvals.html'>approvals</a><span class='relatedKey'>.question_id</span>
+					</td>
+					<td class="constraint detail">
+						approvals_question_id_fkey <span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span>
+					</td>
+				   </tr>
+				   <tr>
+					<td title="errors.question_id references questions.id via errors_question_id_fkey">
+						<a href='errors.html'>errors</a><span class='relatedKey'>.question_id</span>
+					</td>
+					<td class="constraint detail">
+						errors_question_id_fkey <span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span>
+					</td>
+				   </tr>
+				   <tr>
+					<td title="evaluations.question_id references questions.id via evaluations_question_id_fkey">
+						<a href='evaluations.html'>evaluations</a><span class='relatedKey'>.question_id</span>
+					</td>
+					<td class="constraint detail">
+						evaluations_question_id_fkey <span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span>
+					</td>
+				   </tr>
+				   <tr>
+					<td title="rejections.question_id references questions.id via rejections_question_id_fkey">
+						<a href='rejections.html'>rejections</a><span class='relatedKey'>.question_id</span>
+					</td>
+					<td class="constraint detail">
+						rejections_question_id_fkey <span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span>
+					</td>
+				   </tr>
+				  </table>				 
+				 </td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>					 
+				 </td>
+				 <td></td>
+				</tr>
+				<tr>
+				 <td><span id="created_at">created_at</span></td>
+				 <td>timestamptz</td>
+				 <td>35,6</td>
+				 <td title=''></td>
+				 <td title=''></td>
+				 <td>now()</td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
 				  </table>				 
 				 </td>
 				 <td>
@@ -189,6 +238,23 @@
 				</tr>
 				<tr>
 				 <td><span id="approved">approved</span></td>
+				 <td>bool</td>
+				 <td>1</td>
+				 <td title='nullable'>√</td>
+				 <td title=''></td>
+				 <td>false</td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>				 
+				 </td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>					 
+				 </td>
+				 <td></td>
+				</tr>
+				<tr>
+				 <td><span id="approved_times">approved_times</span></td>
 				 <td>int4</td>
 				 <td>10</td>
 				 <td title='nullable'>√</td>
@@ -230,7 +296,7 @@
 				 <td></td>
 				</tr>
 				<tr>
-				 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="subject_id">subject_id</span></td>
+				 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="lesson_id">lesson_id</span></td>
 				 <td>int8</td>
 				 <td>19</td>
 				 <td title='nullable'>√</td>
@@ -243,11 +309,11 @@
 				 <td>
 				  <table border='0' cellspacing='0' cellpadding='0'>
 				   <tr>
-					<td title="questions.subject_id references subjects.id via questions_subject_id_fkey">
-						<a href='subjects.html'>subjects</a><span class='relatedKey'>.id</span>
+					<td title="questions.lesson_id references lessons.id via questions_lesson_id_fkey">
+						<a href='lessons.html'>lessons</a><span class='relatedKey'>.id</span>
 					</td>
 					<td class="constraint detail">
-						questions_subject_id_fkey <span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span>
+						questions_lesson_id_fkey <span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span>
 					</td>
 				   </tr>
 				  </table>					 
@@ -256,7 +322,7 @@
 				</tr>
 								</tbody>
 				</table>
-				<p title='7 columns'>Table contained <span id="recordNumber">0</span> rows<p/>
+				<p title='9 columns'>Table contained <span id="recordNumber">5</span> rows<p/>
 			</div>
 		</div>
 		<div class="box box-primary">		
@@ -315,23 +381,36 @@
             <div class="tab-content no-padding">            
 				<div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">					
 					<map id="oneDegreeRelationshipsDiagram" name="oneDegreeRelationshipsDiagram">
-<area shape="rect" id="node1" href="answers.html" title="answers" alt="" coords="599,5,747,152">
-<area shape="rect" id="node2" href="questions.html" title="questions" alt="" coords="257,32,555,307">
-<area shape="rect" id="node3" href="subjects.html" title="subjects" alt="" coords="5,292,213,439">
-<area shape="rect" id="node4" href="users.html" title="users" alt="" coords="41,99,178,275">
+<area shape="rect" id="node1" href="answers.html" title="answers" alt="" coords="619,199,767,345">
+<area shape="rect" id="node2" href="questions.html" title="questions" alt="" coords="197,268,533,601">
+<area shape="rect" id="node4" href="users.html" title="users" alt="" coords="5,597,153,773">
+<area shape="rect" id="node7" href="lessons.html" title="lessons" alt="" coords="5,433,153,580">
+<area shape="rect" id="node3" href="approvals.html" title="approvals" alt="" coords="613,5,774,181">
+<area shape="rect" id="node5" href="errors.html" title="errors" alt="" coords="623,363,763,539">
+<area shape="rect" id="node6" href="evaluations.html" title="evaluations" alt="" coords="577,556,809,761">
+<area shape="rect" id="node8" href="rejections.html" title="rejections" alt="" coords="612,779,775,955">
 </map>
 
 					<a name='diagram'><img id='oneDegreeImg' src='../diagrams/questions.1degree.png' usemap='#oneDegreeRelationshipsDiagram' class='diagram' border='0' alt='' align='left'></a>							
 				</div>
 				<div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">					
 					<map id="twoDegreesRelationshipsDiagram" name="twoDegreesRelationshipsDiagram">
-<area shape="rect" id="node1" href="answers.html" title="answers" alt="" coords="788,84,936,231">
-<area shape="rect" id="node2" href="questions.html" title="questions" alt="" coords="447,111,744,385">
-<area shape="rect" id="node4" href="users.html" title="users" alt="" coords="230,77,367,253">
-<area shape="rect" id="node5" href="subjects.html" title="subjects" alt="" coords="195,345,403,492">
-<area shape="rect" id="node3" href="hashes.html" title="hashes" alt="" coords="526,5,665,93">
-<area shape="rect" id="node7" href="campus.html" title="campus" alt="" coords="5,139,151,227">
-<area shape="rect" id="node6" href="units.html" title="units" alt="" coords="526,403,665,491">
+<area shape="rect" id="node1" href="answers.html" title="answers" alt="" coords="817,199,965,345">
+<area shape="rect" id="node2" href="questions.html" title="questions" alt="" coords="395,192,731,525">
+<area shape="rect" id="node4" href="users.html" title="users" alt="" coords="203,716,351,892">
+<area shape="rect" id="node11" href="lessons.html" title="lessons" alt="" coords="203,429,351,576">
+<area shape="rect" id="node3" href="approvals.html" title="approvals" alt="" coords="810,5,971,181">
+<area shape="rect" id="node15" href="campus.html" title="campus" alt="" coords="9,777,155,865">
+<area shape="rect" id="node5" href="comments.html" title="comments" alt="" coords="807,1071,974,1159">
+<area shape="rect" id="node6" href="posts.html" title="posts" alt="" coords="493,1108,632,1196">
+<area shape="rect" id="node7" href="errors.html" title="errors" alt="" coords="821,363,961,539">
+<area shape="rect" id="node8" href="evaluations.html" title="evaluations" alt="" coords="775,749,1007,955">
+<area shape="rect" id="node9" href="evaluation_questions.html" title="evaluation_questions" alt="" coords="439,861,687,949">
+<area shape="rect" id="node10" href="hashes.html" title="hashes" alt="" coords="493,579,632,667">
+<area shape="rect" id="node12" href="chapters.html" title="chapters" alt="" coords="5,461,159,549">
+<area shape="rect" id="node13" href="news.html" title="news" alt="" coords="500,684,625,772">
+<area shape="rect" id="node14" href="rejections.html" title="rejections" alt="" coords="809,556,972,732">
+<area shape="rect" id="node16" href="users_subjects.html" title="users_subjects" alt="" coords="465,967,660,1055">
 </map>
 
 					<a name='diagram'><img id='twodegreesDegreeImg' src='../diagrams/questions.2degrees.png' usemap='#twoDegreesRelationshipsDiagram' class='diagram' border='0' alt='' align='left'></a>							

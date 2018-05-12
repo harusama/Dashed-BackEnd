@@ -128,6 +128,31 @@
 						campus_district_id_fkey <span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span>
 					</td>
 				   </tr>
+				   <tr>
+					<td title="news.district_id references districts.id via news_district_id_fkey">
+						<a href='news.html'>news</a><span class='relatedKey'>.district_id</span>
+					</td>
+					<td class="constraint detail">
+						news_district_id_fkey <span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span>
+					</td>
+				   </tr>
+				  </table>				 
+				 </td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
+				  </table>					 
+				 </td>
+				 <td></td>
+				</tr>
+				<tr>
+				 <td><span id="created_at">created_at</span></td>
+				 <td>timestamptz</td>
+				 <td>35,6</td>
+				 <td title=''></td>
+				 <td title=''></td>
+				 <td>now()</td>
+				 <td>
+				  <table border='0' cellspacing='0' cellpadding='0'>
 				  </table>				 
 				 </td>
 				 <td>
@@ -159,7 +184,7 @@
 				 <td>2147483647</td>
 				 <td title='nullable'>√</td>
 				 <td title=''></td>
-				 <td>null</td>
+				 <td>&#39;&#39;::text</td>
 				 <td>
 				  <table border='0' cellspacing='0' cellpadding='0'>
 				  </table>				 
@@ -176,7 +201,7 @@
 				 <td>2147483647</td>
 				 <td title='nullable'>√</td>
 				 <td title=''></td>
-				 <td>null</td>
+				 <td>&#39;&#39;::text</td>
 				 <td>
 				  <table border='0' cellspacing='0' cellpadding='0'>
 				  </table>				 
@@ -193,7 +218,7 @@
 				 <td>2147483647</td>
 				 <td title='nullable'>√</td>
 				 <td title=''></td>
-				 <td>null</td>
+				 <td>&#39;&#39;::text</td>
 				 <td>
 				  <table border='0' cellspacing='0' cellpadding='0'>
 				  </table>				 
@@ -210,7 +235,7 @@
 				 <td>2147483647</td>
 				 <td title='nullable'>√</td>
 				 <td title=''></td>
-				 <td>null</td>
+				 <td>&#39;&#39;::text</td>
 				 <td>
 				  <table border='0' cellspacing='0' cellpadding='0'>
 				  </table>				 
@@ -227,7 +252,7 @@
 				 <td>2147483647</td>
 				 <td title='nullable'>√</td>
 				 <td title=''></td>
-				 <td>null</td>
+				 <td>&#39;&#39;::text</td>
 				 <td>
 				  <table border='0' cellspacing='0' cellpadding='0'>
 				  </table>				 
@@ -244,7 +269,7 @@
 				 <td>2147483647</td>
 				 <td title='nullable'>√</td>
 				 <td title=''></td>
-				 <td>null</td>
+				 <td>&#39;&#39;::text</td>
 				 <td>
 				  <table border='0' cellspacing='0' cellpadding='0'>
 				  </table>				 
@@ -261,7 +286,7 @@
 				 <td>2147483647</td>
 				 <td title='nullable'>√</td>
 				 <td title=''></td>
-				 <td>null</td>
+				 <td>&#39;&#39;::text</td>
 				 <td>
 				  <table border='0' cellspacing='0' cellpadding='0'>
 				  </table>				 
@@ -278,7 +303,7 @@
 				 <td>2147483647</td>
 				 <td title='nullable'>√</td>
 				 <td title=''></td>
-				 <td>null</td>
+				 <td>&#39;&#39;::text</td>
 				 <td>
 				  <table border='0' cellspacing='0' cellpadding='0'>
 				  </table>				 
@@ -295,7 +320,7 @@
 				 <td>2147483647</td>
 				 <td title='nullable'>√</td>
 				 <td title=''></td>
-				 <td>null</td>
+				 <td>&#39;&#39;::text</td>
 				 <td>
 				  <table border='0' cellspacing='0' cellpadding='0'>
 				  </table>				 
@@ -312,7 +337,7 @@
 				 <td>2147483647</td>
 				 <td title='nullable'>√</td>
 				 <td title=''></td>
-				 <td>null</td>
+				 <td>&#39;&#39;::text</td>
 				 <td>
 				  <table border='0' cellspacing='0' cellpadding='0'>
 				  </table>				 
@@ -329,7 +354,7 @@
 				 <td>2147483647</td>
 				 <td title='nullable'>√</td>
 				 <td title=''></td>
-				 <td>null</td>
+				 <td>&#39;&#39;::text</td>
 				 <td>
 				  <table border='0' cellspacing='0' cellpadding='0'>
 				  </table>				 
@@ -367,7 +392,7 @@
 				</tr>
 								</tbody>
 				</table>
-				<p title='14 columns'>Table contained <span id="recordNumber">5</span> rows<p/>
+				<p title='15 columns'>Table contained <span id="recordNumber">5</span> rows<p/>
 			</div>
 		</div>
 		<div class="box box-primary">		
@@ -432,20 +457,23 @@
             <div class="tab-content no-padding">            
 				<div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">					
 					<map id="oneDegreeRelationshipsDiagram" name="oneDegreeRelationshipsDiagram">
-<area shape="rect" id="node1" href="campus.html" title="campus" alt="" coords="548,5,699,181">
-<area shape="rect" id="node2" href="districts.html" title="districts" alt="" coords="191,61,504,541">
-<area shape="rect" id="node3" href="regions.html" title="regions" alt="" coords="5,445,147,621">
+<area shape="rect" id="node1" href="campus.html" title="campus" alt="" coords="559,287,710,463">
+<area shape="rect" id="node2" href="districts.html" title="districts" alt="" coords="191,199,505,708">
+<area shape="rect" id="node3" href="regions.html" title="regions" alt="" coords="5,367,147,543">
+<area shape="rect" id="node4" href="news.html" title="news" alt="" coords="549,5,720,269">
 </map>
 
 					<a name='diagram'><img id='oneDegreeImg' src='../diagrams/districts.1degree.png' usemap='#oneDegreeRelationshipsDiagram' class='diagram' border='0' alt='' align='left'></a>							
 				</div>
 				<div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">					
 					<map id="twoDegreesRelationshipsDiagram" name="twoDegreesRelationshipsDiagram">
-<area shape="rect" id="node1" href="campus.html" title="campus" alt="" coords="724,5,875,181">
-<area shape="rect" id="node2" href="districts.html" title="districts" alt="" coords="367,61,680,541">
-<area shape="rect" id="node3" href="regions.html" title="regions" alt="" coords="181,445,323,621">
-<area shape="rect" id="node4" href="states.html" title="states" alt="" coords="5,507,137,595">
-<area shape="rect" id="node5" href="users.html" title="users" alt="" coords="919,8,1051,96">
+<area shape="rect" id="node1" href="campus.html" title="campus" alt="" coords="725,13,876,189">
+<area shape="rect" id="node2" href="districts.html" title="districts" alt="" coords="367,252,681,761">
+<area shape="rect" id="node3" href="regions.html" title="regions" alt="" coords="181,665,323,841">
+<area shape="rect" id="node5" href="states.html" title="states" alt="" coords="5,453,137,541">
+<area shape="rect" id="node4" href="news.html" title="news" alt="" coords="1113,88,1284,352">
+<area shape="rect" id="node6" href="subjects.html" title="subjects" alt="" coords="920,111,1069,199">
+<area shape="rect" id="node7" href="users.html" title="users" alt="" coords="921,5,1069,93">
 </map>
 
 					<a name='diagram'><img id='twodegreesDegreeImg' src='../diagrams/districts.2degrees.png' usemap='#twoDegreesRelationshipsDiagram' class='diagram' border='0' alt='' align='left'></a>							
