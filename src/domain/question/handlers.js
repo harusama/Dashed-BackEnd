@@ -83,6 +83,12 @@ async function addEvaluationForQuestionId({ models, params, user }) {
    const { questionId, newEvaluation } = params;
 
    const question = await Question.getOneById({ id: questionId.value });
+
+   if (question.id === user.id) {
+      console.log('This user created this question.');
+      return '';
+   }
+   
    const attributes = newEvaluation.value.map(evaluation => {
       return {
          score: evaluation.score,

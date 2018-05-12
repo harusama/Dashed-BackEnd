@@ -120,9 +120,107 @@ function sendMail(email, hash) {
    return transporter.sendMail(mailOptions);
 }
 
+async function getUserHistory({ models, params, user }) {
+   const { Question, Approval, Evaluation, Post } = models;
+   const attributes = {
+      userId: user.id
+   };
+
+   const createdQuestions = await Question.getManyWith({ attributes }).map(question => {
+      const answers = question.answers.map(answer => {
+         return {
+            ...answer,
+            questionId: undefined
+         };
+      });
+
+      return {
+         ...question,
+         id: undefined,
+         approvedTimes: undefined,
+         userId: undefined,
+         lesson: undefined,
+         answers
+      };
+   });
+
+   const approvedQuestions = await Question.getManyWith({ attributes }).map(question => {
+      const answers = question.answers.map(answer => {
+         return {
+            ...answer,
+            questionId: undefined
+         };
+      });
+
+      return {
+         approvedAt: question.createdAt,
+         ...question,
+         createdAt: undefined,
+         id: undefined,
+         approvedTimes: undefined,
+         userId: undefined,
+         lesson: undefined,
+         answers
+      };
+   });
+
+   const questionsSet = new Set();
+   const evaluatedQuestions = await Evaluation.getManyWith({ attributes }).map(evaluation => {
+      questionsSet.add(evaluation.question);
+      return evaluation;
+   });
+
+   const questions = [];
+
+   for (let question of questionsSet) {
+      question.id = undefined;
+      question.createdAt = question.createdAt;
+      question.approvedTimes = undefined;
+      question.userId = undefined;
+      question.evaluations = [];
+      questions.push(question);
+   }
+
+   evaluatedQuestions.forEach(evaluation => {
+      questions.forEach(question => {
+         if (evaluation.question.id === question.id) {
+            question.evaluations.push({
+               description: evaluation.evaluationQuestion.description,
+               score: evaluation.score
+            });
+         }
+      });
+   });
+
+   attributes.kind = Post.kind.testimony;
+
+   const testimonies = await Post.getManyWith({ attributes }).map(testimony => {
+      return {
+         ...testimony,
+         username: testimony.user.username,
+         user: undefined,
+         kind: undefined,
+         downvotes: undefined,
+         upvotes: undefined,
+         comments: undefined,
+         userId: undefined,
+         subjectId: undefined,
+         username: undefined
+      }
+   });
+
+   return {
+      createdQuestions,
+      approvedQuestions,
+      evaluatedQuestions: questions,
+      testimonies
+   };
+}
+
 module.exports = {
    getUser,
    createUser,
    verifyUser,
-   getCurrentUser
+   getCurrentUser,
+   getUserHistory
 };

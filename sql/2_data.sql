@@ -199,7 +199,7 @@ INSERT INTO questions (description_text, description_image, kind, user_id, lesso
 VALUES ('Question 1', '', 1, 1, 1);
 
 INSERT INTO questions (description_text, description_image, kind, user_id, lesson_id)
-VALUES ('Question 2', '', 2, 1, 1);
+VALUES ('Question 2', '', 2, 2, 1);
 
 -- Evaluation Questions
 INSERT INTO evaluation_questions (description, kind)

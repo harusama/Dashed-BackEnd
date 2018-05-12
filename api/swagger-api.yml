@@ -117,6 +117,23 @@ paths:
               data:
                 $ref: '#/definitions/LoginUser'
 
+  /users/history:
+    get:
+      operationId: getUserHistory
+      summary: Get user history
+      tags:
+        - Users
+      security:
+        - authKey: []
+      responses:
+        200:
+          description: Ok
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: '#/definitions/UserHistory'
+
   /states:
     get:
       operationId: getStates
@@ -491,6 +508,117 @@ paths:
           description: Created
   
 definitions:
+  UserHistory:
+    type: object
+    properties:
+      createdQuestions:
+        type: array
+        items:
+          $ref: '#/definitions/CreatedQuestion'
+      approvedQuestions:
+        type: array
+        items:
+          $ref: '#/definitions/ApprovedQuestion'
+      evaluatedQuestions:
+        type: array
+        items:
+          $ref: '#/definitions/EvaluatedQuestion'
+      testimonies:
+        type: array
+        items:
+          $ref: '#/definitions/TestimonyHistory'
+    required:
+      - createdQuestions
+      - approvedQuestions
+      - evaluatedQuestions
+      - testimonies
+  
+  CreatedQuestion:
+    type: object
+    properties:
+      createdAt:
+        type: string
+      descriptionText:
+        type: string
+      descriptionImage:
+        type: string
+      kind:
+        type: integer
+        minimum: 0
+      approved:
+        type: boolean
+      lessonId:
+        type: integer
+        minimum: 0
+
+  ApprovedQuestion:
+    type: object
+    properties:
+      approvedAt:
+        type: string
+      descriptionText:
+        type: string
+      descriptionImage:
+        type: string
+      kind:
+        type: integer
+        minimum: 0
+      approved:
+        type: boolean
+      lessonId:
+        type: integer
+        minimum: 0
+
+  EvaluatedQuestion:
+    type: object
+    properties:
+      evaluatedAt:
+        type: string
+      descriptionText:
+        type: string
+      descriptionImage:
+        type: string
+      kind:
+        type: integer
+        minimum: 0
+      approved:
+        type: boolean
+      lessonId:
+        type: integer
+        minimum: 0
+      evaluations:
+        type: array
+        items:
+          type: object
+          properties:
+            description:
+              type: string
+            score:
+              type: integer
+              minimum: 0
+
+  TestimonyHistory:
+    type: object
+    properties:
+      id:
+        type: integer
+        minimum: 0
+      title:
+        type: string
+      description:
+        type: string
+      ranking:
+        type: integer
+        minimum: 0
+      resource:
+        type: string
+    required:
+      - id
+      - title
+      - description
+      - ranking
+      - resource
+  
   NewError:
     type: object
     properties:
